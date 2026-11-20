@@ -1,0 +1,1086 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{arbocz1979initial}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=a62321b97785b4e1d093d0e80e5acb1b}{%
+           family={Arbocz},
+           familyi={A\bibinitperiod},
+           given={Johann},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e5f8a84410e06f59ba3720b2c6ff429b}{%
+           family={Abramovich},
+           familyi={A\bibinitperiod},
+           given={Haim},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Delft University of Technology, Department of Aerospace Engineering}%
+      }
+      \strng{namehash}{fab446e0ade16858b75b33c8092ebb9c}
+      \strng{fullhash}{fab446e0ade16858b75b33c8092ebb9c}
+      \strng{fullhashraw}{fab446e0ade16858b75b33c8092ebb9c}
+      \strng{bibnamehash}{fab446e0ade16858b75b33c8092ebb9c}
+      \strng{authorbibnamehash}{fab446e0ade16858b75b33c8092ebb9c}
+      \strng{authornamehash}{fab446e0ade16858b75b33c8092ebb9c}
+      \strng{authorfullhash}{fab446e0ade16858b75b33c8092ebb9c}
+      \strng{authorfullhashraw}{fab446e0ade16858b75b33c8092ebb9c}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Initial Imperfection Data Bank at the Delft University of Technology}
+      \field{year}{1979}
+    \endentry
+    \entry{BieriDiss}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=7bd3d7be38edf57df542d9b1fccc7157}{%
+           family={Bieri},
+           familyi={B\bibinitperiod},
+           given={Marcel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a8ad07836abebede13cc5bf396cad5b6}{%
+           family={Andreev},
+           familyi={A\bibinitperiod},
+           given={Roman},
+           giveni={R\bibinitperiod}}}%
+        {{hash=2c8349adbf174586a035822a9efdd476}{%
+           family={Schwab},
+           familyi={S\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{f0fe52db1f1dd378c84139c16199e9fc}
+      \strng{fullhash}{f0fe52db1f1dd378c84139c16199e9fc}
+      \strng{fullhashraw}{f0fe52db1f1dd378c84139c16199e9fc}
+      \strng{bibnamehash}{f0fe52db1f1dd378c84139c16199e9fc}
+      \strng{authorbibnamehash}{f0fe52db1f1dd378c84139c16199e9fc}
+      \strng{authornamehash}{f0fe52db1f1dd378c84139c16199e9fc}
+      \strng{authorfullhash}{f0fe52db1f1dd378c84139c16199e9fc}
+      \strng{authorfullhashraw}{f0fe52db1f1dd378c84139c16199e9fc}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM Journal on Scientific Computing}
+      \field{number}{6}
+      \field{title}{Sparse Tensor Discretization of Elliptic sPDEs}
+      \field{volume}{31}
+      \field{year}{2010}
+      \field{pages}{4281\bibrangedash 4304}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1137/090749256
+      \endverb
+    \endentry
+    \entry{ChapelleBathe2011}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=61a1ee5b1da4a57c11da4d69abfc66e7}{%
+           family={Chapelle},
+           familyi={C\bibinitperiod},
+           given={Dominique},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0d709c7a8f4b980c57eabfeec0ea9d86}{%
+           family={Bathe},
+           familyi={B\bibinitperiod},
+           given={Klaus-Jürgen},
+           giveni={K\bibinithyphendelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{02f77d5140ff7159338434188b9a5a3d}
+      \strng{fullhash}{02f77d5140ff7159338434188b9a5a3d}
+      \strng{fullhashraw}{02f77d5140ff7159338434188b9a5a3d}
+      \strng{bibnamehash}{02f77d5140ff7159338434188b9a5a3d}
+      \strng{authorbibnamehash}{02f77d5140ff7159338434188b9a5a3d}
+      \strng{authornamehash}{02f77d5140ff7159338434188b9a5a3d}
+      \strng{authorfullhash}{02f77d5140ff7159338434188b9a5a3d}
+      \strng{authorfullhashraw}{02f77d5140ff7159338434188b9a5a3d}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{isbn}{978-3-642-16408-8}
+      \field{series}{Computational Fluid and Solid Mechanics}
+      \field{title}{The Finite Element Analysis of Shells: Fundamentals}
+      \field{year}{2011}
+      \field{pages}{410}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1007/978-3-642-16408-8
+      \endverb
+    \endentry
+    \entry{chernov2024analyticgevreyclassregularity}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=d2017e582fc246475e34f9424a32fbae}{%
+           family={Chernov},
+           familyi={C\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ea6f8a9f0b90a0bf36bbfc39edf2e8cb}{%
+           family={Le},
+           familyi={L\bibinitperiod},
+           given={Tung},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{fullhash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{fullhashraw}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{bibnamehash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{authorbibnamehash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{authornamehash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{authorfullhash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{authorfullhashraw}{f0d1735621e875d08fcba95fe41e4bce}
+      \field{extraname}{1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NA}
+      \field{eprinttype}{arXiv}
+      \field{title}{Analytic and Gevrey class regularity for parametric elliptic eigenvalue problems and applications}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2306.07010
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2306.07010
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2306.07010
+      \endverb
+    \endentry
+    \entry{chernov2026gevreyclassregularitysteadystate}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=d2017e582fc246475e34f9424a32fbae}{%
+           family={Chernov},
+           familyi={C\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ea6f8a9f0b90a0bf36bbfc39edf2e8cb}{%
+           family={Le},
+           familyi={L\bibinitperiod},
+           given={Tung},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{fullhash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{fullhashraw}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{bibnamehash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{authorbibnamehash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{authornamehash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{authorfullhash}{f0d1735621e875d08fcba95fe41e4bce}
+      \strng{authorfullhashraw}{f0d1735621e875d08fcba95fe41e4bce}
+      \field{extraname}{2}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NA}
+      \field{eprinttype}{arXiv}
+      \field{title}{Gevrey class regularity for steady-state incompressible Navier-Stokes equations in parametric domains and related models}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2504.13753
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2504.13753
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2504.13753
+      \endverb
+    \endentry
+    \entry{CL2024}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=d2017e582fc246475e34f9424a32fbae}{%
+           family={Chernov},
+           familyi={C\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=4f9c0d665d00aa10f27577ab3055f4f1}{%
+           family={Lê},
+           familyi={L\bibinitperiod},
+           given={Tùng},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{dc1d1ab1d4c686dbf9d7c6e7e53084bf}
+      \strng{fullhash}{dc1d1ab1d4c686dbf9d7c6e7e53084bf}
+      \strng{fullhashraw}{dc1d1ab1d4c686dbf9d7c6e7e53084bf}
+      \strng{bibnamehash}{dc1d1ab1d4c686dbf9d7c6e7e53084bf}
+      \strng{authorbibnamehash}{dc1d1ab1d4c686dbf9d7c6e7e53084bf}
+      \strng{authornamehash}{dc1d1ab1d4c686dbf9d7c6e7e53084bf}
+      \strng{authorfullhash}{dc1d1ab1d4c686dbf9d7c6e7e53084bf}
+      \strng{authorfullhashraw}{dc1d1ab1d4c686dbf9d7c6e7e53084bf}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0036-1429,1095-7170}
+      \field{journaltitle}{SIAM J. Numer. Anal.}
+      \field{number}{4}
+      \field{title}{Analytic and {G}evrey class regularity for parametric elliptic eigenvalue problems and applications}
+      \field{volume}{62}
+      \field{year}{2024}
+      \field{pages}{1874\bibrangedash 1900}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1137/23M1596296
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1137/23M1596296
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1137/23M1596296
+      \endverb
+    \endentry
+    \entry{ciarletIntroductionToShellTheory}{incollection}{}{}
+      \name{author}{2}{}{%
+        {{hash=9663587898fba0874409eb2d832ac224}{%
+           family={Ciarlet},
+           familyi={C\bibinitperiod},
+           given={Philippe\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=e3e53f17e4d9e0acb43387266f49f52a}{%
+           family={Mardare},
+           familyi={M\bibinitperiod},
+           given={Cristinel},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {World Scientific}%
+      }
+      \strng{namehash}{d7a377fb1bd2b80b8bc23ce692c894b2}
+      \strng{fullhash}{d7a377fb1bd2b80b8bc23ce692c894b2}
+      \strng{fullhashraw}{d7a377fb1bd2b80b8bc23ce692c894b2}
+      \strng{bibnamehash}{d7a377fb1bd2b80b8bc23ce692c894b2}
+      \strng{authorbibnamehash}{d7a377fb1bd2b80b8bc23ce692c894b2}
+      \strng{authornamehash}{d7a377fb1bd2b80b8bc23ce692c894b2}
+      \strng{authorfullhash}{d7a377fb1bd2b80b8bc23ce692c894b2}
+      \strng{authorfullhashraw}{d7a377fb1bd2b80b8bc23ce692c894b2}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Differential Equations and Asymptotic Theory in Mathematical Physics}
+      \field{isbn}{978-981-277-146-9}
+      \field{title}{An Introduction to Shell Theory}
+      \field{volume}{9}
+      \field{year}{2008}
+      \verb{doi}
+      \verb 10.1142/9789812771476_0002
+      \endverb
+    \endentry
+    \entry{DaugeandSuriNumericalapproximation}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=2bc7d57aa6c07734f2ea532bebd442da}{%
+           family={Dauge},
+           familyi={D\bibinitperiod},
+           given={Monique},
+           giveni={M\bibinitperiod}}}%
+        {{hash=208910900396754b1252534e02f111cc}{%
+           family={Suri},
+           familyi={S\bibinitperiod},
+           given={Manil},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{fullhash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{fullhashraw}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{bibnamehash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{authorbibnamehash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{authornamehash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{authorfullhash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{authorfullhashraw}{bf9cc74cd95fcba3379675e01b648977}
+      \field{extraname}{1}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Numerical Mathematics}
+      \field{month}{07}
+      \field{title}{Numerical approximation of the spectra of non-compact operators arising in buckling problems}
+      \field{volume}{10}
+      \field{year}{2002}
+      \verb{doi}
+      \verb 10.1515/JNMA.2002.193
+      \endverb
+    \endentry
+    \entry{dauge:hal-00012083}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=2bc7d57aa6c07734f2ea532bebd442da}{%
+           family={Dauge},
+           familyi={D\bibinitperiod},
+           given={Monique},
+           giveni={M\bibinitperiod}}}%
+        {{hash=208910900396754b1252534e02f111cc}{%
+           family={Suri},
+           familyi={S\bibinitperiod},
+           given={Manil},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{fullhash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{fullhashraw}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{bibnamehash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{authorbibnamehash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{authornamehash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{authorfullhash}{bf9cc74cd95fcba3379675e01b648977}
+      \strng{authorfullhashraw}{bf9cc74cd95fcba3379675e01b648977}
+      \field{extraname}{2}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{Mathematical Methods in the Applied Sciences}}
+      \field{note}{Version 24.08.2004}
+      \field{title}{{On the asymptotic behavior of the discrete spectrum in buckling problems for thin plates}}
+      \field{volume}{29}
+      \field{year}{2006}
+      \field{pages}{789\bibrangedash 817}
+      \range{pages}{29}
+      \verb{file}
+      \verb https://hal.science/hal-00012083v1/file/DaSuBuck2.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://hal.science/hal-00012083
+      \endverb
+      \verb{url}
+      \verb https://hal.science/hal-00012083
+      \endverb
+    \endentry
+    \entry{GIANI2025118081}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=5ed513c5ef5b63b9d3bde3f7cbedc7a2}{%
+           family={Giani},
+           familyi={G\bibinitperiod},
+           given={Stefano},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e00472489b40cff2d18efca1cc46225e}{%
+           family={Hakula},
+           familyi={H\bibinitperiod},
+           given={Harri},
+           giveni={H\bibinitperiod}}}%
+        {{hash=c19fedf163f6719ad8b3bf440bd17eab}{%
+           family={Khuat},
+           familyi={K\bibinitperiod},
+           given={Duc},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{102debc0458efe8aff63e568f0ecef10}
+      \strng{fullhash}{102debc0458efe8aff63e568f0ecef10}
+      \strng{fullhashraw}{102debc0458efe8aff63e568f0ecef10}
+      \strng{bibnamehash}{102debc0458efe8aff63e568f0ecef10}
+      \strng{authorbibnamehash}{102debc0458efe8aff63e568f0ecef10}
+      \strng{authornamehash}{102debc0458efe8aff63e568f0ecef10}
+      \strng{authorfullhash}{102debc0458efe8aff63e568f0ecef10}
+      \strng{authorfullhashraw}{102debc0458efe8aff63e568f0ecef10}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0045-7825}
+      \field{journaltitle}{Computer Methods in Applied Mechanics and Engineering}
+      \field{title}{On shells of revolution with random profiles}
+      \field{volume}{444}
+      \field{year}{2025}
+      \field{pages}{118081}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.cma.2025.118081
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0045782525003536
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0045782525003536
+      \endverb
+      \keyw{Random domain,Uncertainty quantification,Shells of revolution,Finite element method}
+    \endentry
+    \entry{Grabovsky2007TheFS}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=4550d8e8d05f9b968b81d9c9aec0ad3f}{%
+           family={Grabovsky},
+           familyi={G\bibinitperiod},
+           given={Yury},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ec779df9e657080067181951222d62de}{%
+           family={Truskinovsky},
+           familyi={T\bibinitperiod},
+           given={Lev},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{73174ebf03f0e3f9605d8020b9f91dc2}
+      \strng{fullhash}{73174ebf03f0e3f9605d8020b9f91dc2}
+      \strng{fullhashraw}{73174ebf03f0e3f9605d8020b9f91dc2}
+      \strng{bibnamehash}{73174ebf03f0e3f9605d8020b9f91dc2}
+      \strng{authorbibnamehash}{73174ebf03f0e3f9605d8020b9f91dc2}
+      \strng{authornamehash}{73174ebf03f0e3f9605d8020b9f91dc2}
+      \strng{authorfullhash}{73174ebf03f0e3f9605d8020b9f91dc2}
+      \strng{authorfullhashraw}{73174ebf03f0e3f9605d8020b9f91dc2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Continuum Mechanics and Thermodynamics}
+      \field{title}{The flip side of buckling}
+      \field{volume}{19}
+      \field{year}{2007}
+      \field{pages}{211\bibrangedash 243}
+      \range{pages}{33}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:5833425
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:5833425
+      \endverb
+    \endentry
+    \entry{grubišić2021stochasticcollocationmethodcomputing}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=b57e05f37387b5890b9db1bb6c8eac05}{%
+           family={Grubišić},
+           familyi={G\bibinitperiod},
+           given={Luka},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e00472489b40cff2d18efca1cc46225e}{%
+           family={Hakula},
+           familyi={H\bibinitperiod},
+           given={Harri},
+           giveni={H\bibinitperiod}}}%
+        {{hash=502f66029436e8120f9175c71abc3eea}{%
+           family={Laaksonen},
+           familyi={L\bibinitperiod},
+           given={Mikael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{6c7925bd7d8485de8f2f3887f7440ae9}
+      \strng{fullhash}{6c7925bd7d8485de8f2f3887f7440ae9}
+      \strng{fullhashraw}{6c7925bd7d8485de8f2f3887f7440ae9}
+      \strng{bibnamehash}{6c7925bd7d8485de8f2f3887f7440ae9}
+      \strng{authorbibnamehash}{6c7925bd7d8485de8f2f3887f7440ae9}
+      \strng{authornamehash}{6c7925bd7d8485de8f2f3887f7440ae9}
+      \strng{authorfullhash}{6c7925bd7d8485de8f2f3887f7440ae9}
+      \strng{authorfullhashraw}{6c7925bd7d8485de8f2f3887f7440ae9}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NA}
+      \field{eprinttype}{arXiv}
+      \field{title}{Stochastic collocation method for computing eigenspaces of parameter-dependent operators}
+      \field{year}{2021}
+      \verb{eprint}
+      \verb 1909.11608
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1909.11608
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1909.11608
+      \endverb
+    \endentry
+    \entry{Haji_Ali_2016}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=161849aac2d194565bf302d57daf048d}{%
+           family={Haji-Ali},
+           familyi={H\bibinithyphendelim A\bibinitperiod},
+           given={Abdul-Lateef},
+           giveni={A\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=5da77bb5beb72580def3d5d670d673fb}{%
+           family={Nobile},
+           familyi={N\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod}}}%
+        {{hash=7175535563f2c45c33c9c8ff387a3147}{%
+           family={Tamellini},
+           familyi={T\bibinitperiod},
+           given={Lorenzo},
+           giveni={L\bibinitperiod}}}%
+        {{hash=fe4805c3d1571616a74979885e0568bb}{%
+           family={Tempone},
+           familyi={T\bibinitperiod},
+           given={Raúl},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{1c8845a4305e928e6932540d839aa1b7}
+      \strng{fullhash}{8cb933d79b81e0008331041337a72003}
+      \strng{fullhashraw}{8cb933d79b81e0008331041337a72003}
+      \strng{bibnamehash}{1c8845a4305e928e6932540d839aa1b7}
+      \strng{authorbibnamehash}{1c8845a4305e928e6932540d839aa1b7}
+      \strng{authornamehash}{1c8845a4305e928e6932540d839aa1b7}
+      \strng{authorfullhash}{8cb933d79b81e0008331041337a72003}
+      \strng{authorfullhashraw}{8cb933d79b81e0008331041337a72003}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0045-7825}
+      \field{journaltitle}{Computer Methods in Applied Mechanics and Engineering}
+      \field{month}{07}
+      \field{title}{Multi-Index Stochastic Collocation for random PDEs}
+      \field{volume}{306}
+      \field{year}{2016}
+      \field{pages}{95\bibrangedash 122}
+      \range{pages}{28}
+      \verb{doi}
+      \verb 10.1016/j.cma.2016.03.029
+      \endverb
+    \endentry
+    \entry{Harbrecht2023DomainUncertainty}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=77b8dfe4ab02696b1a97e73361c17a34}{%
+           family={Harbrecht},
+           familyi={H\bibinitperiod},
+           given={Helmut},
+           giveni={H\bibinitperiod}}}%
+        {{hash=cb1e08c9a173d19c7e981a577f2a54a4}{%
+           family={Karnaev},
+           familyi={K\bibinitperiod},
+           given={Viacheslav},
+           giveni={V\bibinitperiod}}}%
+        {{hash=5751652f560ea36e93e4af7e326b645a}{%
+           family={Schmidlin},
+           familyi={S\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{f68140b750ccad34f5e69c33b337b22d}
+      \strng{fullhash}{f68140b750ccad34f5e69c33b337b22d}
+      \strng{fullhashraw}{f68140b750ccad34f5e69c33b337b22d}
+      \strng{bibnamehash}{f68140b750ccad34f5e69c33b337b22d}
+      \strng{authorbibnamehash}{f68140b750ccad34f5e69c33b337b22d}
+      \strng{authornamehash}{f68140b750ccad34f5e69c33b337b22d}
+      \strng{authorfullhash}{f68140b750ccad34f5e69c33b337b22d}
+      \strng{authorfullhashraw}{f68140b750ccad34f5e69c33b337b22d}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The present article considers the quantification of uncertainty for the equations of linear elasticity on random domains. To this end, we model the random domains as the images of some given fixed, nominal domain under random domain mappings, which are defined by a Karhunen-Loève expansion...}
+      \field{journaltitle}{SIAM/ASA Journal on Uncertainty Quantification}
+      \field{number}{2}
+      \field{title}{Quantifying Domain Uncertainty in Linear Elasticity}
+      \field{volume}{12}
+      \field{year}{2024}
+      \field{pages}{503\bibrangedash 523}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1137/23M1578589
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1137/23M1578589
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1137/23M1578589
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1137/23M1578589
+      \endverb
+    \endentry
+    \entry{Harutyunyan2023}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=1a38a09a50b5a68e073a3ff477d75f04}{%
+           family={Harutyunyan},
+           familyi={H\bibinitperiod},
+           given={Davit},
+           giveni={D\bibinitperiod}}}%
+        {{hash=a60835b1133eb7012874fdd80acc53b0}{%
+           family={Rodrigues},
+           familyi={R\bibinitperiod},
+           given={Andre\bibnamedelima Martins},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{abb7056c98673ab48726840acbc0c79d}
+      \strng{fullhash}{abb7056c98673ab48726840acbc0c79d}
+      \strng{fullhashraw}{abb7056c98673ab48726840acbc0c79d}
+      \strng{bibnamehash}{abb7056c98673ab48726840acbc0c79d}
+      \strng{authorbibnamehash}{abb7056c98673ab48726840acbc0c79d}
+      \strng{authornamehash}{abb7056c98673ab48726840acbc0c79d}
+      \strng{authorfullhash}{abb7056c98673ab48726840acbc0c79d}
+      \strng{authorfullhashraw}{abb7056c98673ab48726840acbc0c79d}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{It is known that the famous theoretical formula by Koiter for the critical buckling load of circular cylindrical shells under axial compression does not coincide with the experimental data. Namely, while Koiter’s formula predicts linear dependence of the buckling load $\lambda(h)$ on the shell thickness $h$, experiments show $\lambda(h)\sim h^{3/2}$. This discrepancy is attributed to sensitivity to imperfections. Prior work showed load twist leads to $\lambda(h)\sim h^{5/4}$, while shape imperfections yield $\lambda(h)\sim h^{3/2}$. In this work, we prove that the buckling load depends on cross-sectional curvature. For uniformly positive curvature, $\lambda(h)\sim h$, and when curvature vanishes at finitely many points, $C_1 h^{8/5} \le \lambda(h) \le C_2 h^{3/2}$ for small $h$.}
+      \field{issn}{1432-1467}
+      \field{journaltitle}{Journal of Nonlinear Science}
+      \field{number}{2}
+      \field{title}{The Buckling Load of Cylindrical Shells Under Axial Compression Depends on the Cross-Sectional Curvature}
+      \field{volume}{33}
+      \field{year}{2023}
+      \field{pages}{27}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1007/s00332-022-09880-z
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s00332-022-09880-z
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s00332-022-09880-z
+      \endverb
+    \endentry
+    \entry{HILBURGER2004369}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=863b90add7404469eb9f5dc25d7a9d49}{%
+           family={Hilburger},
+           familyi={H\bibinitperiod},
+           given={Mark\bibnamedelima W},
+           giveni={M\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=874620551603a7cfc2cb2ffe3b5b6918}{%
+           family={Starnes},
+           familyi={S\bibinitperiod},
+           given={James\bibnamedelima H},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{7c26316060204326ff051eaf6ffc4eb1}
+      \strng{fullhash}{7c26316060204326ff051eaf6ffc4eb1}
+      \strng{fullhashraw}{7c26316060204326ff051eaf6ffc4eb1}
+      \strng{bibnamehash}{7c26316060204326ff051eaf6ffc4eb1}
+      \strng{authorbibnamehash}{7c26316060204326ff051eaf6ffc4eb1}
+      \strng{authornamehash}{7c26316060204326ff051eaf6ffc4eb1}
+      \strng{authorfullhash}{7c26316060204326ff051eaf6ffc4eb1}
+      \strng{authorfullhashraw}{7c26316060204326ff051eaf6ffc4eb1}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0263-8231}
+      \field{journaltitle}{Thin-Walled Structures}
+      \field{number}{3}
+      \field{title}{Effects of imperfections of the buckling response of composite shells}
+      \field{volume}{42}
+      \field{year}{2004}
+      \field{pages}{369\bibrangedash 397}
+      \range{pages}{29}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.tws.2003.09.001
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0263823103001423
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0263823103001423
+      \endverb
+      \keyw{Buckling,Composite shells,Imperfections,Failure}
+    \endentry
+    \entry{NASA_SP_8007_2020}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=863b90add7404469eb9f5dc25d7a9d49}{%
+           family={Hilburger},
+           familyi={H\bibinitperiod},
+           given={Mark\bibnamedelima W.},
+           giveni={M\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{institution}{2}{%
+        {National Aeronautics}%
+        {Space Administration}%
+      }
+      \strng{namehash}{863b90add7404469eb9f5dc25d7a9d49}
+      \strng{fullhash}{863b90add7404469eb9f5dc25d7a9d49}
+      \strng{fullhashraw}{863b90add7404469eb9f5dc25d7a9d49}
+      \strng{bibnamehash}{863b90add7404469eb9f5dc25d7a9d49}
+      \strng{authorbibnamehash}{863b90add7404469eb9f5dc25d7a9d49}
+      \strng{authornamehash}{863b90add7404469eb9f5dc25d7a9d49}
+      \strng{authorfullhash}{863b90add7404469eb9f5dc25d7a9d49}
+      \strng{authorfullhashraw}{863b90add7404469eb9f5dc25d7a9d49}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{12}
+      \field{number}{NASA/SP-8007-2020/REV 2}
+      \field{series}{NASA/SP}
+      \field{title}{Buckling of Thin-Walled Circular Cylinders}
+      \field{type}{techreport}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://ntrs.nasa.gov/citations/20205011530
+      \endverb
+      \verb{url}
+      \verb https://ntrs.nasa.gov/citations/20205011530
+      \endverb
+    \endentry
+    \entry{HUTCHINSON2018157}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=7f10bc8978e05ed377464951f9d14434}{%
+           family={Hutchinson},
+           familyi={H\bibinitperiod},
+           given={John\bibnamedelima W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=e78a9c0fde4857c75bd836cfae42cb82}{%
+           family={Thompson},
+           familyi={T\bibinitperiod},
+           given={J.\bibnamedelimi Michael\bibnamedelima T.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{f4f4273e115f3bac217fa08e05a959f6}
+      \strng{fullhash}{f4f4273e115f3bac217fa08e05a959f6}
+      \strng{fullhashraw}{f4f4273e115f3bac217fa08e05a959f6}
+      \strng{bibnamehash}{f4f4273e115f3bac217fa08e05a959f6}
+      \strng{authorbibnamehash}{f4f4273e115f3bac217fa08e05a959f6}
+      \strng{authornamehash}{f4f4273e115f3bac217fa08e05a959f6}
+      \strng{authorfullhash}{f4f4273e115f3bac217fa08e05a959f6}
+      \strng{authorfullhashraw}{f4f4273e115f3bac217fa08e05a959f6}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0020-7683}
+      \field{journaltitle}{International Journal of Solids and Structures}
+      \field{note}{Special Issue Dedicated to the Memory of George Simitses}
+      \field{title}{Imperfections and energy barriers in shell buckling}
+      \field{volume}{148-149}
+      \field{year}{2018}
+      \field{pages}{157\bibrangedash 168}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/j.ijsolstr.2018.01.030
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0020768318300325
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0020768318300325
+      \endverb
+      \keyw{Buckling,Spherical shells,Cylindrical shells,Imperfections,Energy barrier,Knockdown factors}
+    \endentry
+    \entry{kaarnioja2026quasimontecarlobayesiandesign}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=6ccbb68b9f82c7fb7a64f1f7904f02bb}{%
+           family={Kaarnioja},
+           familyi={K\bibinitperiod},
+           given={Vesa},
+           giveni={V\bibinitperiod}}}%
+        {{hash=ae2b01e24a440e5e0c4665773752e5aa}{%
+           family={Schillings},
+           familyi={S\bibinitperiod},
+           given={Claudia},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{c694c4a1d9c046c9e3eec09b1245055c}
+      \strng{fullhash}{c694c4a1d9c046c9e3eec09b1245055c}
+      \strng{fullhashraw}{c694c4a1d9c046c9e3eec09b1245055c}
+      \strng{bibnamehash}{c694c4a1d9c046c9e3eec09b1245055c}
+      \strng{authorbibnamehash}{c694c4a1d9c046c9e3eec09b1245055c}
+      \strng{authornamehash}{c694c4a1d9c046c9e3eec09b1245055c}
+      \strng{authorfullhash}{c694c4a1d9c046c9e3eec09b1245055c}
+      \strng{authorfullhashraw}{c694c4a1d9c046c9e3eec09b1245055c}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NA}
+      \field{eprinttype}{arXiv}
+      \field{title}{Quasi-Monte Carlo for Bayesian design of experiment problems governed by parametric PDEs}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2405.03529
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2405.03529
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2405.03529
+      \endverb
+    \endentry
+    \entry{kato1995perturbation}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=de2df565ad24725681a931fe6bd95efd}{%
+           family={Kato},
+           familyi={K\bibinitperiod},
+           given={Tosio},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{de2df565ad24725681a931fe6bd95efd}
+      \strng{fullhash}{de2df565ad24725681a931fe6bd95efd}
+      \strng{fullhashraw}{de2df565ad24725681a931fe6bd95efd}
+      \strng{bibnamehash}{de2df565ad24725681a931fe6bd95efd}
+      \strng{authorbibnamehash}{de2df565ad24725681a931fe6bd95efd}
+      \strng{authornamehash}{de2df565ad24725681a931fe6bd95efd}
+      \strng{authorfullhash}{de2df565ad24725681a931fe6bd95efd}
+      \strng{authorfullhashraw}{de2df565ad24725681a931fe6bd95efd}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-642-66282-9}
+      \field{series}{Classics in Mathematics}
+      \field{title}{Perturbation Theory for Linear Operators}
+      \field{year}{1995}
+    \endentry
+    \entry{kuo2016applicationquasimontecarlomethods}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=b8b1a001266dd9ce8059650f314afa08}{%
+           family={Kuo},
+           familyi={K\bibinitperiod},
+           given={Frances\bibnamedelima Y.},
+           giveni={F\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=1d2a87e709693bf769ced54da7f55c6e}{%
+           family={Nuyens},
+           familyi={N\bibinitperiod},
+           given={Dirk},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{3f70eb396b7ef8c3814aada8593e4c22}
+      \strng{fullhash}{3f70eb396b7ef8c3814aada8593e4c22}
+      \strng{fullhashraw}{3f70eb396b7ef8c3814aada8593e4c22}
+      \strng{bibnamehash}{3f70eb396b7ef8c3814aada8593e4c22}
+      \strng{authorbibnamehash}{3f70eb396b7ef8c3814aada8593e4c22}
+      \strng{authornamehash}{3f70eb396b7ef8c3814aada8593e4c22}
+      \strng{authorfullhash}{3f70eb396b7ef8c3814aada8593e4c22}
+      \strng{authorfullhashraw}{3f70eb396b7ef8c3814aada8593e4c22}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NA}
+      \field{eprinttype}{arXiv}
+      \field{title}{Application of quasi-Monte Carlo methods to elliptic PDEs with random diffusion coefficients - a survey of analysis and implementation}
+      \field{year}{2016}
+      \verb{eprint}
+      \verb 1606.06613
+      \endverb
+    \endentry
+    \entry{LatifiRostami2019}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=91be6e7c76152095b9f35b01695dd20e}{%
+           family={Latifi\bibnamedelima Rostami},
+           familyi={L\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={Seyyed\bibnamedelima Ali},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=8afbacd66f09285dc1f55853fec6fc4e}{%
+           family={Ghoddosian},
+           familyi={G\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Periodica Polytechnica Budapest University of Technology}%
+        {Economics}%
+      }
+      \strng{namehash}{7b9c3e41b5330250eec2d713ab729819}
+      \strng{fullhash}{7b9c3e41b5330250eec2d713ab729819}
+      \strng{fullhashraw}{7b9c3e41b5330250eec2d713ab729819}
+      \strng{bibnamehash}{7b9c3e41b5330250eec2d713ab729819}
+      \strng{authorbibnamehash}{7b9c3e41b5330250eec2d713ab729819}
+      \strng{authornamehash}{7b9c3e41b5330250eec2d713ab729819}
+      \strng{authorfullhash}{7b9c3e41b5330250eec2d713ab729819}
+      \strng{authorfullhashraw}{7b9c3e41b5330250eec2d713ab729819}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0553-6626}
+      \field{journaltitle}{Periodica Polytechnica Civil Engineering}
+      \field{title}{Robust Topology Optimization Under Load and Geometry Uncertainties by Using New Sparse Grid Collocation Method}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.3311/ppci.13077
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.3311/PPci.13077
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.3311/PPci.13077
+      \endverb
+    \endentry
+    \entry{Lord_Powell_Shardlow_2014}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=5231878bf595039a3f82155c8c91354a}{%
+           family={Lord},
+           familyi={L\bibinitperiod},
+           given={Gabriel\bibnamedelima J.},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=9f54c35e2919fcc06895bb7f9099a992}{%
+           family={Powell},
+           familyi={P\bibinitperiod},
+           given={Catherine\bibnamedelima E.},
+           giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=5edd43b901994cc49f02820f3527b852}{%
+           family={Shardlow},
+           familyi={S\bibinitperiod},
+           given={Tony},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{c86786f4ef253a19f07c45e87838b622}
+      \strng{fullhash}{c86786f4ef253a19f07c45e87838b622}
+      \strng{fullhashraw}{c86786f4ef253a19f07c45e87838b622}
+      \strng{bibnamehash}{c86786f4ef253a19f07c45e87838b622}
+      \strng{authorbibnamehash}{c86786f4ef253a19f07c45e87838b622}
+      \strng{authornamehash}{c86786f4ef253a19f07c45e87838b622}
+      \strng{authorfullhash}{c86786f4ef253a19f07c45e87838b622}
+      \strng{authorfullhashraw}{c86786f4ef253a19f07c45e87838b622}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Cambridge Texts in Applied Mathematics}
+      \field{title}{An Introduction to Computational Stochastic PDEs}
+      \field{year}{2014}
+    \endentry
+    \entry{SCHENK20073424}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=bbf916b6a7cd516f5bf85a63b54fd0f8}{%
+           family={Schenk},
+           familyi={S\bibinitperiod},
+           given={C.A.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=3a3c917416688589a4b929499366e287}{%
+           family={Schuëller},
+           familyi={S\bibinitperiod},
+           given={G.I.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{82073f20aed67bda14eab745c943385f}
+      \strng{fullhash}{82073f20aed67bda14eab745c943385f}
+      \strng{fullhashraw}{82073f20aed67bda14eab745c943385f}
+      \strng{bibnamehash}{82073f20aed67bda14eab745c943385f}
+      \strng{authorbibnamehash}{82073f20aed67bda14eab745c943385f}
+      \strng{authornamehash}{82073f20aed67bda14eab745c943385f}
+      \strng{authorfullhash}{82073f20aed67bda14eab745c943385f}
+      \strng{authorfullhashraw}{82073f20aed67bda14eab745c943385f}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0045-7825}
+      \field{journaltitle}{Computer Methods in Applied Mechanics and Engineering}
+      \field{number}{35}
+      \field{title}{Buckling analysis of cylindrical shells with cutouts including random boundary and geometric imperfections}
+      \field{volume}{196}
+      \field{year}{2007}
+      \field{pages}{3424\bibrangedash 3434}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.cma.2007.03.014
+      \endverb
+    \endentry
+    \entry{SZABO199943}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=7a12d2b585d0479535dafd384c080463}{%
+           family={Szabó},
+           familyi={S\bibinitperiod},
+           given={Barna},
+           giveni={B\bibinitperiod}}}%
+        {{hash=a7fe869892e17d51162a1e1bb60c1e5b}{%
+           family={Királyfalvi},
+           familyi={K\bibinitperiod},
+           given={György},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c9893cfa3619c053e0cbfe1320b2542}
+      \strng{fullhash}{9c9893cfa3619c053e0cbfe1320b2542}
+      \strng{fullhashraw}{9c9893cfa3619c053e0cbfe1320b2542}
+      \strng{bibnamehash}{9c9893cfa3619c053e0cbfe1320b2542}
+      \strng{authorbibnamehash}{9c9893cfa3619c053e0cbfe1320b2542}
+      \strng{authornamehash}{9c9893cfa3619c053e0cbfe1320b2542}
+      \strng{authorfullhash}{9c9893cfa3619c053e0cbfe1320b2542}
+      \strng{authorfullhashraw}{9c9893cfa3619c053e0cbfe1320b2542}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Linear models for estimating the limits of elastic stability and the effects of stress stiffening are formulated, starting from the assumption that in its reference configuration the elastic body is subjected to an initial stress field which satisfies the equations of linear elasticity. When the body is subjected to some kinematically admissible perturbation then the work done by the initial stress field, due to the product term of the Green-Lagrange strain tensor, accounts for the geometric terms in the equilibrium equations which represent the effects of the initial stress field. Examples are presented.}
+      \field{issn}{0045-7825}
+      \field{journaltitle}{Computer Methods in Applied Mechanics and Engineering}
+      \field{number}{1}
+      \field{title}{Linear models of buckling and stress-stiffening}
+      \field{volume}{171}
+      \field{year}{1999}
+      \field{pages}{43\bibrangedash 59}
+      \range{pages}{17}
+      \verb{doi}
+      \verb https://doi.org/10.1016/S0045-7825(98)00241-2
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0045782598002412
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0045782598002412
+      \endverb
+    \endentry
+    \entry{WAGNER2020106451}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=c158093518dadcc6ed8faf09b5d8c566}{%
+           family={Wagner},
+           familyi={W\bibinitperiod},
+           given={H.N.R.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=947896e11e4ceb9f553ad3d7e15df594}{%
+           family={Hühne},
+           familyi={H\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ff48b5c69710d94b85713cdd4e050e40}{%
+           family={Elishakoff},
+           familyi={E\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{852bdab38e7b9c4790b25212062bf406}
+      \strng{fullhash}{852bdab38e7b9c4790b25212062bf406}
+      \strng{fullhashraw}{852bdab38e7b9c4790b25212062bf406}
+      \strng{bibnamehash}{852bdab38e7b9c4790b25212062bf406}
+      \strng{authorbibnamehash}{852bdab38e7b9c4790b25212062bf406}
+      \strng{authornamehash}{852bdab38e7b9c4790b25212062bf406}
+      \strng{authorfullhash}{852bdab38e7b9c4790b25212062bf406}
+      \strng{authorfullhashraw}{852bdab38e7b9c4790b25212062bf406}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0263-8231}
+      \field{journaltitle}{Thin-Walled Structures}
+      \field{title}{Probabilistic and deterministic lower-bound design benchmarks for cylindrical shells under axial compression}
+      \field{volume}{146}
+      \field{year}{2020}
+      \field{pages}{106451}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.tws.2019.106451
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0263823119308304
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0263823119308304
+      \endverb
+    \endentry
+  \enddatalist
+  \missing{Reference}
+\endrefsection
+\endinput
+

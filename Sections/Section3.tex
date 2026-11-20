@@ -1,0 +1,552 @@
+\section{Abstract Results for Gevrey Regularity of Spectral Operators}\label{section:AbstractResults}
+\tododuc{Write a more informative paragraph, connecting this better to the rest.}
+%The parametrized eigenvalue problem in \eqref{eq:eigenvaluebucklingproblem} is a well studied problem.  
+%We outline the analysis of the spectrum of \eqref{eq:eigenvaluebucklingproblem} with the use of the residual technique.
+We describe how to quantify Gevrey-regularity of parametrized eigenvalue problems of the form in  \eqref{eq:eigenvaluebucklingproblem}. The following results and techniques are mostly well-established.
+However, the proofs of the Gevrey-regularity of the spectral resolvent operators are novel contributions.
+Here, we assume that the parametrization of $a_\bsy$ and $b_\bsy$ are Gevrey-regular and we provide a proof for this statement in Section \ref{sec:regularityOfTy}.
+\subsection{Linear Eigenvalue Problem For Non-Compact Operators}\label{subsection:Tydefinition}
+The setting is similar to \cite[Section 3]{DaugeandSuriNumericalapproximation}.
+Let $V,H$ be separable Hilbert spaces with a compact imbedding into $V\hookrightarrow H$. Let $(\cdot,\cdot)$ be the inner product in $H$. \ac{$=L^2(\Omega)$??}
+Let the dual of $V$ be $V'$, with the duality pairing $\langle \cdot, \cdot \rangle$ being an extension of $(\cdot,\cdot)$. 
+$a_{\bsy}(\cdot,\cdot)$ and $b_\bsy(\cdot,\cdot)$  are Hermitian, bounded sesquilinear forms on $V\times V$ with $a_\bsy(\cdot,\cdot)$ being uniformly strongly coercive. Moreover, let $\calF : \calU \to V', \bsy \mapsto \calF_{\bsy} $ be a parametrization of dual forms.
+%, corresponding to the prestress source problem in \eqref{eq:sourceproblem_weak_star}.
+The following results can be applied to the situation in Problem \ref{problem:transformed_linearbuckling}.
+
+Let $\mathcal{A}_{\bsy} ,\mathcal{M}_{\bsy} : V \to V'$ \ac{$V' \to V$ in both cases} be  operators such that 
+\begin{align}
+\label{eq:DefAy}
+a_{\bsy}(\bsu, \bsv) &= \langle \mathcal{A}_{\bsy} \bsu ,  \bsv \rangle, \\
+\label{eq:DefMy}
+b_{\bsy}(\bsu, \bsv) &= \langle \mathcal{M}_{\bsy} \bsu ,  \bsv \rangle,
+%\mathcal{F}_{\bsy}(\bsu) &= \int_{\Omega} \tilde F_i u_i \dxi  + \oint_{\partial \Omega_T} \tilde T_i u_i \mathop{dS},
+\end{align}
+for all $\bsu,\bsv \in V$ and $\bsy \in \calU$. Its well known that $\calA_\bsy$ and $\calA_\bsy^{-1}$ are homeomorphism from $V$ and $V'$. Compare, e.g. \cite[(3.2)]{DaugeandSuriNumericalapproximation}. %where $a_\bsy, b_{\bsy}$
+%,\tilde F_i$ and $\tilde T_i$ are defined in \eqref{eq:bilinearforms},\eqref{eq:bilinearforms2}, \eqref{eq:transformedbodyload} and \eqref{eq:transformedtractionload}, respectively.
+Moreover, we define 
+\begin{align}\label{eq:definitionTy}
+    \calT_{\bsy} = \calA_{\bsy}^{-1} \calM_{\bsy},
+\end{align}
+and then Problem \ref{problem:linearbuckling} is equivalent to solving for the largest eigenvalue in
+\begin{equation}\label{eq:eigenvalueproblemTy}
+    \calT_{\bsy} u(\bsy) = \mu(\bsy) u(\bsy), \quad \text{where} \quad \mu(\bsy) = \frac{1}{\lambda(\bsy)}.
+\end{equation}
+For the proofs of Lemma \ref{lemma:selfadjointedness} and \ref{lemma:pollutionfree}, see \cite[Section 3]{DaugeandSuriNumericalapproximation}: 
+\begin{lemma}\label{lemma:selfadjointedness}
+    $\calT_\bsy$ is a self-adjoint operator on $V$ with inner product $a_\bsy$.
+\end{lemma}
+
+We define the discrete and the essential spectrum
+\begin{align*} 
+    \sigma_{\ds}(\calT_\bsy) &:= \{ z \in \mathbb{C} \mid \ker( \calT_\bsy - z \mathbf{I}) \neq \{ 0 \},  \calT_\bsy - z \mathbf{I} \text{ is a Fredholm operator from $V$ into $V$ }  \}, \\
+    \sigma_{\ess}(\calT_\bsy) &:= \{ z \in \mathbb{C} \mid \calT_\bsy -z \mathbf{I} \text{ is not a Fredholm operator from $V$ into $V$} \}.
+    \end{align*}
+As indicated in Remark \ref{remark:noncompactOperator}, $\calT_\bsy$ can potentially be a family of non-compact operators. However, we may assume that the essential spectrum is bounded in 
+\begin{equation*}
+    \sigma_{\ess}(\calT_\bsy) \subseteq [-D,D]
+\end{equation*}
+where $D > 0 $ is independent of $\bsy$. Note that, in the linear buckling model, $D$ depends only on a uniform Korn constant $K > 0$ and a uniform bound on the presstress norm $\| \bssigma_* (\bsy) \|_{L^\infty(\Omega; \mathbb{T}_2)} \leq M $, that is, $D = K M$. See \cite[Theorem 5.1]{DaugeandSuriNumericalapproximation}.
+%This assumption is justified by the following result in \cite{DaugeandSuriNumericalapproximation} and a related result on the critical buckling load for thin domains.
+Assuming the boundedness of the essential spectrum of $\calT_\bsy$ is justified by the results in the following remark:
+\begin{lemma}[Pollution-free Eigenvalue Problem for Thin Domains]\label{lemma:pollutionfree}
+    If $t > 0$ is the thickness of the domain, then the eigenvalues of Problem \ref{problem:linearbuckling} decay as $\calO(t^2)$, \cite{dauge:hal-00012083}.  Hence, $ \mu_1(\bsy)$ converges quickly towards infinity.
+    Moreover, the interval $[-D,D]$ is independent of $t$, and thus the largest eigenvalues of $\calT_\bsy$ can be approximated without spectral pollution. That is, eigenvalues of the discrete solver do not seem to converge, since there are part of the essential spectrum of $\calT_\bsy$.
+    %enabling a pollution-free eigenvalue
+    Therefore, in the remainder, we assume that $t$ is small enough.
+\end{lemma}
+
+
+%The smallest buckling load $\lambda_1(\bsy)$ corresponds to the largest eigenvalue $\mu_1(\bsy)$ of $\calT_{\bsy}$. 
+With the latter result, we may assume that the largest eigenvalues of $\calT_\bsy$ can be written in descending order
+\begin{align*}
+    \mu_1(\bsy) \geq \mu_2(\bsy) \geq  \mu_3(\bsy) \geq \ldots 
+\end{align*}
+and corresponding eigenvectors $u_1(\bsy), u_2(\bsy),\ldots $.
+Moreover, we denote the eigenspace up to $k$ as 
+\begin{equation}\label{eq:eigenspaceU}
+    U_k(\bsy) = \mathrm{span}\{  u_i(\bsy) \mid i=1,\ldots,k \} .
+\end{equation}
+
+
+
+
+\subsection{Notation For Gevrey-Regularity}
+The following definitions are from  \cite{chernov2026gevreyclassregularitysteadystate}. 
+
+For $m \in \NN_0$ the falling factorial $\brac{\tfrac{1}{2}}_m$ is defined by  
+\begin{equation*}
+	\brac{\tfrac{1}{2}}_m
+	:=
+	\begin{cases}
+		1 \quad & \text{if } m=0, \\
+		\displaystyle \prod_{{k=0}}^{m-1} \brac{\tfrac{1}{2} - k}& \text{if } m > 0. 
+	\end{cases}	
+\end{equation*}	
+ We introduce the quantity
+\begin{equation*}
+	\gdnota{m} := \abs{\brac{\tfrac{1}{2}}_m}.
+\end{equation*}	
+To streamline the presentation, we introduce the shorthand notation
+	\begin{equation*}
+		\fallfac{\delta}{\vnu} :=  \gdnota{\abs{\vnu}}  (\abs{\vnu}!)^{\delta-1}, {\qquad \vnu \in \cF.}
+	\end{equation*}
+The set of finitely supported sequences of non-negative integers $\cF$ is defined as
+\begin{equation}\label{cF-def}
+	\cF := 
+	\left\{
+	\vnu ={(\nu_j)_{j \in \NN}} : \nu_j\in \NN_0 \text{ with } \nu_j \neq 0 \text{ for  finitely many } j
+	\right\}.
+\end{equation}
+For multi-indices $\valpha, \vbeta \in \cF$, the algebraic operation $\valpha + \vbeta$ and the partial orderings $\valpha \leq \vbeta$ are understood component-wise. In particular, $\valpha < \vbeta$ means $\valpha \leq \vbeta$ and $\valpha \neq \vbeta$. For a given sequence of positive real numbers $\vR=(\rho_j)_{j{\in \NN}}$ and a multi-index $\vnu \in \cF$, it is convenient to define
+\begin{align*}
+	\vR^{\vnu} := \prod_{j{\in \NN}} \rho_j^{\nu_j},
+	\qquad \qquad
+	\abs{\vnu} := \sum_{j{\in \NN}} \nu_j, 
+	\qquad \qquad
+	\vnu! := \prod_{j{\in \NN}} \nu_j!. 
+\end{align*}
+
+
+For a $\vnu\in \cF$ with  $\supp (\vnu) \subset\sett{1,2,\dots, n}$ and a function $v$ on $\R^\NN$, the partial derivative $\partial^{\vnu} v$ with respect to the variables $\vy$ are defined as
+\begin{align*}
+	\partial^{\vnu} v
+	=
+	\frac{\partial^{\abs{\vnu}}v}
+	{\partial y_1^{\nu_1} \partial y_2^{\nu_2} \dots \partial y_n^{\nu_n}}
+\end{align*}
+with the convention that $\partial y_j^{\nu_j}$ is omitted if $\nu_j =0$. 
+
+
+ The following definition of Gevrey-$\delta$ functions with countably many parameters will be used in our regularity analysis.
+\begin{definition}[Gevrey-Regularity] \label{def:G-delta-def} 
+	Let $\delta \geq 1$, $B$ be a Banach space, $I \subset \R^\NN$ be an open domain and a function $f:I \to B$ be such that its $\vy$-derivatives $\partial^{\vnu} f:I \to B$ are continuous for all $\vnu \in \cF$. We say that the function $f$ is of class Gevrey-$\delta$ if for each $y_0 \in I$ there exist an open set $J\subseteq I$ that contains $y_0$, and strictly positive constants $\vR = (\rho_1,\rho_2,\dots) \subset \R_{>0}^{\NN}$ and $C \in \R_{>0}$ that the derivatives of $f$ satisfy the bounds
+	\begin{equation}\label{G-delta-def}
+		\|\partial^{\vnu} f(\vy)\|_B \leq \frac{C}{\vR^{\vnu}} (|\vnu|!)^\delta, \qquad \forall \vy \in J, \quad \forall \vnu \in \cF.
+	\end{equation}
+	In this case we write $f \in G^\delta(I,B)$.
+\end{definition}
+
+
+\subsection{A uniform Spectral Gap}\label{subsec:UniformSpectralGap}
+%In this section, we assume that the parametrization on $\calT_\bsy : V\to V$ is Gevrey-regular. This statement will be shown in Section \ref{subsec:proofTyRegularity} in the context of random domain mappings and the linear buckling problem. The aim of this section is to determine a condition under which the largest eigenvalue cluster of $\calT_\bsy$ is isolated. Consequently, we prove that the spectral projection onto this isolated eigenspace is Gevrey-regular.
+
+
+%%% Rewritting the paragraph
+Eigenvalues of smoothly param   etrized linear operators are known to admit non-smooth dependencies, that is, Gevrey-regularity of $\calT_\bsy$ does not imply Gevrey-regularity of $\mu_j(\bsy)$. %does not need to be Gevrye-regular% $C^\infty$.
+%That is, there are counterexamples where we fail to bound $\vert \D^\bsnu \mu_j(\bsy) \vert$.
+Therefore, analyzing the regularity of the solution of the eigenvalue problem requires us to redefine the problem; find the smallest isolated eigenvalue cluster that contains the largest eigenvalue.
+Here, an isolated eigenvalue cluster is a subset $J \subseteq \N$ and the corresponding subset of eigenvalues  $S_J(\bsy) = \{ \mu_i(\bsy)\mid i \in J \}$ such that there exists a constant $C>0$ and 
+ \begin{align*}
+     \textrm{dist}( S_J(\bsy), \sigma(\calT_\bsy)\setminus S_J(\bsy))  \geq C
+ \end{align*} 
+  for all $\bsy \in \calU$. The smallest isolated eigenvalue cluster containing $\mu_1(\bsy)$ is characterized by the smallest $k \in \N$ such that $\{1,\ldots,k\}$ is isolated and for any $r  <k $ and $ J = \{1,\ldots, r\} $ for any $r  <k $, we have \begin{align*}
+      \textrm{dist}( S_{J}(\bsy), \sigma(\calT_\bsy)\setminus S_{J}(\bsy))=0.
+  \end{align*}
+  
+ We show that the corresponding spectral operators of $S_J(\bsy)$ are regular.
+ Here, spectral operators of a cluster of eigenvalues $S_J(\bsy)$ are the operators $P(\bsy) $ that projects $V $ onto the eigenspace $U_J(\bsy) $ and $\Lambda(\bsy) = \calT_{\bsy} P(\bsy) $.  A formal definition in terms of the resolvent of $\calT_{\bsy}$ is given below in \eqref{eq:spectralProjector} and \eqref{eq:CauchyIntegralFormulaForD}.
+ In the following section, we focus on establishing a condition for the largest eigenvalue cluster to be isolated.   For this result, we only require the assumption that $\calT_\bsy$ is Gevrey-regular stated in Assumption \ref{ass:gevreyTy}.
+%Provided that the eigenvalue cluster of $\mu_1(\bsy)$ 
+ %corresponding to $ \{ \mu_1(0), \ldots, \mu_s(0) \}$, where $s$ is the algebraic multiplicity of $\mu_i(0)$ 
+%falling factorial 
+ 
+%Eigenvalues of parametrized linear operators are known to admit non-smooth dependencies, regardless of the regularity of the parameter-operator dependency. 
+%This is a simple consequence of the fact that algebraic eigenvalues can be characterized by their characteristic polynomial. 
+%To fix ideas, we consider the characteristic polynomial of $\calT_\bsy$ restricted on a finite dimensional subspace. Let $P(\bsy)$ be an orthogonal projection onto a finite dimensional $\calT_\bsy$-invariant subspace of constant dimension. Then
+%\begin{equation}\label{eq:characteristicpoly}
+ %   \chi(z) =\det( P^*(\bsy)\calT_\bsy P(\bsy) - z\mathbf{Id}_n) = \sum_{i=0}^n a_i(\bsy)z^{i} = \prod_{i=1}^n (z -\mu_i(\bsy)).
+%\end{equation} 
+%The regularity of the coefficients $a_i(\bsy)$ does not imply that the roots are regular with respect to $\bsy$. 
+%However, by comparing coefficients  $a_i$ and the products of $\mu_i(\bsy)$ in \eqref{eq:characteristicpoly}, we can exactly characterize which quantities remain regular. For example, the trace is \begin{align*}
+%\mathrm{tr}(P^*(\bsy)\calT_\bsy P(\bsy)) = \sum_{i=1}^n \mu_i(\bsy) = -a_{n-1}(\bsy)
+%\end{align*} 
+%    and therefore remains regular.
+%Moreover, the $\calT_\bsy$-invariant subspace is also an isolated subspace, because any crossing of non-zero invariant subspaces would increase its dimension.
+%Hence, we need to find isolated invariant-subspaces or their corresponding eigenvalue clusters. 
+%The criteria that we establish in the following,  uses the regularity constants of $\calT_\bsy$ that are shown in Section \ref{sec:regularityOfTy}. Numerical evidence in Section \ref{sec:numerical-example} suggests that the smallest eigenvalue cluster associated with the critical buckling load. 
+
+
+We define the norm$\| \cdot \|_{\text{op}}$ as the operator norm for linear operators linear operators on $V \to V$. For the linear buckling model \eqref{eq:eigenvaluebucklingproblem}, the following assumption is shown in Section \ref{sec:regularityOfTy} under some relatively mild assumptions on the random domain mapping $\Phi$.
+\begin{assumption}\label{ass:gevreyTy} 
+For some $\delta \geq 1$, we assume that $\calT_\bsy$ is Gevrey-$\delta$-regular, that is,
+\begin{equation}\label{eq:assumptionTyregular}
+            \| \Dnuy \calT_\bsy \|_{\op} \leq C_{\calT} \bsb^{\bsnu} \fallennudelta, \quad  \text{ for all } \bsnu \in \calF, \bsy \in \calU.
+ \end{equation}
+Moreover, we assume that $\bsb \in \ell^1(\N)$
+and $\mu_1(\bsy)  > D$ for all $\bsy \in \calU$. Hence, the largest eigenvalue is bounded away from the essential spectrum of $\calT_\bsy$.    
+\end{assumption}
+
+
+
+We can prove a Lipschitz property using the mean-value theorem to bound the variation of $\calT_{\bsy}$. 
+\begin{lemma}[Lipschitz constant of $\calT_{\bsy}$]\label{lemma:variationboundTy}
+    For any $ \bsy, \bsy_0 \in \calU$, we have
+    \begin{align}\label{eq:boundvariationTy}
+        \| \calT_{\bsy} - T_{\bsy_0} \|_{\op} \leq r  C_{\calT}\| \bsb \|_{\ell^1(\N)} =: C_V(r,C_{\calT},\bsb)= C_V,
+    \end{align}
+   \ac{$C$ is $\frac{1}{2}C_\calT$?} where $r = \text{diam}(\calU)$ and $C_{\calT},\rho_{\calT}$ are defined in Lemma \ref{lemma:GevreyRegularityTy}.
+\end{lemma}
+\begin{proof}
+    Note that, 
+   \begin{align*}
+        \sum_{i=1}^\infty  \| \D^{e_i}_{\bsy} \calT_{\bsy} \|_{\op} \leq  C_{\calT}\sum_{i=1}^\infty  b_i =  C_{\calT} \| \bsb \|_{\ell^1(\N)} < \infty.
+   \end{align*} 
+   Since $\calU$ is convex, the mean-value theorem 
+  implies that there is some $\zeta \in \calU$ between $\bsy_0$ and $\bsy$ such that 
+   \begin{align*}
+       \calT_{\bsy} - \calT_{\bsy_0} = \sum_{i=1}^\infty \D^{e_i}_{\bsy} \calT_{\zeta} (\zeta_i - \bsy_{0,i})
+   \end{align*}
+   and thus
+   \begin{align*}
+       \| \calT_{\bsy} - \calT_{\bsy_0} \|_{\op}  \leq  \sum_{i=1}^\infty  \| \D^{e_i}_{\bsy} \calT_{\zeta} \|_{\op}  \| \zeta - \bsy_0 \|_{\calU} 
+        \leq  r C_{\calT}\| \bsb \|_{\ell^1(\N)}.
+   \end{align*}
+   \ac{$\calU$-norm is not defined, $\zeta$ should be boldface.}
+\end{proof}
+The perturbation of eigenvalues can be bounded by the same constant on the variation of the operator $\calT_\bsy$. This goes back to Weyl and a proof is included for convenience and because the special treatment of discrete and essential spectrum has not been found in the literature.
+\begin{lemma}[Weyl's inequality]\label{lemma:Weylsinequality}
+Let $A$ and $B$ be a self-adjoint operators such that for $M \in \{A,B\} $, $\sigma_{\ds} (M)\cap (\R \setminus \sigma_{\ess}(M))$ is not empty and 
+let $\mu_1(M) \geq \mu_2(M)  \geq \ldots $ denote the eigenvalues  for which $\mu_k(M) \in \sigma_{\mathrm{ds}} (M)\cap (\R \setminus \sigma_{\ess}(M))$ in descending order. 
+Then
+\begin{align*}
+    \mu_{i +j -1}(A+ B) \leq \mu_i(A) +  \mu_{j}(B),
+\end{align*}
+for all $i,j \geq 1$.
+Consequently,
+\begin{align*}
+    \vert \mu_{k} (\bsy)- \mu_k(\bsy_0) \vert \leq C_V, \quad  \text{ for all } \bsy \in \calU,
+\end{align*}
+where $V$ is defined in \eqref{eq:boundvariationTy}, for all $k  \geq 1$ such that the eigenvalues $\mu_k(\bsy) ,\mu_k(\bsy_0) $ are not in numerical range of the essential spectrum of $\calT_\bsy$.
+\end{lemma}
+\begin{proof}
+    Weyl's inequality is 
+    \begin{equation*}
+        \mu_{i+j-1}(A+ B)  \leq \mu_{i}(A) + \mu_j(B), \quad i,j \geq 1.
+    \end{equation*}
+   % for operators $A,B$ that satisfies the with a non-empty discrete spectrum, where the essential spectrum is bounded to some interval around $0$. At least for the discrete spectrum, that is not mixed with the essential spectrum, one can prove above inequality.
+    This can be shown by using the $\min$-$\max$ characterization for self-adjoint operators and the identity holds for the discrete \ac{what do you mean by algebraic?} spectrum
+    
+    \begin{align*}
+        \mu_{i} (A) = \min_{ \dim(W) \leq i-1} \max_{\substack{u \bot W \\\| u \| = 1}}  \langle Au,u \rangle.
+    \end{align*}
+    Let $S_A$ and $S_B$ be the subspaces of dimension $i-1$ and $j-1$, respectively, for which the minimum is attained.
+    Then $S = S_A + S_B$ has dimension less than $i+j-1$. Furthermore, $u \bot S$ implies $u \bot S_1$ and $u \bot S_2$.
+    Thus
+ \begin{align*}
+     \mu_{i+j-1} (A + B) &= \min_{ \dim(W) \leq i+j-2} \max_{\substack{u \bot W \\\| u \| = 1}} \, \langle (A+B)u,u \rangle \\
+     &\leq \max_{ \substack{u \bot S \\\| u \| = 1}} \, \langle Au,u \rangle + \langle Bu,u \rangle \\
+     &\leq \mu_{i}(A) + \mu_j(B).
+ \end{align*}
+ For the second statement, we set $j = 1$, and $A = \calT_{\bsy}, B = \calT_{\bsy_0}-  \calT_{\bsy}$ and immediately obtain 
+\begin{align*}
+     \mu_{k} (\bsy)- \mu_k(\bsy_0)  \leq \mu_1(\calT_{\bsy_0}-\calT_{\bsy})  \leq \| \calT_{\bsy_0}-\calT_{\bsy} \|_{\op}  \leq C_V.
+\end{align*} Interchanging $\bsy_0$ and $\bsy$, yields the claim.
+\end{proof}
+
+
+\begin{lemma}[Uniform Spectral Gap]\label{lemma:uniformSpectralGap}
+    Let $C_V$ the bound on the variation of $\calT_\bsy$ from \eqref{eq:boundvariationTy}. %Moreover,  assume that $s \in \N$ is the algebraic multiplicity of $\mu_1(0)$. Further, assume that the essential spectrum is sufficiently far away from $\mu_1(0)$, that is,  
+    %\begin{align*}
+    %\mu_1(0) - V > D,
+    %\end{align*} where $D$ is such that $\sigma_{\ess}(\calT_\bsy) \subseteq [-D,D]$.
+    Let  $s \in \N$ be minimal such that 
+    \begin{equation}\label{eq:def_delta0}
+        \delta_0 := \mu_{s}(0)-\mu_{s+1}(0)  > 0. 
+    \end{equation} 
+    If 
+    \begin{equation}\label{eq:def_delta_hat}
+        \hat \delta = \delta_0 -2C_V > 0,
+    \end{equation} then the eigenspace of the first $s$ eigenvalues $U_s(\bsy)$, see \eqref{eq:eigenspaceU}, is isolated from the rest of the spectrum with uniform spectral gap that is at least of size $\hat \delta$.
+\end{lemma}
+\begin{proof}
+%First, note that for $k \in \{1,\ldots,s\}$, 
+%\begin{align*}
+%    \mu_k(\bsy) - D =  \mu_k(\bsy)  -  \mu_k(0) +  \mu_k(0) -D  \geq   \mu_1(0) - V - D > 0
+%\end{align*}
+%which implies that $\mu_k(\bsy) \notin [-D,D]$ for all $\bsy \in \calU$. Hence there is no mixing of the essential spectrum with the first eigenvalue cluster.
+Let $i \geq 1$ and $\bsy \in \calU$. 
+    Then 
+    \begin{align*}
+        \mu_s(\bsy) - \mu_{s+i}(\bsy)  & = \underbrace{\mu_s(\bsy)- \mu_s(0)}_{\geq -C_V } + \underbrace{\mu_s(0) - \mu_{s+i}(0)}_{\geq \delta_0}  + \underbrace{\mu_{s+i}(0) - \mu_{s+i}(\bsy)}_{\geq -C_V} \\
+        &\geq \delta_0 -2C_V = \hat \delta.
+    \end{align*}
+\end{proof}
+\subsection{Gevrey-Regularity of an Isolated Eigenvalue Cluster}\label{subsec:clusterRegular}
+Assuming that the conditions in Lemma \ref{lemma:uniformSpectralGap} are satisfied. We can define the resolvent and a contour line $\Gamma$ that separates $\{ \mu_1(\bsy), \ldots, \mu_s(\bsy) \}$ from the rest of the spectrum such that 
+\begin{equation*}
+    z \mapsto R(z,\bsy):= (\calT_\bsy-z\mathbf{I}))^{-1}
+\end{equation*} 
+is analytic for all $z \in \Gamma$ and $\bsy \in \calU$. 
+%The aim of this section is to prove Theorem \ref{theorem:main}.
+%The proof avoids the direct differentiation of the buckling modes which is ill-posed, because potential crossings of eigenmodes makes their $\bsy$-dependence non-smooth.
+%And instead the proof relies on the resolvent formalism and Cauchy integrals.
+%Based on Theorem \ref{theorem:main1}, we have an explicit criterion on when we can expect to find an eigenspace isolating curve $\Gamma$.
+In such a case, the Cauchy integral formula for the resolvent can be applied \cite[Chapter III, \S4 , Theorem 6.17]{kato1995perturbation}. 
+%exhibiting the enclosed eigenspace in form of the spectral projection operator $P(\bsy)$ in \eqref{eq:spectralProjector}, and the resolvent operator, restricted on the enclosed eigenvalues $\mu_1(\bsy), \ldots, \mu_s(\bsy)$. 
+%Here, $s$ is the size of the first eigenvalue cluster, as in \eqref{eq:choiceofs}. 
+That is, the operators
+\begin{align}\label{eq:spectralProjector}
+    P(\bsy) &:= \frac 1 {2\pi i} \int_{\Gamma} (\calT_{\bsy} -z \mathbf{I})^{-1}  \mathop{dz}, \\
+    \label{eq:CauchyIntegralFormulaForD}
+    \Lambda(\bsy) &:=  \frac  1 {2\pi i} \int_{\Gamma} z \mathbf{I} (\calT_{\bsy} - z \mathbf{I})^{-1}\mathop{dz}  
+\end{align}
+   % are Gevrey-$\delta$-regular on $\calU$.
+are well-defined and moreover, 
+\begin{equation*}
+    \mathrm{ran} (P(\bsy)) = U_s(\bsy), \quad P^2(\bsy) = P(\bsy),
+\end{equation*} where $U_s(\bsy)$ is defined in \eqref{eq:eigenspaceU} and 
+\begin{equation*}
+    \Lambda(\bsy) =\calT_{\bsy}P(\bsy),
+\end{equation*}
+for all $\bsy \in \calU$.
+
+Then the trace operator of $\Lambda(\bsy)$ yields
+\begin{equation}
+    \mathrm{tr} \,\Lambda(\bsy) =  \mu_1(\bsy)+  \ldots + \mu_s(\bsy),
+\end{equation}
+
+%while the projector $P_\bsy = P(\bsy)$ in \eqref{eq:spectralProjector} satisfies $P_\bsy (\calL(V)) = U_s(\bsy)$. Here, recall that $ U_s(\bsy)$ is the eigenspace, spanned by the first $s$ eigenvectors of $\calT_\bsy$. In other words, we have
+
+%The resolvent theory is, for example, explained in great detail in Kato \cite[Chapter I, \S 3 \& Chapter III, \S 4]{kato1995perturbation}. Note that, it is sufficient that $\calT_{\bsy}$ is linear and bounded.
+%Define the resolvent operator of $\calT_{\bsy}$ %for $z \in \mathbb{C}$ and $\bsy \in \calU$:
+%\begin{equation}
+    %R(z,\bsy) = ( \calT_{\bsy} - z )^{-1}.
+%\end{equation}
+%All linear and bounded operators are closed operators. 
+%Thus by the analysis in \cite[Chapter I, \S 3]{kato1995perturbation}, the resolvent $z \mapsto R(z,\bsy)$ is a meromorphic function, and the Cauchy-integrals $P(\bsy), \Lambda(\bsy)$  in \eqref{eq:spectralProjector} and \eqref{eq:CauchyIntegralFormulaForD} are well-defined for all $\bsy \in \calU$.  
+
+%Let $\Gamma \subset \mathbb{C}$ be a fixed closed contour isolating $\mu_1(\bsy)$ from the rest of the spectrum $\sigma(\calT_{\bsy})$. Due to the uniform spectral gap, such a contour exists and the resolvent $R(z,\bsy)$ is uniformly bounded for all $z \in \Gamma$ and $\bsy \in \calU$.
+%\begin{theorem}
+%Under Assumptions \ref{subsection:assumptions}, the critical buckling load $\lambda_1(\bsy)\in G^\delta(\calU,\RR)$, i.e. there exist constants $C > 0$ and a radius sequence $\vR$ such that for any $\vnu\in\cF$:
+%\begin{equation}
+    %|\partial^\nu_y \lambda_1(\bsy)| \le C \frac{(|\vnu|!)^\delta}{\vR^{\vnu}}.
+%\end{equation}
+%\end{theorem}
+
+\begin{theorem}(Gevrey-Regularity of an isolated Eigenvalue Cluster)\label{theorem:ClusterRegularity}
+    Assume that Assumption \ref{ass:gevreyTy} and the conditions in  in Lemma \ref{lemma:uniformSpectralGap} are satisfied. 
+    %That is, $\calT_{\bsy}$ is Gevrey-regular and there is a uniform spectral gap that separates $\{ \mu_1(\bsy),\ldots, \mu_s(\bsy) \}$ from the rest of the spectrum for all $\bsy \in \calU$. 
+    The contour
+    \begin{equation}\label{eq:contourDef}
+    \Gamma = \partial B( \mu_1(0), \delta_0/2) \subseteq \mathbb{C},
+\end{equation} where $\delta_0 $ is the initial gap defined in \eqref{eq:def_delta0}, maximizes the distance between $\Gamma$ and $\sigma(\calT_\bsy) $ for all $\bsy \in \calU$. This choice minimizes the bound on the resolvent, that is, 
+\begin{align}\label{eq:resolventUniformbound}
+    \| R(z,\bsy) \|_{\op} \leq \gamma^{-1}, \quad \text{ for all } \bsy \in \calU, z \in \Gamma.
+\end{align}
+where $\gamma = \hat \delta /2 $ and $\hat \delta $ is defined in \eqref{eq:def_delta_hat}. Then $P(\bsy)$ and $\Lambda(\bsy)$ 
+    %defined in \eqref{eq:spectralProjector} and \eqref{eq:CauchyIntegralFormulaForD} 
+    are Gevrey-regular with
+    \begin{align*}
+		\norm{\partial_{\vy}^{\vnu} P(\vy)}{\op}
+		&\leq \delta_0 C_R \rho_R^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta, \\
+  \norm{\partial_{\vy}^{\vnu} \Lambda(\vy)}{\op}
+		&\leq \widetilde C_\Gamma  \delta_0 C_R \rho_R^{\abs{\vnu}} \vb^\vnu \fallennudelta.
+	\end{align*}
+    for all $\bsnu \in \calF$ and $\bsy \in \calU$, where the constants are defined as
+    \begin{align} 
+       \widetilde C_\Gamma &= \mu_1(0) + \delta_0/2, \\
+         C_{\calT_\bsy,\Gamma}&=   \max \{ \gamma^{-1}, C_\calT \}, \label{eq:CcalTGamma} \\
+   C_R &= C_{\calT_\bsy,\Gamma}/3,  \label{eq:C_R}\\
+   \rho_R &= 3  C_{\calT_\bsy,\Gamma}^2   \label{eq:rho_R} , 
+    \end{align}
+    where $\delta_0$ is defined in \eqref{eq:def_delta0} and $C_\calT $ in \eqref{eq:assumptionTyregular}.
+\end{theorem}
+To the best of our knowledge, there is no previous work on this or similiar statements, however, a comprehensive overview on related resolvent techniques are covered in the textbook by Kato \cite{kato1995perturbation}. Key concepts are required, such as, Lemma \ref{lemma:productInversionrule} which is based on novel developments in \cite{chernov2026gevreyclassregularitysteadystate}.
+\begin{proof}
+%The proof avoids the direct differentiation of the buckling modes, which is ill-posed in a 2D eigenspace, and instead relies on the resolvent formalism and Cauchy integrals.
+
+%\paragraph{Step 1: Operator Formulation.}
+%We rewrite \eqref{eq:variational_buckling} as a standard operator eigenvalue problem. Let $\calT_{\bsy} : V \to V$ be the compact operator defined by $\calT_{\bsy} = \calA_{\bsy}^{-1} \calM_{\bsy}$. The problem becomes
+%\begin{equation}
+%    \calT_{\bsy} D(\bsy) = \mD(\bsy) D(\bsy), \quad \text{where} \quad \mD(\bsy) = \frac{1}{\lambda(\bsy)}.
+%\end{equation}
+%The smallest buckling load $\lambda_1(\bsy)$ corresponds to the largest eigenvalue $\mu_1(\bsy)$ of $\calT_{\bsy}$. By Assumption \ref{assump: non-splitting}, $\mu_1(\bsy)$ has multiplicity 2 for all $\bsy \in \calU$.
+
+%\paragraph{Step 2: The Resolvent and Cauchy Integral.}
+%Define the resolvent operator of $\calT_{\bsy}$ for $z \in \mathbb{C}$:
+%\begin{equation}
+ %   R(z,\bsy) = (zI - \calT_{\bsy})^{-1}.
+%\end{equation}
+
+ % \hat \delta /2 = (\delta_0-V)/2$. 
+%Furthermore, let $\Gamma \subset \mathbb{C}$ be the contour isolating $\mu_1(\bsy), \ldots, \mu_s(\bsy)$ from the rest of the spectrum $\Sigma(\calT_{\bsy})$ for all $ \bsy \in \calU$.
+%
+We start by showing that the resolvent $R(z,\bsy)$ is uniformly bounded as in \eqref{eq:resolventUniformbound} with the choice of $\Gamma$ defined in  \eqref{eq:contourDef}. This property is straight forward consequence from the fact that $\mathrm{dist}(\Gamma, \sigma(\calT_\bsy)) \geq \gamma$ for all $\bsy \in \calU$.
+
+To see this, $\Gamma$ intersects the real line in the center of $\mu_1(0)$ and $\mu_{s+1}(0)$ at $m := \mu_1(0) - \delta_0/2  = \mu_{s+1}(0) +  \delta_0/2 $ and since the variation of both eigenvalues are bounded by $C_V$ and other eigenvalues are smaller than $\mu_{s+1}(0) + C_V$, the distance between all eigenvalues and $m$ is at least $(\delta_0 -2C_V)/2 = \gamma$. 
+
+We show this step more formally:  \tododuc{is this really needed?}
+%More precisely, we show $\mathrm{dist}(\Gamma, \sigma(\calT_\bsy) \geq \gamma$, where $\hat \delta $ is defined in \eqref{eq:def_delta_hat}. 
+Let $\bsy \in \calU$ and $i \in \N^*$, such that $\mu_{i}(\bsy) \in \sigma_{\mathrm{ds}}(\calT_\bsy)$ and $ z \in \Gamma$. 
+Then first assume that $\mu_i(0) \neq \mu_1(0)$, that is, $\mu_i(\bsy)$ is not in the first eigenvalue cluster $ \{\mu_1(\bsy),\ldots, \mu_s(\bsy) \}$, and thus
+\begin{align*}
+         \vert \mu_{i}(\bsy) - z  \vert &=  \vert  \mu_{i}(\bsy) -  \mu_{i}(0) + \mu_{i}(0) -  \mu_{1}(0) +\mu_{1}(0)  - z\vert  \\ 
+     %    &\geq \vert   \mu_{i}(0) -  \mu_{1}(0) \vert - \vert \mu_{i}(\bsy) -  \mu_{i}(0)  + \mu_{1}(0)  - z \vert   \\
+          &\geq \vert   \mu_{i}(0) -  \mu_{1}(0) \vert - (\vert \mu_{i}(\bsy) -  \mu_{i}(0) \vert   + \vert \mu_{1}(0)  - z \vert)   \\
+         &\geq \delta_0  - C_V  - \delta_0/2= \gamma
+\end{align*} where $C_V$ bounds the variation of $\mu_i(\bsy)$ as in Lemma \ref{lemma:Weylsinequality}. \ac{2nd last inequality unclear}
+If  $\mu_i(0) = \mu_1(0)$, we have 
+\begin{align*}
+    \vert \mu_{i}(\bsy) - z  \vert   &= \vert  \mu_{i}(\bsy) -  \mu_{i}(0) +\mu_{1}(0)  - z\vert 
+    \\ & \geq  \vert \mu_{1}(0)  -z \vert  -  \vert   \mu_{i}(\bsy) -  \mu_{i}(0)\vert \\
+    &\geq \delta_0/2 -C_V = \gamma.
+\end{align*}\ac{2nd last inequality unclear}
+%We denote the spectral radius of a bounded linear operator $T $ as $\mathrm{spr}(T) = \liminf_{n\to \infty }  \| T^n \| ^{1/n}$. 
+For a linear operator $T$, the spectral radius can be defined as \cite[I-(5.12)]{kato1995perturbation}
+\begin{align*}
+    \mathrm{spr}(T) = \max \{ \vert \lambda \vert : \lambda \in \sigma(T) \}.
+\end{align*}
+Since $\calT_\bsy$ is a self-adjoint operator on a Hilbert space $(V, \langle \cdot, \cdot\rangle)$, the basic result (e.g.  \cite[V-(2.4)]{kato1995perturbation})  $\mathrm{spr}  (\calT_\bsy) = \| \calT_\bsy \|_\op $ holds. Moreover, the spectrum of the residual is 
+\begin{align*}
+\sigma((T-\zeta)^{-1}) = 1/(\sigma(T)-\zeta), \quad \zeta \in \mathbb{C},
+\end{align*}
+which can be seen from $(T-\zeta)^{-1} - \lambda^{-1} =  \lambda^{-1} (T-\zeta)^{-1} (\lambda - (T-\zeta))$. 
+And hence
+\begin{align*}
+     \| R(z,\bsy)  \|_{\op} =  \max\{1/\vert \lambda - z \vert : \lambda \in \sigma(\calT_\bsy) \}  =  \frac{1} {\text{dist}(\sigma(\calT_{\bsy}), z)}  \leq \gamma^{-1},
+\end{align*}
+for all $ \bsy \in \calU, z \in \Gamma$.
+
+%where in the last equality the second term $(\mu - z) \langle u, u\rangle$ is independent of $u$ and the first term is equal to zero, because $\mu$ is in the spectrum. 
+%also requires self-adjointness such that  $ \langle (\calT_{\bsy}-\mu \mathbf{I})u,u \rangle  \geq 0$ holds.\
+\ac{2nd last inequality unclear}
+%Consequently, the resolvent $R(z,\bsy)$ is uniformly bounded for all $z \in \Gamma$ and $\bsy \in \calU$.
+%\begin{equation*}
+%    \| R(z,\bsy) \|_{\op} \leq \gamma^{-1} \quad \text{ for all }  \bsy \in \calU, z \in \Gamma,
+%\end{equation*} 
+By Assumption \ref{ass:gevreyTy}, we have
+\begin{equation*}
+    \| \Dnuy  (\calT_\bsy - z )\|_{\op} =   \| \Dnuy  \calT_\bsy \|_{\op}\leq C \bsb^{\bsnu} \fallennudelta, \quad \forall \bsnu \in \calF, \bsy \in \calU.
+\end{equation*}
+Thus, using the inversion rule for linear and bounded operators in Lemma \ref{lemma:productInversionrule} with the constants $C_R$ and $\rho_R$ as in \eqref{eq:C_R} and \eqref{eq:rho_R}, we have 
+\begin{equation*}
+    \| \Dnuy R(z,\bsy) \|_{\op} \leq C_R \rho_R^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta
+\end{equation*}
+for all $\bsnu \in \calF$ and $\bsy \in \calU$ and $z \in \Gamma$.
+
+Now, we are in the position to show that the integral operators $\Lambda(\bsy)$ and $P(\bsy)$ are Gevrey-regular. For this step, let $\bsy \in \calU$ be fixed.
+Since $z \mapsto R(z,\bsy)$ and $ z \mapsto z \mathbf{I}  R(z,\bsy)$ are continuous over the $\bsy$-independent domain $\Gamma$\ac{$R$ should be also sufficiently regular in $z$, I suppose}, we can interchange differentiation and integration:
+\begin{equation}
+    \partial^\nu_y \Lambda(\bsy) = \frac{1}{2\pi i} \oint_{\Gamma} z \left( \partial^\nu R(z,\bsy) \right) dz,
+\end{equation}
+and
+	\begin{equation*}
+		\partial_{\vy}^{\vnu} P(\vy) = \frac{1}{2\pi i} \int_{\Gamma} \partial_{\vy}^{\vnu} R(z, \bsy)  \, dz.
+	\end{equation*}
+	%Taking the Frobenius norm on both sides and utilizing the submultiplicative property $\norm{A B}{F} \leq \norm{A}{F}\norm{B}{F}$ (as noted in \cite[ (14)]{chernov2026gevreyclassregularitysteadystate}), along with the dimensional factor $m \ell$, we obtain:
+    We obtain
+	\begin{align*}
+		\norm{\partial_{\vy}^{\vnu} P(\vy)}{\op}
+		&\leq \frac{\abs{\Gamma}}{2\pi} \sup_{z \in \Gamma} \norm{\partial_{\vy}^{\vnu} R(z, \vy)}{\op} \\
+		&\leq \frac{\abs{\Gamma}}{2\pi} C_R \rho_R^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta .
+	\end{align*}
+	
+	Similarly, for the integral $\Lambda(\vy)$, the presence of the factor $z$ inside the integrand introduces an additional multiplier bounded by $\widetilde C_\Gamma := \mu_1(0) + \delta_0/2  =  \max_{z \in \Gamma} \abs{z} $. Following the exact same procedure, we arrive at:
+	\begin{align*}
+		\norm{\partial_{\vy}^{\vnu} \Lambda(\vy)}{\op}
+		&\leq \widetilde C_\Gamma  \frac{\abs{\Gamma}}{2\pi}C_R \rho_R^{\abs{\vnu}} \vb^\vnu \fallennudelta.
+	\end{align*}
+	With  $  \abs{\Gamma}/(2\pi) = \delta_0 $, this completes the proof.
+\end{proof}
+
+\subsection{Gevrey-regularity of the Riesz representers}
+\label{subsec:proofTyRegularity}
+We complete this section with novel results about the Gevrey-regularity of composition and inversion of bounded linear operators and the linear representers of bilinear forms. 
+Combined with the standard result on the Gevrey-regularity of the coefficients $\tilde \calC^{ijkl}(\bsy)$ in \eqref{eq:transformed_stiffness} and $
+\tilde T^i)(\bsy)$ in \eqref{eq:transformedtractionload}, we can show that $\calT_{\bsy}$ is indeed Gevrey-regular under Assumption~\ref{assumption:GevreyRegularityJ}.
+%$\Phi$. Combined with this standard result, we can show the Gevrey-regularity of $\calT_{\bsy}$, where now $a_\bsy$ and $b_{\bsy}$ are defined by the linear elasticity random domain formulation in \eqref{eq:bilinearforms} and \eqref{eq:bilinearforms2}. 
+
+Gevrey-regularity in the sense of the falling factorial $\fallennudelta$ is preserved under
+multiplication and inversion of linear operators \cite{CL2024}. 
+%This development led to new proof techniques for the classical regularity analysis. Notably, in \cite{HarbrechtSchwabImplicit}, using the implicit function theorem and  \cite{chernov2026gevreyclassregularitysteadystate}, using the falling factorial technique, the authors introduce novel techniques to show regularity of quantities of interest related to the solution of parametrized partial differential equations. 
+\cite[Lemma~2]{chernov2026gevreyclassregularitysteadystate} states this property for parametrized matrices, but the arguments are the same for the infinite-dimensional case. As a result, Gevrey-regularity extends to linear and bilinear operators shown in the following two Lemmas.
+%, we propose a novel approach to show Gevrey-regularity of composition and inverse bounded linear operators between Banach spaces, leveraging the falling factorial 
+%technique further.
+%, enabling to show Gevrey-regularity of compositions and inversions of Gevrey-regular linear operators. 
+In the following Lemma, the result in (iii) is known by \cite[Lemma~2]{chernov2026gevreyclassregularitysteadystate} but restated here for convenience.
+\begin{lemma}[Composition, inversion and determinant]\label{lemma:productInversionrule}
+Let $\calU \subseteq \R^\infty$ be compact and bounded, and $V,W,Z$ be Banach spaces. Moreover, let $\calL(X,Y)$ denote the set of bounded linear operators from $X$ to $Y$.
+Let $K\colon\calU\to\calL(W,V)$ and $M\colon\calU\to\calL(V,Z)$ be Gevrey-regular, i.e.\ there are
+$C_K\ge0, C_M\ \geq  1$, $\bsb\in\R_{\ge0}^\infty$ and $\delta\ge1$ with
+\begin{align*}
+  \|\Dnuy K_\bfy\|_{\calL(W,V)} &\le C_K\,\bsb^{\bsnu}\,\fallennudelta,\\
+  \|\Dnuy M_\bfy\|_{\calL(V,Z)} &\le C_M\,\bsb^{\bsnu}\,\fallennudelta, \\
+  \|M_\bfy^{-1}\|_{\calL(Z,V)}&\le C_M
+\end{align*}
+for all $\bfy\in\calU$ and $\bsnu\in\calF$.
+Then for all $\bfy\in\calU$ and $\bsnu\in\calF$:
+\begin{enumerate}
+  \item[(i)] \emph{Composition:}
+    $\|\Dnuy(M \circ K)_\bfy\|_{\calL(W,Z)}\le 4\,C_MC_K\,\bsb^{\bsnu}\,\fallennudelta$.
+  \item[(ii)] \emph{Inversion} (for $\bsnu > 0$):
+    $\|\Dnuy M_\bfy^{-1}\|_{\calL(Z,V)}\le\frac{C_M}{3}\,(3C_M^2)^{|\bsnu|}\,\bsb^{\bsnu}\,\fallennudelta$.
+  \item[(iii)] \emph{Determinant:} if $A\colon\calU\to\R^{d\times d}$ satisfies
+    $\|\Dnuy A_\bfy\|\le C_A\,\bsb^{\bsnu}\,\fallennudelta$, then
+    $|\Dnuy\det A_\bfy|\le d!\,(4C_A)^d\,\bsb^{\bsnu}\,\fallennudelta$.
+    % CHECK: original had M^3_2 as target norm and no D^nu on A_y in the hypothesis.
+\end{enumerate}
+\end{lemma}
+\textcolor{orange}{This is based on the general multivariate Leibniz rule and that part of the proof can be left out.}
+\begin{proof}
+\emph{(i) and (ii).}
+We only need to show that the Leibniz rule holds, that is,
+\begin{equation}\label{eq:LeibnizOperators}
+  \Dnuy(M_\bfy \circ K_\bfy)=\sum_{\bseta\le\bsnu}\binom{\bsnu}{\bseta}\,
+  \partial^{\bsnu-\bseta}_\bfy M_\bfy \circ \;\partial^{\bseta}_\bfy K_\bfy ,\qquad \bsnu\in\calF .
+\end{equation}
+Then taking the operator norms in \eqref{eq:LeibnizOperators} and argue exactly as in
+\cite[Lemma~2]{chernov2026gevreyclassregularitysteadystate}, with operator norms in place of matrix norms yields both (i) and (ii).
+We show the Leibniz rule by induction over $\vert \bsnu \vert$. 
+
+\emph{Induction start}. We show the case $\vert \bsnu \vert = 1$. Fix one coordinate $t=y_j$. Adding and subtracting $M_{t+h}K_t$ and using the linearity of $M_{t+h}$ gives
+\begin{align*}
+  \frac{M_{t+h}K_{t+h}-M_tK_t}{h}
+  &=M_{t+h}\,\frac{K_{t+h}-K_t}{h}+\frac{M_{t+h}-M_t}{h}\,K_t .
+\end{align*}
+Since $M$ and $K$ are differentiable in operator norm, $M_{t+h}\to M_t$ and the difference
+quotients converge in operator norm. Hence
+\begin{equation*}
+  \partial_t(M_tK_t)=M_t\,\partial_tK_t+(\partial_tM_t)\,K_t .
+\end{equation*}
+\emph{Induction step}. Let $ \bsnu - w =e $ and  $e \geq 0 , \vert e \vert = 1$.
+Then with Pascal's rule from above and the induction hypothesis on $w$, we have  
+\begin{align*}
+    \Dnuy (M_\bfy K_\bfy) &= \D^e_{\bfy} \left( \sum_{0 \leq \bseta \leq w} \binom{w}{\bseta} \D^{w-\bseta}_\bfy M_\bfy  \D^\bseta_\bfy K_\bfy\right) \\
+    &=  \sum_{0 \leq \bseta \leq w} \binom{w}{\bseta} \left( \D^{w-\bseta +e}_\bfy M_\bfy  \D^\bseta_\bfy K_\bfy + \D^{w-\bseta}_\bfy M_\bfy  \D^{\bseta+e}_\bfy K_\bfy \right).
+\end{align*}
+Noting that $w  + e = \bsnu $ in the first term and replacing $\bseta = \bseta +e$ in the second term gives
+\begin{align*}
+    &= \sum_{0 \leq \bseta \leq w}    \binom{w}{\bseta} \D^{\bsnu -\bseta}_\bfy M_\bfy  \D^{\bseta}_\bfy K_\bfy  + \sum_{e \leq \bseta \leq \bsnu } \binom{w}{\bseta -e} \D^{\bsnu - \eta}_\bfy M_\bfy  \D^{\eta}_\bfy K_\bfy  \\
+    &= \D^{\bsnu}_\bfy M_\bfy K_\bfy + \sum_{e \leq \bseta \leq w} \left(\binom{w}{\bseta} + \binom{w}{\bseta - e} \right) \D^{\bsnu - \bseta}_\bfy M_\bfy \D^{\bseta}_\bfy K_\bfy + M_\bfy \D^{\bsnu}_\bfy K_\bfy 
+\end{align*}
+Since only one component of  $\bseta - e $ and $ \bseta$ differ from each other, the standard formula $\binom{n-1}{k} + \binom{n-1}{k-1} = \binom{n}k$ can be applied to give $
+\binom{w}{\bseta} + \binom{w}{\bseta - e}  = \binom{\bsnu}{\bseta}$. This concludes the proof.
+
+\emph{(iii)} is proved as in \cite[Lemma~2]{chernov2026gevreyclassregularitysteadystate}.
+
+\end{proof}
+\begin{lemma} \label{lemma:RepresenterBilinearFormRegularity}
+Let $\calU \subseteq \R^\infty$ be compact and bounded. Let $V, W$ be Banach spaces and let $a_\bsy: V \times W \to \R$ be a Gevrey-regular with $\delta \geq 1 $ such that 
+ \begin{align}\label{eq:a_yGevrey}
+      \| \D^\bsnu a_\bsy( \bsu, \bsv ) \|_{\calL(V \times W) } \leq C \bsb^{\bsnu} \fallennudelta =: C_{\bsnu}, \quad  \forall \bsnu \in \calF, \bsy \in \calU.
+ \end{align}
+Defining  $\calA_\bsy: V \to W'$ such that $a_\bsy( \bsu, \bsv) =  \langle \calA_\bsy \bsu, \bsv \rangle $ for $\bsu \in V$ and $\bsv \in W$, we the obtain that $\D^\bsnu \calA_\bsy$ exists in the weak sense for all $\bsnu \in \calF$ and $\calA_\bsy$ is Gevrey-regular with the same constants
+  \begin{align*}
+      \| \D^\bsnu \calA_\bsy \|_{\calL(V,W')} \leq C \bsb^{\bsnu} \fallennudelta, \quad  \forall \bsnu \in \calF, \bsy \in \calU.
+  \end{align*}
+\end{lemma}
+\textcolor{orange}{I will try to find a reference for this. The result seems rather obvious.}
+\begin{proof} Define $\calA_{\bsy}^{(\bsnu)}$ in the weak sense, via 
+$  \langle \calA_{\bsy}^{(\bsnu)} u , v \rangle = \D^{\bsnu} a_{\bsy}(u,v)$  for $u \in V, v \in W$. Then 
+\begin{align*}
+    \langle  \calA_{\bsy}^{(\bsnu)} u, v \rangle  =  \D^{\bsnu} a_{\bsy}(u,v) \leq C_{\bsnu} \|u \|_V \|v\|_W,\quad \forall u \in V, v \in W,
+\end{align*} by \eqref{eq:a_yGevrey} and  recursively, we have $\D^{\bsnu} \calA_{\bsy}u \to  \calA_{\bsy}^{(\bsnu)}  u$ in weak convergence for all $ u \in V$ and $ \bsnu \in \calF$.
+    Then% we show that $\| \D^\bsnu \calA_\bsy \|_{\calL(V,W')} = \| \D^{\bsnu} a_\bsy \|_{\calL(V \times W) } $ if \eqref{eq:a_yGevrey} holds. 
+    \begin{align*}
+        \| \D^\bsnu \calA_\bsy \|_{\calL(V,W')} &= \sup _{ \| u \|_V= 1} \| \D^\bsnu \calA_\bsy u  \|_{\calL(W')} =  \sup _{ \| v \|_W = \| u \|_V= 1}  \langle \D^\bsnu \calA_\bsy u , v \rangle \\
+        &=  \sup _{ \| v \|_W = \| u \|_V= 1}  \D^{\bsnu} a_{\bsy}(u,v)\\
+        &= \| \D^{\bsnu} a_{\bsy} \|_{\calL(V \times W) } 
+    \end{align*}
+    where the second last equality follows from the weak convergence of $ \D^{\bsnu} A_{\bsy} u$.
+ \end{proof}
+

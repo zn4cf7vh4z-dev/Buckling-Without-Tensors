@@ -1,0 +1,654 @@
+
+
+
+%% Previous introduction material
+In fact, we obtain a vector-valued diffusion type generalized linear eigenvalue problem given as
+\begin{align*}
+    a_\bfy(\bfu, \bfv) &:=  \int_{\Omega} \tilde{\calC}_{ijkl}(\bfxi;\bfy)u_{i,j}(\bfxi)v_{k,l}(\bfxi) \dxi,  \\
+    \label{eq:bilinearforms2}
+    b_\bfy(\bfu, \bfv)  &:= -\int_{\Omega}  \tilde{\sigma}^*_{ij}(\bfxi;\bfy) u_{m,i}(\bfxi)v_{m,j}(\bfxi) \dxi, \\
+     a_\bfy(\bfu, \bfv) &= \lambda(\bfy)  b_\bfy(\bfu, \bfv), \quad \text{ for all } \bfv \in V,
+\end{align*}
+where $\bfy \in \calU$ describes the parameter and $\tilde \calC$ and $\tilde \sigma^*$ are 
+parameter dependent tensor-valued coefficients and $V$ is some adequate solution space. 
+The Riesz representers of the bilinear forms, assuming that $a_\bfy$ is uniformly strongly, coercive, yield
+
+
+ \begin{align*}
+    a_\bfy(\bfu,\bfv) &=   \int_{D(\bfy)} \calC_{ijkl} e_{ij}( \bfu)  e_{kl}( \bfu) \dx,
+\end{align*} 
+for $\bfy \in \calU$, where 
+\begin{align}\label{eq:linearstrainInU}
+    e_{ij}(\bfu) :=\frac 1 2\left(\DD{ u_i}{ x_j}  +\DD{ u_j}{ x_i}\right) 
+\end{align} is the \emph{linear strain tensor}.
+
+
+Due to the symmetry of $\calC_{ijkl}$, we 
+can write 
+\begin{align*}
+    a_\bfy(\bfu,\bfv) &:=   \int_{D(\bfy)} \calC_{ijkl} \DD{ u_i}{ x_j} \DD{v_k}{x_l} \dx.
+\end{align*} 
+\paragraph{What is our contribution?} Parametrized generalized eigenvalue problems are difficult to solve with higher order convergence rates, because possible crossings inside the parametrized spectrum makes the parameter dependence non-smooth.
+Thus, in a naive approach when using, for example, quasi-MC rules the rate of convergence deteriorates to the rate of the Monte-Carlo method.
+However, whenever, we can find a contour in the complex plane that separates the spectrum into a cluster and the rest of the spectrum on the whole parameter domain, we prove that the smoothness of the random domain mapping is preserved to the smoothness of the eigenvalue cluster. 
+Furthermore, we propose a method that can exploit the cluster smoothness, to obtain a sub-exponential convergence rates for the approximation of $\mu_1(\bfy)$, despite potential crossings inside of the cluster.
+
+We describe how this can be achieved:
+\paragraph{Given a cluster that contains the largest eigenvalue of $\calT_\bfy$, how can we compute the lowest eigenvalue with higher order convergence?}
+    \begin{enumerate}
+    \item Choose a higher-order integration or approximation method with collocation points $y_1, \ldots, y_N$.
+        \item Assume $\Gamma \subseteq \mathbb{C}$ is a contour confining the cluster. Compute the spectral projection operator 
+\begin{align*}
+                P(\bfy_i ) := \frac 1 {2\pi i} \int_{\Gamma} (\calT_{\bfy_i} - z \mathbf{I})^{-1}  \mathop{dz} \approx \sum_{k = 1}^{M} w_k (\calT_{\bfy_i} - z \mathbf{I})^{-1}  \in \R^{N_{\text{det}} \times  N_{\text{det}}}
+        \end{align*}
+        with some deterministic solver
+        for all $i = 1, \ldots, N$ and some quadrature rule $ \{(w_k, z_k)_{k=1}^M \}$ in the complex plane.
+        \item Let $\mathrm{tr}(P(\bfy_1)) = m \in \N$. Since $\Gamma$ confines a cluster, $m$ is independent of $\bfy$. Then for a random matrix $V \in \R^{N_{\text{det}} \times m}$, compute the eigenvalues of 
+        \begin{equation*}
+           r(\bfy_i) :=  \{ r_1(\bfy_i), \ldots, r_m(\bfy_i) \} = \sigma(P(\bfy_i) V)         
+        \end{equation*}
+        for all $i = 1,\ldots,N$.
+        \item For $i=1,\ldots,N$, set \begin{equation*}
+            \mu_1(\bfy_i) := \max r(\bfy_i),
+        \end{equation*} 
+        and
+        \begin{equation*}
+        \mathbb{E}[\mu_1] \approx 1/N\sum_{i=1}^N \mu_1(\bfy_i).
+        \end{equation*} 
+    \end{enumerate}
+    \begin{remark}
+        Since the mappings $\bfy \mapsto P(\bfy)$ and $z \mapsto (\calT_{\bfy_i} - z \mathbf{I})^{-1}$ are Gevrey-regular and analytic, respectively, we need significantly less costly evaluations of the deterministic solver. In fact, the approximation error of $P(\bfy)$ is in 
+        \begin{equation*}
+            \mathcal O(N^{-\alpha} \rho^{M})
+        \end{equation*} for some $\alpha \gg 1$, depending on the smoothness of the domain mapping $\Phi$ and $0 \leq \rho < 1$. 
+        The rest of the computations are negligible.
+    \end{remark}
+
+
+
+%% old perturbation theory 
+
+\subsection{Spectral Gap}
+We establish a sufficient condition for the existence of a spectral gap for the operator
+\begin{align*}
+    \calT_{\bfy} = \calA_{\bfy}^{-1} \calM_{\bfy}
+\end{align*}
+and the corresponding eigenvalue problem 
+\begin{align}\label{eq:eigenvalueProblem}
+    \calT_{\bfy} \bfu(\cdot; \bfy) = \mu(\bfy) \bfu( \cdot;\bfy) .
+\end{align}
+%Additionally, to $\calA_{\bfy}$ being uniformly strongly coercive, we assume that $b_{\bfy}(\cdot, \cdot)$ is semi-definite. Hence $ \calT_{\bfy}$ is semi-definite.
+
+%In the following, we need to restrict to the subspace on which $\calT_{\bfy}$ is uniformly coercive.
+
+%We denote $C_c$ as the uniform coercivity constant of $\calT_{\bfy}$  and $C_b$ as the uniform bound of $\| \calT_{\bfy} \|$. 
+%% new stuff
+The generalized mean-value theorem yields the following bound on the variation of $\calT_{\bfy}$. 
+\begin{lemma}[Bounded variation of $\calT_{\bfy}$]\label{lemma:variationboundTy}
+Consider the operator norm for the bilinear form $ \| \calT_{\bfy} \|_{\calB(V)} = \sup_{u,v \in V} \calT_{\bfy}(u,v) /( \| u \| \| v \| ) $.
+    For any $ \bfy, \bfy_0 \in \calU$, we have
+    \begin{align}
+        \| \calT_{\bfy} - T_{\bfy_0} \|_{\calB(V)} \leq r C_{\calT} \rho_{\calT}  \| \bsb \|_{\ell^1(\N)} =: C,
+    \end{align}
+    where $r = \text{diam}(\calU)$ as in \eqref{eq:diamU} and $C_{\calT},\rho_{\calT}$ are defined in Lemma \ref{lemma:GevreyRegularityTy}.
+\end{lemma}
+\begin{proof}
+    Note that, 
+   \begin{align*}
+        \sum_{i=1}^\infty  \| \D^{e_i}_{\bfy} \calT_{\bfy} \|_{\calB(V)} &\leq  \sum_{i=1}^\infty C_{\calT}\rho_{\calT} b_i \\
+        &=  C_{\calT}\rho_{\calT} \| \bsb \|_{\ell^1(\N)} < \infty.
+   \end{align*} 
+   And hence, the mean-value theorem 
+   holds and for some $\zeta \in \calU$ we have
+   \begin{align*}
+       \calT_{\bfy} - T_{\bfy_0} = \sum_{i=1}^\infty \D^{e_i}_{\bfy} T_{\zeta} (\zeta_i - \bfy_{0,i})
+   \end{align*}
+   and thus
+   \begin{align*}
+       \| \calT_{\bfy} - T_{\bfy_0} \|_{\calB(V)} & \leq  \sum_{i=1}^\infty  \| \D^{e_i}_{\bfy} T_{\zeta} \|_{\calB(V)}  \| \zeta - \bfy_0 \|_{\calU}  \\
+       & \leq  r C_{\calT}\rho_{\calT} \| \bsb \|_{\ell^1(\N)}.
+   \end{align*}
+\end{proof}
+
+\begin{lemma}[Equivalence of $\calT_{\bfy}$]\label{lemma:equivalenceTy}
+    Let $ s \in \N$ and $\alpha > 0$ such that
+    \begin{align*}
+        \mu_1(0) = \ldots = \mu_s(0) > \mu_{s+1}(0) > \alpha.
+    \end{align*}
+We define the space of admissible buckling deformations 
+\begin{align*}
+A_{\alpha} = \{\bfu \in V  \mid \| u \|_V = 1, \langle \calT_0 \bfu, \bfu \rangle  \geq \alpha \}.   
+\end{align*}
+Then we have
+\begin{align*}
+    (1 - D) \langle \calT_0 \bfu, \bfu \rangle  \leq  \langle \calT_{\bfy} \bfu, \bfu \rangle  \leq  (1 + D) \langle \calT_0 \bfu, \bfu \rangle, 
+\end{align*}
+   for all $\bfu \in A_{\alpha}$ and all $\bfy \in \calU$ where 
+   \begin{align}
+   \label{eq:definitionD}
+       D = C / \alpha = r C_{\calT} \rho_{\calT} \| \bsb \|_{\ell^1(\N)}/ \alpha 
+   \end{align} and $C_{\calT} $ and $\rho_{\calT}$ are defined in \eqref{eq:constantRegTy} and $r$ from Assumption \eqref{eq:diamU}.
+\end{lemma}
+\begin{proof}
+    From Lemma \ref{lemma:variationboundTy}, we obtain with $C$ as in \eqref{eq:boundvariationTy}
+    \begin{align*}
+        C \geq \| \calT_{\bfy} - \calT_0 \|_{\calL(V,V')} \geq \vert \langle (\calT_{\bfy} - \calT_0) \bfu, \bfu \rangle \vert
+    \end{align*}
+    for all $\bfu \in V$ with $ \| \bfu  \|_V = 1$.
+    Then if we restrict on $\bfu \in A_\alpha$, and divide through $\langle \calT_0 \bfu, \bfu \rangle$, we obtain
+    \begin{align*}
+    C &\geq \langle \calT_\bfy \bfu, \bfu \rangle -  \langle \calT_0 \bfu, \bfu \rangle \\ 
+       D  &\geq \frac{ \langle \calT_{\bfy} \bfu, \bfu \rangle}{\langle \calT_0 \bfu, \bfu \rangle} - 1  \\
+    (1 + D) \langle \calT_0 \bfu, \bfu \rangle & \geq  \langle \calT_{\bfy} \bfu, \bfu \rangle
+    \end{align*}
+    for all $\bfy \in \calU$.
+
+    Similarly, by starting with $C \geq  \langle \calT_0 \bfu, \bfu \rangle - \langle \calT_{\bfy} \bfu, \bfu \rangle $ for $\bfu \in A_\alpha$, we have 
+    \begin{align*}
+         D &\geq  1 -\frac{\langle \calT_{\bfy} \bfu, \bfu \rangle}{\langle \calT_0 \bfu, \bfu \rangle}  \\
+        \langle \calT_{\bfy} \bfu, \bfu \rangle & \geq (1 -D )\langle \calT_0 \bfu, \bfu \rangle
+    \end{align*}
+    for all $\bfy \in \calU$.
+    
+\end{proof}
+
+
+ For a subspace $U \leq V$ we denote
+\begin{align}\label{eq:subspacehat}
+   \hat U = \{ u \in U :  \| u \| = 1 \}.
+\end{align}
+
+We need the following lemma to bound the variation of $\mu_k(\bfy)$.
+%We assume that $b_{\bfy}(\bfu,\bfv) $ is at least semi-definite.
+
+\begin{lemma}[Equivalence of $\mu_k(\bfy)$]\label{lemma:boundEigenvalueVariation}  With above notation, we have $ \hat U_k(0) \subseteq A_{\alpha}$ for all $k = 1,\ldots,s+1$.
+Furthermore with $D$ defined in \eqref{eq:boundvariationTy}, we have
+    \begin{align*}
+        (1-D) \mu_k (\bfO)\leq\mu_k(\bfy)  \leq (1+D) \mu_k(\bfO)
+    \end{align*}
+for all $\bfy \in \calU$ and $k =1,\ldots, s+1$.
+\end{lemma}
+
+\begin{proof} The first statement is clear. The proof for the second statement is exactly as in \cite[Proposition 1]{grubišić2021stochasticcollocationmethodcomputing}. For convenience of the reader, we outline the technique. Let $V^{(k)} \subset 2^V$ denote the set of all subspaces of dimension $k$ of $V$ and denote the set of the unit ball $\hat U$ as in \eqref{eq:subspacehat}.
+    Recall, the min-max characterization of the $k$-th largest eigenvalue
+    \begin{align*}
+        \mu_k(\bfy) = \max_{U \in V^{(k)}} \min_{\bfu \in \hat U} \langle T_{\bfy} \bfu ,\bfu \rangle.
+    \end{align*}
+    Then for the lower bound of $\mu_k(\bfy) $ we choose $\bfu_0 \in \hat U_k(\bfO)$ such that the minimum is attained
+    \begin{align*}
+        \mu_k(\bfy) \geq \min_{ \bfu \in \hat U_{k} (\bfO)} \langle T_{\bfy} \bfu ,\bfu \rangle = \langle T_{\bfy} \bfu_0 ,\bfu_0 \rangle.
+    \end{align*}
+    Since $\bfu_0 \in \hat U_k (\bfO)$, we have $ \mu_k(\bfO) =  \min_{ \bfu \in \hat U_{k} (\bfO)} \langle T_{\bfO} \bfu ,\bfu \rangle \leq \langle T_{\bfO} \bfu_0,\bfu_0 \rangle. $  And therefore with Lemma \ref{lemma:equivalenceTy},
+    \begin{align*}
+        \mu_k(\bfy) \geq  \langle T_{\bfy} \bfu_0, \bfu_0 \rangle \geq (1-D) \langle T_{\bfO} \bfu_0 , \bfu_0 \rangle \geq (1-D) \mu_k(\bfO).
+    \end{align*}
+    For showing the upper bound we choose $\bfu_0 \in \hat U_k(\bfy)$ that attains the minimum for $T_{\bfO}$ of $\mu_k(\bfO)$ in the subspace $U_k(\bfy)$ and repeat above argument.
+\end{proof}
+%\begin{theorem}
+%Let  $s \in \N$  be as Lemma %\ref{lemma:equivalenceTy} and assume that  $ D < %1 $, defined in \eqref{eq:definitionD}, is small %enough, such that     
+    %\begin{align}\label{eq:spectralgapRef}
+        %\delta_0 :=\frac{\mu_{s}(0) - \mu_{s+1}(0)}{\mu_{s+1}(0)} > \frac{2}{D^{-1}- 1 }.
+    %\end{align}
+    %Then the eigenspace $U_s(\bfy)$ is isolated %for all $\bfy \in \calU$, and   
+    %\begin{align}
+         %\frac{\mu_{s}(\bfy) - \mu_{s+1}(\bfy)}{\mu_{s+1}(\bfy)} > \frac{ \delta_0  - ( \delta_0 +2)D}{1+ D} =: \hat \delta(D, \delta_0)
+%    \end{align}
+%    for all $\bfy \in \calU$.
+%\end{theorem}
+We can now prove the f
+
+
+
+\subsection{Proof Strategy}
+Showing Theorem \ref{theorem:main1} involves the following steps.
+\paragraph{Step 1. Regularity of $\calT_\bfy$}
+\begin{itemize}
+    \item Show that $\calA_\bfy$ and $\calM_\bfy$ are Gevrey-regular if the random coefficients are Gevrey-regular.
+    \item Generalize \cite[Lemma 2]{chernov2026gevreyclassregularitysteadystate} for bounded linear operator.
+    \item Regularity of $\calA_\bfy$ and $\calM_{\bfy}$ can be obtained by repeated application of this generalization.
+\end{itemize}
+\paragraph{Step 2. Explicit sufficient condition for the spectral gap.}
+\begin{itemize}
+    \item Show that $\| \calT_{\bfy} - \calT_{\bfy_0} \|_{\calL(V)} $ is bounded independently of $\bfy,\bfy_0 \in \calU$.
+    \item Show that, for some  $\mu_{s+1}(0) > \alpha > 0$ and a region in $V$ where $\langle \calT_{0} \bfu , \bfu \rangle \geq \alpha$ holds, $\mu_k(\bfy)$ and $\mu_k(0)$ are equivalent for all $\bfy \in \calU$ for $k=1,\ldots, s+1$.
+    \item Show that a spectral gap in $\mu_{s}(0)$ to $\mu_{s+1}(0)$ of a certain size, that depends on the Gevrey-regularity of $\Phi$ and the diameter of $\calU$, is preserved throughout the parameter domain $\calU$.
+\end{itemize}
+ Theorem \ref{theorem:main2} is then achieved with the following steps. 
+\paragraph{Step 1. Gevrey-Regularity of the Residual}
+\paragraph{Step 2. Gevrey-Regularity of the Spectral Projector}
+
+
+
+Assumptions (1) and (2) are satisfied in the linear buckling problem with domain perturbations. Assumptions (3) and (4) are more involved but, fortunately, in \cite[Theorem 4.2]{DaugeandSuriNumericalapproximation}  there is a simple criterum related to the Gårdning's inequality of the bilinear form $a_\bfy(\bfu,\bfv) + \lambda b_\bfy(\bfu,\bfv)$. In fact, there is an explicit interval for the buckling problem provided, such that assumption (4) is satisfied and $D$ can be found as 
+\begin{equation*}
+    D= K \| b_\bfy \|_{L^\infty(\calU)},
+\end{equation*}  where $K$ is a uniform Korn constant and $b_\bfy$ is assumed to be uniformly bounded.
+In the numerical section of \cite{DaugeandSuriNumericalapproximation} there is evidence provided, that very thin structures admit a reasonably small $D$ constant, such that most of the discrete spectrum is not polluted and mixed with continuous eigenvalues, and therefore can be investigated in terms of regularity.
+
+
+
+\begin{assumption}[for a Gevrey-regular Eigenvalue Cluster]
+    \begin{enumerate}
+        \item[(1)] $ \bfy \mapsto \calT_\bfy$ is Gevrey-regular with respect to its operator norm $\|\cdot \|_{\op}$, that is,
+        \begin{equation}
+            \| \Dnuy \calT_\bfy \|_{\op} \leq C \bsb^{\bsnu} \fallennudelta, \quad  \text{ for all } \bsnu \in \calF, \bfy \in \calU,
+         \end{equation}
+        and we additionally assume that $\bsb \in \ell^1(\N)$.
+        \item[(2)] the first cluster of the reference state $\bfy= 0 \in \calU$ has algebraic multiplicity $s \in \N$. Especially, this implies $\mu_1(0) \in \sigma_{\mathop{d}}(\calT_0)$.
+    \end{enumerate}
+\end{assumption}
+
+
+
+
+\begin{theorem}[Regularity of the smallest eigenvalue cluster] \label{theorem:main}
+ Let $ s \in \N$ and $\alpha > 0$ such that
+    \begin{align}\label{eq:choiceofs}
+        \mu_1(0) = \ldots = \mu_s(0) > \mu_{s+1}(0) > \alpha.
+    \end{align}
+There is an explicit sufficient condition on the tuple $(C_{\Phi}, \bsb, r, \mu_{s+1}(0))$ such that $U_s(\bfy) $ and $ \{\mu_1(\bfy) ,\ldots, \mu_s(\bfy)\}$ are Gevrey-regular on $\calU$.
+\end{theorem}
+The Gevrey regularity of the subspace $U_s(\bfy)$ is understood as the Gevrey-regularity of the projection operator $P_s(\bfy)$ with
+\begin{equation*}
+    P_s(\bfy) V = U_s(\bfy).
+\end{equation*} Likewise, the Gevrey-regularity of the smallest eigenvalue cluster, is understood as the Gevrey regularity of the operator corresponding to the restriction of $\calT_\bfy$ on $U_s(\bfy)$. Those operators are defined in  \eqref{eq:spectralProjector} and \eqref{eq:CauchyIntegralFormulaForD}. The latter functional operator is known as the Dunford-Taylor integral, see e.g. \cite[Chapter 1, \S 2- \S 6] {kato1995perturbation}
+
+Proving this results is done in several steps.
+In the following, we assume $\calT_\bfy$ as in \eqref{eq:definitionTy} and consider the eigenvalue problem \eqref{eq:eigenvalueproblemTy}.
+The above result is established in two steps.
+We establish this fact in Lemma \ref{lemma:GevreyRegularityTy} and also that $C_{\calT}$ and $\rho_{\calT}$ only depend on $C_{\Phi}, C_{\calC_{ijkl}} C_{F_i}$ and $C_{T_i}$. 
+\begin{theorem}[Existence of a Uniform Spectral Gap]\label{theorem:main1}
+    Let $ s \in \N$ and $\alpha > 0$ such that
+    \begin{align*}
+        \mu_1(0) = \ldots = \mu_s(0) > \mu_{s+1}(0) > \alpha.
+    \end{align*}
+    If $ D =  r C_{\calT} \rho_{\calT} \|\bsb \|_{\ell^1(\N)} / \alpha$ satisfies
+    \begin{align}\label{eq:spectralgapRef}
+        \delta_0  >  \frac{2}{D^{-1}-1},
+    \end{align} where $\delta_0$ is the spectral gap in \eqref{eq:deltaZero}, then
+    $U_s(\bfy) $ is isolated with spectral gap
+ \begin{align}\label{eq:spectralgap}
+         \frac{\mu_{s}(\bfy) - \mu_{s+1}(\bfy)}{\mu_{s+1}(\bfy)} > \frac{ \delta_0  - ( \delta_0 +2)D}{1+ D} =: \hat \delta(D, \delta_0)
+    \end{align}
+    for all $\bfy \in \calU$.
+\end{theorem}
+The uniform spectral gap $\hat \delta$ allows us to choose a contour $\Gamma$ that separates the spectrum of $\calT_\bfy$ in $\{ \mu_1(\bfy), \ldots, \mu_s(\bfy) \}$ and the remaining eigenvalues for all $\bfy \in \calU$.
+\begin{theorem}\label{theorem:main2} Assume that the assumptions in Section \ref{subsection:assumptions} hold and further, that the conditions in Theorem \ref{theorem:main1} are satisfied. 
+Let $\Gamma$ be the boundary of the ball around $\mu_1(0)$ of radius  $\hat \delta(D, \delta_0)/2$ in the complex plane. Hence $\Gamma$ separates the spectrum of $\calT_\bfy$ into $\{ \mu_1(\bfy), \ldots, \mu_s(\bfy) \}$ and the rest of the spectrum for all $\bfy \in \calU$. 
+%\begin{align*}
+%   \Gamma =  \partial B(\mu_1(0), \hat \delta(D, \delta_0)/2) \subseteq \mathbb{C}
+%\end{align*}
+%in the complex plane.
+Then 
+\begin{align}\label{eq:spectralProjector}
+    P(\bfy) &:= \frac 1 {2\pi i} \int_{\Gamma} (\calT_{\bfy} - z \mathbf{I})^{-1}  \mathop{dz}, \\
+    \label{eq:CauchyIntegralFormulaForD}
+    \Lambda(\bfy) &:=  \frac  1 {2\pi i} \int_{\Gamma} z \mathbf{I} (\calT_{\bfy} - z \mathbf{I})^{-1}\mathop{dz}  
+\end{align}
+    are Gevrey-$\delta$-regular on $\calU$.
+\end{theorem}
+Note that, $P(\bfy)$ is the spectral projection on the space $U_s(\bfy)$ and $\Lambda(\bfy)$ is the sum of the first $s$ eigenvalues of $\calT_{\bfy}$. %These two steps are in fact sufficient for proving our statement in Theorem \ref{theorem:main}.
+
+
+
+We can now prove the first of the two main theorems.
+\begin{proof}[Proof of Theorem \ref{theorem:main1}]
+    The proof is exactly as in  \cite[Corollary 1]{grubišić2021stochasticcollocationmethodcomputing} inverting the order for decreasing eigenvalues $\mu_k(\bfy) \geq \mu_{k+1}(\bfy)$ and using Lemma \ref{lemma:boundEigenvalueVariation}.
+    We obtain
+    \begin{align*}
+    \mu_{s}(\bfy) - \mu_{s+1}(\bfy)  &\geq  (1-D)\mu_s(0) - (1+D)\mu_{s+1}(0) \\
+    & =  \hat \delta(D, \delta_0) (1+D) \mu_{s+1}(0) \\
+    &\geq  \hat \delta(D, \delta_0)  \mu_{s+1}(\bfy)
+    \end{align*}
+    for all  $\bfy \in \calU$.
+\end{proof}
+
+
+
+%% Buckling general concept
+
+To introduce the underlying idea, consider a family of smoothly parametrized, non-negative functionals $\calE_\lambda : \mathcal{H} \to \R_{\geq 0}$, where $\mathcal{H}$ is a Banach space and $\lambda \geq 0$ is a load parameter. (In structural mechanics, $\calE_\lambda$ is the elastic energy and $\lambda$ scales the traction load.) Assume that $\calE_\lambda$ is twice Fr\'echet differentiable, and that for a reference parameter $\lambda_0 \geq 0$ there is a stable equilibrium $u^*_{\lambda_0} \in \mathcal{H}$, i.e.
+\begin{align*}
+    D\calE_{\lambda_0}(u^*_{\lambda_0})[v] = 0 \quad \forall v \in \mathcal{H},
+    \qquad
+    D^2 \calE_{\lambda_0}(u^*_{\lambda_0})[v,v] > 0 \quad \forall v \in \mathcal{H}\setminus\{0\},
+\end{align*}
+where $D$ denotes the Fr\'echet derivative.
+%Here $D\calE(u)[v] := \lim_{h \to 0} \big(\calE(u+hv) - \calE(u)\big)/h$ denotes the directional derivative. 
+Along the branch $\lambda \mapsto u^*_\lambda$ of equilibria emanating from $u^*_{\lambda_0}$, buckling corresponds to the smallest $\lambda \geq \lambda_0$ at which $D^2\calE_\lambda(u^*_\lambda)$ ceases to be positive definite, i.e.\ acquires a nontrivial kernel. Beyond this point, $u^*_\lambda$ is in general no longer a local minimizer, and the system may move to another solution branch.
+
+The linear buckling in structural mechanics the functional $\calE$ is associated with the elastic energy based on the geometric non-linear Green-Lagrange strain
+\begin{align*}
+    \bsE(\bsu) = \tfrac12 \left( \nabla \bsu + \nabla \bsu^\top + \nabla \bsu^\top \nabla \bsu \right).
+\end{align*}
+and a linear strain-stress relation. 
+%In particular for thin-walled structures, bending dominates over membrane energy where the latter 
+%so the nonlinearity of the energy arises mainly from the geometric nonlinearity in the Green--Lagrange strain \tododuc{find the reference in Grabovsky}
+%\begin{align*}
+%    \bsE(\bsu) = \tfrac12 \left( \nabla \bsu + \nabla \bsu^\top + \nabla \bsu^\top \nabla \bsu \right).
+%\end{align*}
+
+
+To introduce the underlying idea, consider a family of smoothly parametrized, non-negative functionals $\calE_\lambda : \mathcal{H} \to \R_{\geq 0}$, where $\mathcal{H}$ is a Banach space and $\lambda \geq 0$ is a load parameter. (In structural mechanics, $\calE_\lambda$ is the elastic energy and $\lambda$ scales the traction load.) Assume that $\calE_\lambda$ is twice Fr\'echet differentiable, and that for a reference parameter $\lambda_0 \geq 0$ there is a stable equilibrium $u^*_{\lambda_0} \in \mathcal{H}$, i.e.
+\begin{align*}
+    D\calE_{\lambda_0}(u^*_{\lambda_0})[v] = 0 \quad \forall v \in \mathcal{H},
+    \qquad
+    D^2 \calE_{\lambda_0}(u^*_{\lambda_0})[v,v] > 0 \quad \forall v \in \mathcal{H}\setminus\{0\},
+\end{align*}
+where $D$ denotes the Fr\'echet derivative.
+%Here $D\calE(u)[v] := \lim_{h \to 0} \big(\calE(u+hv) - \calE(u)\big)/h$ denotes the directional derivative. 
+Along the branch $\lambda \mapsto u^*_\lambda$ of equilibria emanating from $u^*_{\lambda_0}$, buckling corresponds to the smallest $\lambda \geq \lambda_0$ at which $D^2\calE_\lambda(u^*_\lambda)$ ceases to be positive definite, i.e.\ acquires a nontrivial kernel. Beyond this point, $u^*_\lambda$ is in general no longer a local minimizer, and the system may move to another solution branch.
+
+The linear buckling in structural mechanics the functional $\calE$ is associated with the elastic energy based on the geometric non-linear Green-Lagrange strain
+\begin{align*}
+    \bsE(\bsu) = \tfrac12 \left( \nabla \bsu + \nabla \bsu^\top + \nabla \bsu^\top \nabla \bsu \right).
+\end{align*}
+and a linear strain-stress relation. 
+%In particular for thin-walled structures, bending dominates over membrane energy where the latter 
+%so the nonlinearity of the energy arises mainly from the geometric nonlinearity in the Green--Lagrange strain \tododuc{find the reference in Grabovsky}
+%\begin{align*}
+%    \bsE(\bsu) = \tfrac12 \left( \nabla \bsu + \nabla \bsu^\top + \nabla \bsu^\top \nabla \bsu \right).
+%\end{align*}
+Expanding the second variation of the energy at the prebuckling state, and keeping the linear-strain contribution of the elastic stiffness together with the quadratic strain term weighted by the prestress, yields the linearized buckling condition
+
+
+The linearized buckling condition seeks a nontrivial $\bsu \in V$ such that the second variation of the energy at the prebuckling state, with the quadratic part of the Green--Lagrange strain weighted by the prestress, vanishes when tested against every $\bsv \in V$, that is,
+\begin{align*}
+    \int_{\Omega} \calC^{ijkl}\, \bsu_{i,j}\, \bsv_{k,l} \,\dxi
+    + \int_{\Omega} \bssigma_0^{ij}\, \bsu^m_{,i}\, \bsv_{m,j} \,\dxi = 0
+    \quad \forall \bsv \in V,
+\end{align*}
+where $\bssigma_0$ is the second-order prestress tensor, i.e.\ the stress field of the stable reference solution. Solving the pre-stress under unit load, we may write $\bssigma_0 = \lambda \bssigma_*$ for a fixed reference stress $\bssigma_*$ (the stress under unit load). The condition then becomes a linear eigenvalue problem: find $\bsu \in V\setminus\{0\}$ and $\lambda \in \R$ such that
+\begin{align*}
+    \int_{\Omega}\calC^{ijkl}\, \bsu_{i,j}\, \bsv_{k,l}\,\dxi
+    = \lambda \left( - \int_{\Omega} \bssigma_*^{ij}\, \bsu^m_{,i}\, \bsv_{m,j}\,\dxi \right)
+    \quad \forall \bsv \in V.
+\end{align*}
+The smallest positive eigenvalue $\lambda$ is the critical buckling load factor, and the corresponding eigenfunction $\bsu$ is the buckling mode. 
+
+
+%%% Proof Remark 3.11
+
+ Let $\bsy, \boldsymbol{h} \in \calU$.
+From  \begin{align*}
+    \langle (\calA_{\bsy + \boldsymbol{h}  } -  \calA_{\bsy })u,v \rangle = a_{\bsy + \boldsymbol{h} }(u,v) - a_{\bsy}(u,v) 
+\end{align*} for all $u \in V$ and $ w \in W$, and due to the linearity of $\langle \cdot, \cdot \rangle$, multiplying both sides by $1/\| \boldsymbol{h}  \|_{\calU}$ and letting  $\| \boldsymbol{h}  \|_{\calU}$ go to zero, we have
+ \begin{align*}
+     \D^{\boldsymbol{e}} a_\bsy (u,v) =  \langle \D^{\boldsymbol{e}} \calA_\bsy u , v \rangle, 
+ \end{align*} for all $\boldsymbol{e} \in \calU $ with $\vert \boldsymbol{e} \vert = 1$ and $\| \D^{\boldsymbol{e}} a_\bsy  \|_{\calL(V\times W)} = \| \D^{\boldsymbol{e}} \calA_\bsy  \|_{\calL(V,W')} $. 
+ The same argument applies for higher order derivatives $\bsnu \in \calF$, using induction.
+
+
+
+
+ \section{Gevrey-Regularity of the Lowest Eigenvalue Cluster}\label{sec:resolventChapter}
+The aim of this section is to prove Theorem \ref{theorem:main}.
+The proof avoids the direct differentiation of the buckling modes which is ill-posed, because potential crossings of eigenmodes makes their $\bfy$-dependence non-smooth.
+And instead the proof relies on the resolvent formalism and Cauchy integrals.
+Based on Theorem \ref{theorem:main1}, we have an explicit criterion on when we can expect to find an eigenspace isolating curve $\Gamma$.
+In such a case, the Cauchy integral formula of the (operator) resolvent holds \cite[Chapter III, \S4 , Theorem 6.17]{kato1995perturbation}, exhibiting the enclosed eigenspace in form of the spectral projection operator $P(\bfy)$ in \eqref{eq:spectralProjector}, and the resolvent operator, restricted on the enclosed eigenvalues $\mu_1(\bfy), \ldots, \mu_s(\bfy)$. Here, $s$ is the size of the first eigenvalue cluster, as in \eqref{eq:choiceofs}. Therefore, the trace operator of $\Lambda(\bfy)$ in \eqref{eq:CauchyIntegralFormulaForD} exhibits the identity
+\begin{equation}
+    \mathrm{tr} \,\Lambda(\bfy) =  \mu_1(\bfy)+  \ldots + \mu_s(\bfy),
+\end{equation}
+while the projector $P_\bfy = P(\bfy)$ in \eqref{eq:spectralProjector} satisfies $P_\bfy (\calL(V)) = U_s(\bfy)$. Here, recall that $ U_s(\bfy)$ is the eigenspace, spanned by the first $s$ eigenvectors of $\calT_\bfy$. In other words, we have
+\begin{equation*}
+    \mathrm{range} (P(\bfy)) = U_s(\bfy).
+\end{equation*}
+The resolvent theory is, for example, explained in great detail in Kato \cite[Chapter I, \S 3 \& Chapter III, \S 4]{kato1995perturbation}. Note that, it is sufficient that $\calT_{\bfy}$ is linear and bounded.
+
+
+
+Define the resolvent operator of $\calT_{\bfy}$ for $z \in \mathbb{C}$ and $\bfy \in \calU$:
+\begin{equation}
+    R(z,\bfy) = ( \calT_{\bfy} - z )^{-1}.
+\end{equation}
+%All linear and bounded operators are closed operators. 
+%Thus by the analysis in \cite[Chapter I, \S 3]{kato1995perturbation}, the resolvent $z \mapsto R(z,\bfy)$ is a meromorphic function, and the Cauchy-integrals $P(\bfy), \Lambda(\bfy)$  in \eqref{eq:spectralProjector} and \eqref{eq:CauchyIntegralFormulaForD} are well-defined for all $\bfy \in \calU$.  
+
+%Let $\Gamma \subset \mathbb{C}$ be a fixed closed contour isolating $\mu_1(\bfy)$ from the rest of the spectrum $\sigma(\calT_{\bfy})$. Due to the uniform spectral gap, such a contour exists and the resolvent $R(z,\bfy)$ is uniformly bounded for all $z \in \Gamma$ and $\bfy \in \calU$.
+%\begin{theorem}
+%Under Assumptions \ref{subsection:assumptions}, the critical buckling load $\lambda_1(\bfy)\in G^\delta(\calU,\RR)$, i.e. there exist constants $C > 0$ and a radius sequence $\vR$ such that for any $\vnu\in\cF$:
+%\begin{equation}
+    %|\partial^\nu_y \lambda_1(\bfy)| \le C \frac{(|\vnu|!)^\delta}{\vR^{\vnu}}.
+%\end{equation}
+%\end{theorem}
+
+\begin{proof}[Proof of Theorem \ref{theorem:main2}] 
+%The proof avoids the direct differentiation of the buckling modes, which is ill-posed in a 2D eigenspace, and instead relies on the resolvent formalism and Cauchy integrals.
+
+%\paragraph{Step 1: Operator Formulation.}
+%We rewrite \eqref{eq:variational_buckling} as a standard operator eigenvalue problem. Let $\calT_{\bfy} : V \to V$ be the compact operator defined by $\calT_{\bfy} = \calA_{\bfy}^{-1} \calM_{\bfy}$. The problem becomes
+%\begin{equation}
+%    \calT_{\bfy} D(\bfy) = \mD(\bfy) D(\bfy), \quad \text{where} \quad \mD(\bfy) = \frac{1}{\lambda(\bfy)}.
+%\end{equation}
+%The smallest buckling load $\lambda_1(\bfy)$ corresponds to the largest eigenvalue $\mu_1(\bfy)$ of $\calT_{\bfy}$. By Assumption \ref{assump: non-splitting}, $\mu_1(\bfy)$ has multiplicity 2 for all $\bfy \in \calU$.
+
+%\paragraph{Step 2: The Resolvent and Cauchy Integral.}
+%Define the resolvent operator of $\calT_{\bfy}$ for $z \in \mathbb{C}$:
+%\begin{equation}
+ %   R(z,\bfy) = (zI - \calT_{\bfy})^{-1}.
+%\end{equation}
+Let us denote $\gamma := \hat \delta(D, \delta_0)/2 $ where $\hat{\delta}(D,\delta_0)$ is defined in \eqref{eq:spectralgap}. Furthermore, let $\Gamma \subset \mathbb{C}$ be the contour isolating $\mu_1(\bfy), \ldots, \mu_s(\bfy)$ from the rest of the spectrum $\Sigma(\calT_{\bfy})$ for all $ \bfy \in \calU$.
+Note that a $\bfy$-independent choice of $\Gamma$  is 
+\begin{equation}
+    \Gamma = \partial B( \mu_1(0), \gamma) \subseteq \mathbb{C}.
+\end{equation} Due to the uniform spectral gap, such a contour exists and the resolvent $R(z,\bfy)$ is uniformly bounded for all $z \in \Gamma$ and $\bfy \in \calU$.
+
+In fact,
+\begin{equation*}
+    \| R(z,\bfy) \|_{\calL(V)} \leq \gamma^{-1} \quad \text{ for all }  \bfy \in \calU,
+\end{equation*} 
+and by Lemma \ref{lemma:GevreyRegularityTy}, we have
+\begin{equation*}
+    \| \Dnuy  (\calT_\bfy - z )\|_{\calL(V)} =   \| \Dnuy  \calT_\bfy \|_{\calL(V)}\leq C_{\calT} \rho_{\calT}^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta, \quad \forall \bsnu \in \calF, \bfy \in \calU.
+\end{equation*}
+Thus, using the inversion rule for linear and bounded operators in Lemma \ref{lemma:OperatorGevreyRegularity} with the constants
+\begin{align*}
+   C(\calT,\Gamma)&:=   \max \{ \gamma^{-1}, C_{\calT} \}, \\
+   C_R &= C(\calT,\Gamma)/3, \\
+   \rho_R &= 3  C(\calT,\Gamma)^2 \rho_{\calT},
+\end{align*} 
+yields the Gevrey-$\delta$-regularity of $ \bfy \mapsto R(z,\bfy) $, that is, 
+\begin{equation*}
+    \| \Dnuy R(z,\bfy) \|_{\calL(V)} \leq C_R \rho_R^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta
+\end{equation*}
+holds for all $\bsnu \in \calF$ and $\bfy \in \calU$ and $z \in \Gamma$.
+
+Since $\Gamma$ is a fixed, bounded contour and the Trace is a bounded linear operation on a finite-dimensional subspace, we can interchange differentiation and integration:
+\begin{equation}
+    \partial^\nu_y \Lambda(\bfy) = \frac{1}{2\pi i} \oint_{\Gamma} z \left( \partial^\nu R(z,\bfy) \right) dz,
+\end{equation}
+and
+	\begin{equation*}
+		\partial_{\vy}^{\vnu} P(\vy) = \frac{1}{2\pi i} \int_{\Gamma} \partial_{\vy}^{\vnu} R(z, \bfy)  \, dz.
+	\end{equation*}
+	%Taking the Frobenius norm on both sides and utilizing the submultiplicative property $\norm{A B}{F} \leq \norm{A}{F}\norm{B}{F}$ (as noted in \cite[ (14)]{chernov2026gevreyclassregularitysteadystate}), along with the dimensional factor $m \ell$, we obtain:
+    We obtain
+	\begin{align*}
+		\norm{\partial_{\vy}^{\vnu} P(\vy)}{F}
+		&\leq \frac{\abs{\Gamma}}{2\pi} \sup_{z \in \Gamma} \norm{\partial_{\vy}^{\vnu} R(z, \vy)}{\calL(V)} \\
+		&\leq \frac{\abs{\Gamma}}{2\pi} C_R \rho_R^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta.
+	\end{align*}
+	
+	Similarly, for the integral $\Lambda(\vy)$, the presence of the factor $z$ inside the integrand introduces an additional multiplier bounded by $\widetilde C_\Gamma := \mu_1(0) + \gamma \geq  \max_{z \in \Gamma} \abs{z} $. Following the exact same procedure, we arrive at:
+	\begin{align*}
+		\norm{\partial_{\vy}^{\vnu} \Lambda(\vy)}{F}
+		&\leq \widetilde C_\Gamma  \frac{\abs{\Gamma}}{2\pi}C_R \rho_R^{\abs{\vnu}} \vb^\vnu \fallennudelta.
+	\end{align*}
+	This completes the proof.
+\end{proof}
+
+\subsubsection{Gevrey-Regularity}
+The falling factorial $\brac{\tfrac{1}{2}}_m$ is defined by
+\begin{equation*}
+	\brac{\tfrac{1}{2}}_m
+	:=
+	\begin{cases}
+		1 \quad & \text{if } m=0, \\
+		\displaystyle \prod_{{k=0}}^{m-1} \brac{\tfrac{1}{2} - k}& \text{if } m > 0. 
+	\end{cases}	
+\end{equation*}	
+For $m \in \NN_0$, where $\NN_0$ is the set of nonnegative integers, we introduce the quantity
+\begin{equation*}
+	\gdnota{m} := \abs{\brac{\tfrac{1}{2}}_m}.
+\end{equation*}	
+An immediate consequence of this definition is that
+\begin{equation} \label{ineq: ffac_m}
+	\gdnota{m}
+	\ \le \ m!
+	\ \le \ 
+	2^{m+1} \gdnota{m}.
+\end{equation}	
+Furthermore, we have the following convolution-type bounds:
+\begin{subequations}\label{ineq: sum-ffac a}
+\begin{align} 
+	\sum_{j=0}^{m-1}\binom{m}{j}\gdnota{m-j}\gdnota{j} \ &\le \  3 \gdnota{m}, \label{ineq: sum-ffac}\\
+	\sum_{j=0}^{m}\binom{m+1}{j}\gdnota{m+1-j}\gdnota{j} \ &\le \  \gdnota{m+1}. \label{ineq: sum-ffac 2}
+\end{align}	
+\end{subequations}
+For proofs of these inequalities, we refer to \cite[Lemma 2.3]{CL2024} and \cite[Lemma 2.1]{CL2024b}.
+	To streamline the presentation, we introduce the shorthand notation
+	\begin{equation*}
+		\fallfac{\delta}{\vnu} :=  \gdnota{\abs{\vnu}}  (\abs{\vnu}!)^{\delta-1}, {\qquad \vnu \in \cF.}
+	\end{equation*}
+The set of finitely supported sequences of non-negative integers $\cF$ is defined as
+\begin{equation}\label{cF-def}
+	\cF := 
+	\left\{
+	\vnu ={(\nu_j)_{j \in \NN}} : \nu_j\in \NN_0 \text{ with } \nu_j \neq 0 \text{ for  finitely many } j
+	\right\}.
+\end{equation}
+For multi-indices $\valpha, \vbeta \in \cF$, the algebraic operation $\valpha + \vbeta$ and the partial orderings $\valpha \leq \vbeta$ are understood component-wise. In particular, $\valpha < \vbeta$ means $\valpha \leq \vbeta$ and $\valpha \neq \vbeta$. For a given sequence of positive real numbers $\vR=(\rho_j)_{j{\in \NN}}$ and a multi-index $\vnu \in \cF$, it is convenient to define
+\begin{align*}
+	\vR^{\vnu} := \prod_{j{\in \NN}} \rho_j^{\nu_j},
+	\qquad \qquad
+	\abs{\vnu} := \sum_{j{\in \NN}} \nu_j, 
+	\qquad \qquad
+	\vnu! := \prod_{j{\in \NN}} \nu_j!. 
+\end{align*}
+
+
+For a $\vnu\in \cF$ with  $\supp (\vnu) \subset\sett{1,2,\dots, n}$ and a function $v$ on $\RR^\NN$, the partial derivative $\partial^{\vnu} v$ with respect to the variables $\vy$ are defined as
+\begin{align*}
+	\partial^{\vnu} v
+	=
+	\frac{\partial^{\abs{\vnu}}v}
+	{\partial y_1^{\nu_1} \partial y_2^{\nu_2} \dots \partial y_n^{\nu_n}}
+\end{align*}
+with the convention that $\partial y_j^{\nu_j}$ is omitted if $\nu_j =0$. 
+
+In our subsequent analysis, we will frequently invoke the following combinatorial inequalities:
+\begin{equation} \label{frac{1}{4}...}	
+	\sum_{{\vzero \le \vm < \vnu}} \binom{\vnu}{\vm}\fallfac{\delta}{{\vnu-\vm}}\fallfac{\delta}{{\vm}}
+	\  \le \
+	3\fallfac{\delta}{{\vnu}}
+	\ \le \ 	
+	3(|\vnu|!)^\delta,		
+\end{equation}	
+and, for any sequence $\ve \in \cF$ of length $\abs{\ve}=1$,
+\begin{equation} \label{fall_fac_ineq}	
+	\sum_{{\vzero \leq}\vm \le \vnu} \binom{\vnu}{\vm}\fallfac{\delta}{{\vnu+\ve-\vm}}\fallfac{\delta}{{\vm}}
+	\  \le \
+	\fallfac{\delta}{{\vnu+\ve}}
+	\ \le \ 	
+	(|\vnu+\ve|!)^\delta.		
+\end{equation}	
+These bounds follow as direct consequences of \eqref{ineq: sum-ffac a}, the elementary inequality $n!m!\leq (n+m)!$ for all $n,m\in \NN_0$, and the multivariate Vandermonde identity (cf.\ \cite[Lemma 7.1]{CL2024}).
+
+ The following definition of Gevrey-$\delta$ functions with countably many parameters will be used in our regularity analysis.
+\begin{definition} \label{def:G-delta-def}
+	Let $\delta \geq 1$, $B$ be a Banach space, $I \subset \RR^\NN$ be an open domain and a function $f:I \to B$ be such that its $\vy$-derivatives $\partial^{\vnu} f:I \to B$ are continuous for all $\vnu \in \cF$. We say that the function $f$ is of class Gevrey-$\delta$ if for each $y_0 \in I$ there exist an open set $J\subseteq I$, and strictly positive constants $\vR = (\rho_1,\rho_2,\dots) \subset \RR_{>0}^{\NN}$ and $C \in \RR_{>0}$ that the derivatives of $f$ satisfy the bounds
+	\begin{equation}\label{G-delta-def}
+		\|\partial^{\vnu} f(\vy)\|_B \leq \frac{C}{\vR^{\vnu}} (|\vnu|!)^\delta, \qquad \forall \vy \in J, \quad \forall \vnu \in \cF.
+	\end{equation}
+	In this case we write $f \in G^\delta(U,B)$.
+\end{definition}
+
+
+\subsubsection{Gevrey-Regularity}
+The falling factorial $\brac{\tfrac{1}{2}}_m$ is defined by
+\begin{equation*}
+	\brac{\tfrac{1}{2}}_m
+	:=
+	\begin{cases}
+		1 \quad & \text{if } m=0, \\
+		\displaystyle \prod_{{k=0}}^{m-1} \brac{\tfrac{1}{2} - k}& \text{if } m > 0. 
+	\end{cases}	
+\end{equation*}	
+For $m \in \NN_0$, where $\NN_0$ is the set of nonnegative integers, we introduce the quantity
+\begin{equation*}
+	\gdnota{m} := \abs{\brac{\tfrac{1}{2}}_m}.
+\end{equation*}	
+An immediate consequence of this definition is that
+\begin{equation} \label{ineq: ffac_m}
+	\gdnota{m}
+	\ \le \ m!
+	\ \le \ 
+	2^{m+1} \gdnota{m}.
+\end{equation}	
+Furthermore, we have the following convolution-type bounds:
+\begin{subequations}\label{ineq: sum-ffac a}
+\begin{align} 
+	\sum_{j=0}^{m-1}\binom{m}{j}\gdnota{m-j}\gdnota{j} \ &\le \  3 \gdnota{m}, \label{ineq: sum-ffac}\\
+	\sum_{j=0}^{m}\binom{m+1}{j}\gdnota{m+1-j}\gdnota{j} \ &\le \  \gdnota{m+1}. \label{ineq: sum-ffac 2}
+\end{align}	
+\end{subequations}
+For proofs of these inequalities, we refer to \cite[Lemma 2.3]{CL2024} and \cite[Lemma 2.1]{CL2024b}.
+	To streamline the presentation, we introduce the shorthand notation
+	\begin{equation*}
+		\fallfac{\delta}{\vnu} :=  \gdnota{\abs{\vnu}}  (\abs{\vnu}!)^{\delta-1}, {\qquad \vnu \in \cF.}
+	\end{equation*}
+The set of finitely supported sequences of non-negative integers $\cF$ is defined as
+\begin{equation}\label{cF-def}
+	\cF := 
+	\left\{
+	\vnu ={(\nu_j)_{j \in \NN}} : \nu_j\in \NN_0 \text{ with } \nu_j \neq 0 \text{ for  finitely many } j
+	\right\}.
+\end{equation}
+For multi-indices $\valpha, \vbeta \in \cF$, the algebraic operation $\valpha + \vbeta$ and the partial orderings $\valpha \leq \vbeta$ are understood component-wise. In particular, $\valpha < \vbeta$ means $\valpha \leq \vbeta$ and $\valpha \neq \vbeta$. For a given sequence of positive real numbers $\vR=(\rho_j)_{j{\in \NN}}$ and a multi-index $\vnu \in \cF$, it is convenient to define
+\begin{align*}
+	\vR^{\vnu} := \prod_{j{\in \NN}} \rho_j^{\nu_j},
+	\qquad \qquad
+	\abs{\vnu} := \sum_{j{\in \NN}} \nu_j, 
+	\qquad \qquad
+	\vnu! := \prod_{j{\in \NN}} \nu_j!. 
+\end{align*}
+
+
+For a $\vnu\in \cF$ with  $\supp (\vnu) \subset\sett{1,2,\dots, n}$ and a function $v$ on $\RR^\NN$, the partial derivative $\partial^{\vnu} v$ with respect to the variables $\vy$ are defined as
+\begin{align*}
+	\partial^{\vnu} v
+	=
+	\frac{\partial^{\abs{\vnu}}v}
+	{\partial y_1^{\nu_1} \partial y_2^{\nu_2} \dots \partial y_n^{\nu_n}}
+\end{align*}
+with the convention that $\partial y_j^{\nu_j}$ is omitted if $\nu_j =0$. 
+
+In our subsequent analysis, we will frequently invoke the following combinatorial inequalities:
+\begin{equation} \label{frac{1}{4}...}	
+	\sum_{{\vzero \le \vm < \vnu}} \binom{\vnu}{\vm}\fallfac{\delta}{{\vnu-\vm}}\fallfac{\delta}{{\vm}}
+	\  \le \
+	3\fallfac{\delta}{{\vnu}}
+	\ \le \ 	
+	3(|\vnu|!)^\delta,		
+\end{equation}	
+and, for any sequence $\ve \in \cF$ of length $\abs{\ve}=1$,
+\begin{equation} \label{fall_fac_ineq}	
+	\sum_{{\vzero \leq}\vm \le \vnu} \binom{\vnu}{\vm}\fallfac{\delta}{{\vnu+\ve-\vm}}\fallfac{\delta}{{\vm}}
+	\  \le \
+	\fallfac{\delta}{{\vnu+\ve}}
+	\ \le \ 	
+	(|\vnu+\ve|!)^\delta.		
+\end{equation}	
+These bounds follow as direct consequences of \eqref{ineq: sum-ffac a}, the elementary inequality $n!m!\leq (n+m)!$ for all $n,m\in \NN_0$, and the multivariate Vandermonde identity (cf.\ \cite[Lemma 7.1]{CL2024}).
+
+ The following definition of Gevrey-$\delta$ functions with countably many parameters will be used in our regularity analysis.
+\begin{definition} \label{def:G-delta-def}
+	Let $\delta \geq 1$, $B$ be a Banach space, $I \subset \RR^\NN$ be an open domain and a function $f:I \to B$ be such that its $\vy$-derivatives $\partial^{\vnu} f:I \to B$ are continuous for all $\vnu \in \cF$. We say that the function $f$ is of class Gevrey-$\delta$ if for each $y_0 \in I$ there exist an open set $J\subseteq I$, and strictly positive constants $\vR = (\rho_1,\rho_2,\dots) \subset \RR_{>0}^{\NN}$ and $C \in \RR_{>0}$ that the derivatives of $f$ satisfy the bounds
+	\begin{equation}\label{G-delta-def}
+		\|\partial^{\vnu} f(\vy)\|_B \leq \frac{C}{\vR^{\vnu}} (|\vnu|!)^\delta, \qquad \forall \vy \in J, \quad \forall \vnu \in \cF.
+	\end{equation}
+	In this case we write $f \in G^\delta(U,B)$.
+\end{definition}
+
+

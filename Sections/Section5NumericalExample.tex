@@ -1,0 +1,174 @@
+\section{Numerical Example}
+\label{sec:numerical-example}
+% Measured data: application-vshp2-eigen-buckling/experiments/output/
+% bunter-first-set/theory-evidence.json; archive and replay identities retained there.
+\subsection{One-dimensional profile}
+\begin{gather}
+ y=(y_1,y_2)\in[-1,1]^2,\qquad
+ \mathrm{d}\pi(y)=\tfrac14\,\mathrm{d}y_1\mathrm{d}y_2,
+ \qquad s\in[-L,L],\quad L=2,\quad b=\tfrac7{20},\\
+ \psi_1(s)=\begin{cases}(1-(s/b)^2)^4,&|s|<b,\\0,&|s|\ge b,\end{cases}
+ \qquad
+ \psi_2(s)=\frac{19(s/b)^2-1}{c_*}\psi_1(s),
+ \quad c_*=\frac{483729408}{407253125},\\
+ \psi_i\in C^3([-L,L]),\qquad
+ \|\psi_i\|_{L^\infty}=1,\qquad
+ \int_{-L}^{L}\psi_1(s)\psi_2(s)\,\mathrm{d}s=0,\\
+ f(s;y)=1-\frac1{20}\psi_1(s)
+       +\frac{y_1}{100}\psi_1(s)+\frac{y_2}{400}\psi_2(s),
+ \qquad \partial_\varphi f=0.
+ \label{eq:experiment-profile}
+\end{gather}
+\begin{gather}
+ X=(s,f\cos\varphi,f\sin\varphi),\qquad
+ a=\sqrt{1+f_s^2},\qquad
+ e_1=a^{-1}(1,f_s\cos\varphi,f_s\sin\varphi),\\
+ e_2=(0,-\sin\varphi,\cos\varphi),\qquad
+ n=a^{-1}(-f_s,\cos\varphi,\sin\varphi),\\
+ \Gamma_y=X([-L,L]\times[0,2\pi)),\qquad Y=X+zn,\\ |z|<t/2,\quad t=\tfrac1{100},\qquad
+ \mathrm{d}A=af\,\mathrm{d}s\,\mathrm{d}\varphi,\\
+ D_1=a^{-1}\partial_s,\quad D_2=f^{-1}\partial_\varphi,\quad
+ c_1=-f_{ss}/a^3,\quad c_2=(af)^{-1},\quad \gamma=f_s/(af),\\
+ \lambda_{\mathrm L}=\mu=1,\qquad E=\tfrac52,\qquad\nu=\tfrac14.
+\end{gather}
+
+\subsection{Five-field model and prestress}
+\begin{gather}
+ U=(u,v,w,\theta,\psi),\quad
+ q=u e_1+v e_2+w n,\quad \eta=-\theta e_1-\psi e_2,
+ \quad\mathcal U(Y)=q+z\eta,\\
+ \begin{aligned}
+ \beta_{11}&=D_1u+c_1w,&\beta_{22}&=D_2v+\gamma u+c_2w,\\
+ 2\beta_{12}&=D_1v+D_2u-\gamma v,\\
+ \kappa_{11}&=D_1\theta,&\kappa_{22}&=D_2\psi+\gamma\theta,\\
+ 2\kappa_{12}&=D_1\psi+D_2\theta-\gamma\psi
+                 -c_1(D_2u-\gamma v)-c_2D_1v,\\
+ \rho_1&=D_1w-c_1u-\theta,&\rho_2&=D_2w-c_2v-\psi.
+ \end{aligned}
+\end{gather}
+\begin{gather}
+ \mathbb C_{\mathrm{ps}}A=\frac{E}{1+\nu}
+       \left(A+\frac{\nu}{1-\nu}\operatorname{tr}(A)I_2\right),\\
+ a_y^{\mathrm N}(U,V)=\int_{\Gamma_y}\left[
+ t\mathbb C_{\mathrm{ps}}\beta(U):\beta(V)
+ +\frac{t^3}{12}\mathbb C_{\mathrm{ps}}\kappa(U):\kappa(V)
+ +\mu t\rho(U)\cdot\rho(V)\right]\mathrm{d}A.
+ \label{eq:experiment-naghdi-form}
+\end{gather}
+\begin{gather}
+ U_h^D=(u_h^D,0,w_h^D,\theta_h^D,0),\qquad
+ u_h^D(\pm L)=\mp L/200,\quad\theta_h^D(\pm L)=0,\\
+ a_y^{\mathrm N}(U_h^D,V_h)=0
+ \quad\bigl(V_h=(v_1,0,v_3,v_4,0),\ v_1(\pm L)=v_4(\pm L)=0\bigr),\\
+ R_h^D=\frac{\partial}{\partial u_h^D(L)}
+                  \frac12a_y^{\mathrm N}(U_h^D,U_h^D),\qquad
+ F_0=2\pi t=\frac\pi{50},\qquad c_h=\frac{F_0}{|R_h^D|},\\
+ N^0=c_h t\mathbb C_{\mathrm{ps}}\beta(U_h^D),\qquad
+ B^0=c_h\frac{t^3}{12}\mathbb C_{\mathrm{ps}}\kappa(U_h^D),\qquad
+ Q^0=c_h\mu t\rho(U_h^D),\\
+ \widehat\sigma^0_{\alpha\beta}(z)=N^0_{\alpha\beta}/t
+                       -12zB^0_{\alpha\beta}/t^3,\quad
+ \widehat\sigma^0_{\alpha3}=\widehat\sigma^0_{3\alpha}=Q^0_\alpha/t,
+ \quad\widehat\sigma^0_{33}=0,\quad \alpha,\beta\in\{1,2\},\\
+ \int_{-t/2}^{t/2}\widehat\sigma^0_{\alpha\beta}\,\mathrm{d}z=N^0_{\alpha\beta},
+ \quad\int_{-t/2}^{t/2}z\widehat\sigma^0_{\alpha\beta}\,\mathrm{d}z=-B^0_{\alpha\beta},
+ \quad\int_{-t/2}^{t/2}z^2\widehat\sigma^0_{\alpha\beta}\,\mathrm{d}z
+       =\frac{t^2}{12}N^0_{\alpha\beta}.
+ \label{eq:experiment-stress}
+\end{gather}
+\begin{gather}
+ H_{i\alpha}(U,z)=e_i\cdot(D_\alpha q+zD_\alpha\eta),\quad
+ H_{i3}(U,z)=e_i\cdot\eta,\quad(e_3=n),\\
+ g_y^{\mathrm N}(U,V)=-\int_{\Gamma_y}\int_{-t/2}^{t/2}
+ \sum_{i,j,k=1}^3\widehat\sigma^0_{jk}(z)H_{ij}(U,z)H_{ik}(V,z)
+ \,\mathrm{d}z\,\mathrm{d}A,\\
+ a_y^{\mathrm N}(\Phi_{j,h},V_h)=\lambda_{j,h}(y)g_y^{\mathrm N}(\Phi_{j,h},V_h),
+ \qquad0<\lambda_{1,h}\le\lambda_{2,h}\le\cdots .
+ \label{eq:experiment-pencil}
+\end{gather}
+
+\subsection{Discrete space and sampled subspace}
+\begin{gather}
+ \mathcal T_s:\quad[-L,-b],[-b,b],[b,L],\qquad
+ (n_-,n_0,n_+)=(12,12,12),\qquad p=5,\\
+ S_h^5=\{v\in C^0([-L,L]):v|_I\in\mathbb P_5(I),\ I\in\mathcal T_s\},\\
+ \mathcal F_{24}=\operatorname{span}\{1,\cos k\varphi,\sin k\varphi:1\le k\le24\},\\
+ \mathcal R=\operatorname{span}\{(0,1,0),(0,0,1),(1,0,0)\mathbin\times Y\},\\
+ \mathcal W_h=\{\mathcal U(U_h):U_h\in(S_h^5\otimes\mathcal F_{24})^5\}+\mathcal R,\\
+ P_A=Y(-L,0,t/2),\quad P_B=Y(-L,\pi/2,t/2),\\
+ C_h\mathcal V_h=
+ \bigl(\mathcal V_{h,2}(P_A),\mathcal V_{h,3}(P_A),\mathcal V_{h,3}(P_B)\bigr)^T=0,
+ \quad\mathcal V_{h,1}|_{s=\pm L}=0,\\
+ \mathcal E_{4,h}(y)=\operatorname{span}\{\Phi_{1,h}(y),\ldots,\Phi_{4,h}(y)\}.
+\end{gather}
+\begin{gather}
+ P_q(x)=\frac{1}{2^q q!}\frac{\mathrm d^q}{\mathrm dx^q}(x^2-1)^q,\qquad
+ \mathcal G_q=\{x\in(-1,1):P_q(x)=0\},\\
+ \mathcal B=\{-1,0,1\}^2\setminus\{(0,0)\},\qquad
+ \mathcal S=\mathcal B\cup\bigcup_{q\in\{3,5,7,9\}}\mathcal G_q^{\otimes2},\\
+ \mathcal L_{m,h}(y)=\{\!\{(k_j,r_j)_{\mathrm{dominant}}:1\le j\le m\}\!\},\\
+ \sum_{q\in\{3,5,7,9\}}q^2=164,\quad |\mathcal B|=8,\\
+ \mathcal L_{4,h}(y)=\{\!\{(3,1),(3,1),(4,1),(4,1)\}\!\}\quad(y\in\mathcal S),\\
+ g_{4,h}(y)=\lambda_{5,h}(y)-\lambda_{4,h}(y),\qquad
+ \widehat g_{4,h}(y)=g_{4,h}(y)/\lambda_{4,h}(y).
+\end{gather}
+\begin{table}[htbp]
+\centering\small
+\caption{Sampled spectra; dominant Fourier labels $(k,r)$; $r_{j,h}=\|K_h\phi_{j,h}-\lambda_{j,h}G_h\phi_{j,h}\|_2/(\|K_h\phi_{j,h}\|_2+|\lambda_{j,h}|\|G_h\phi_{j,h}\|_2)$.}\label{tab:theory-gaps}
+\begin{tabular}{lcc}
+\hline
+Statistic & Value & $y$\\
+\hline
+$\min_{y\in\mathcal S}g_{4,h}(y)$ & $6.8230968\times10^{-4}$ & $(-1,-1)$\\
+$\min_{y\in\mathcal S}\widehat g_{4,h}(y)$ & $0.110556687$ & $(-1,0)$\\
+$\mathcal L_{6,h}(y)=\mathcal L_{6,h}(0,0)$ & $\mathrm{false}$ & $(1,-1)$\\
+$\max_{q\in\{3,5,7,9\},\ y\in\mathcal G_q^{\otimes2},\ j\leq24} r_{j,h}(y)$ & $1.06248\times10^{-11}$ & ---\\
+\hline
+\end{tabular}
+\end{table}
+\subsection{Ordered response statistics}
+\begin{gather}
+ \{(y_\ell^{(q)},w_\ell^{(q)})\}_{\ell=1}^{q^2},\qquad
+ y_\ell^{(q)}\in\mathcal G_q^{\otimes2},\quad
+ w_\ell^{(q)}>0,\quad\sum_\ell w_\ell^{(q)}=1,\\
+ m_j^{(q)}=\sum_\ell w_\ell^{(q)}\lambda_{j,h}(y_\ell^{(q)}),\qquad
+ v_j^{(q)}=\sum_\ell w_\ell^{(q)}
+       (\lambda_{j,h}(y_\ell^{(q)})-m_j^{(q)})^2,\\
+ \delta_{m,j}=\frac{|m_j^{(9)}-m_j^{(7)}|}{|m_j^{(7)}|},\qquad
+ \delta_{v,j}=\frac{|v_j^{(9)}-v_j^{(7)}|}{v_j^{(7)}}.
+\end{gather}
+\begin{table}[htbp]
+\centering\small
+\caption{Tensor Gauss--Legendre statistics; $(p,n_s,k_{\max})=(5,36,24)$.}\label{tab:theory-moments}
+\begin{tabular}{rrrrr}
+\hline
+$j$ & $10^3m_j^{(9)}$ & $10^4\sqrt{v_j^{(9)}}$ & $\delta_{m,j}$ & $\delta_{v,j}$\\
+\hline
+1 & 4.94051103 & 6.8096656 & $9.672\times10^{-6}$ & $1.964\times10^{-4}$\\
+2 & 4.94086278 & 6.8075369 & $6.204\times10^{-6}$ & $2.016\times10^{-4}$\\
+3 & 5.16663021 & 7.2064533 & $9.249\times10^{-6}$ & $2.171\times10^{-4}$\\
+4 & 5.16881603 & 7.2233638 & $5.931\times10^{-6}$ & $2.059\times10^{-4}$\\
+5 & 6.16087825 & 5.6798026 & $6.168\times10^{-13}$ & $2.046\times10^{-11}$\\
+6 & 6.20215706 & 5.7218973 & $1.287\times10^{-7}$ & $4.655\times10^{-6}$\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Truncated Gaussian distribution(fixed)}
+We now consider the kernel function $f_{\sigma}(x)=\exp\brac{-\frac{x^2}{2\sigma}}$. For a fixed $c > 0$ and the corresponding truncated domain $\Omega=[-c,c]$, the probability density function (pdf) and the cumulative distribution function (cdf) are defined as follows:
+\begin{align}
+    \text{pdf: }& \phi(x) := \frac{f_{\sigma}(x)}{\int_{\Omega}f_{\sigma}(s) \,ds}, \\
+    \text{cdf: }& \Phi(x) := \int_{-c}^x \phi(s) \,ds.
+\end{align}
+Since $\Phi: [-c,c] \to [0,1]$ is a bijection, its inverse $\Phi^{-1}: [0,1] \to [-c,c]$ is well-defined. We define the function $g_1: [-\tfrac{1}{2},\tfrac{1}{2}] \to [-c,c]$ as the shifted inverse of the cdf, given by:
+$$
+g_1(y) = \Phi^{-1}(y+\tfrac{1}{2}).
+$$
+Because the kernel function $f_{\sigma}$ is analytic, it follows that the pdf $\phi$, the cdf $\Phi$, and the shifted inverse $g_1$ are all analytic. We can consider a different kernel, such as $f_2(x) = 1 - \exp\brac{-\tfrac{1}{x^2}}$, to construct a Gevrey class function $g_2 \in G^{\delta}$ ($\delta=\tfrac{3}{2}$) following the same approach.
+Then, we could modify the function \ref{eq:experiment-profile} as follows
+\begin{align}
+    f^{(j)}(s,y)= 1-\frac1{20}\psi_1(s)
+       +v\left(g_j(y_1)\psi_1(s)+\frac{1}{4}g_j(y_2)\psi_2(s) \right).
+\end{align}
+Consider the previous case for $v = 1/100$. Then
+varying $c >0$ and $v >0$ should exhibit the regime in which mixing of the smallest eigenvalue cluster occurs. 

@@ -1,0 +1,18 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'main.blg'
+[32] biber-darwin:342> INFO - === Thu Nov 19, 2026, 18:26:55
+[56] Biber.pm:421> INFO - Reading 'main.bcf'
+[89] Biber.pm:1002> INFO - Found 27 citekeys in bib section 0
+[96] Biber.pm:4487> INFO - Processing section 0
+[106] Biber.pm:4678> INFO - Looking for bibtex file 'literature.bib' for section 0
+[116] bibtex.pm:1713> INFO - LaTeX decoding ...
+[141] bibtex.pm:1519> INFO - Found BibTeX data source 'literature.bib'
+[275] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[275] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[275] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[275] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[308] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[313] bbl.pm:779> INFO - Output to main.bbl
+[313] Biber.pm:132> WARN - BibTeX subsystem: /var/folders/82/kr6wg98s1cs_vsgrvhct9sx80000gp/T/biber_tmp_sm6y/a42497fa0f805ce74b9af7d16715cbd8_11302.utf8, line 247, warning: undefined macro "Sept"
+[313] Biber.pm:132> WARN - I didn't find a database entry for 'Reference' (section 0)
+[313] Biber.pm:134> INFO - WARNINGS: 2

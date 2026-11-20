@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{article}
+\input{header}
+\title{Uncertainty Quantification for the Critical Buckling Load for Shells with Random Domain Perturbations}
+%\title{Regularity of the Critical Buckling Load of Shells with Uncertain Domain}    
+
+\author{Harri Hakula\footnotemark[2]\and Duc Khuat\footnotemark[2]\and Alexey Chernov\footnotemark[1]\and Tung Le\footnotemark[1] }
+
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+
+\begin{abstract} 
+
+    Thin-walled structures are prone to large-magnitude deformations under compressive loadings. 
+    The process where an unstable initial small displacement transitions into a large-scale 
+    deformation is called buckling; the corresponding load at which this phenomenon occurs is the critical buckling load.
+    %Despite the advances in engineering, manufacturing and mathematical modeling, manufacturing and 
+    %design specifications from the 70s remain the most prominent source of recommendations\textemdash
+    %even when 
+    The prediction of the critical buckling load remains difficult due to the high 
+    sensitivity to geometric imperfections. 
+    %Despite its practical importance for lightweight engineering and manufacturing
+    %the critical buckling load under random domain perturbations has not been analyed theoretically. 
+    %this sensitivity has not been 
+    %analyzed with the means of classical uncertainty quantification analysis.
+   % Despite its importance, the discrepancy of theoretically predicted and observed buckling 
+    %load of thin-walled structures prominently as large as 80\%.
+    %It is well recognized that geometric imperfections are the primary reason for this discrepancy.
+    Here, we provide a general framework to include random domain perturbations as a 
+    random domain mapping and analyze the associated 
+    general linear eigenvalue problem. The smallest eigenvalue of this system corresponds to the critical buckling load.
+    We show that if the random domain mapping is Gevrey-regular and uniformly diffeomorphic, the
+    corresponding, non-compact spectral operator remains Gevrey-regular to explicitly provided constants.
+    Moreover, using the resolvent of the spectral operator, we show that if the eigenvalue cluster that 
+    contains the smallest eigenvalue is isolated, Gevrey-regularity is preserved. Subsequently, 
+    we establish a criterium for when this condition for the smallest eigenvalue cluster 
+    is satisfied.
+    This criterium depends on the ratio between total variation of the operator and 
+    the initial spectral gap of the perfect, unperturbed domain.
+    In the regime at which this criterium is not satisfied we observe numerically that
+    eigenmodes with a high-wave number mix with the smallest eigenvalue cluster
+    accompanied with a collapse of the critical buckling load. 
+    It remains open to quantify this phenomenon.
+   % Several challenges are addressed that are non-standard in the uncertainty quantification literature:
+   % the spectral operator is not assumed to be compact, the eigenvalue is not isolated and we include general 
+   % Gevrey-regular functions, particularly, random domain mappings are not assumed to be
+   % analytically dependent on the parameter.
+
+
+\end{abstract}
+%
+
+\footnotetext[2]{Department of Mathematics and 
+Systems Analysis, Aalto University, FI-00076 Aalto, Finland ({\tt harri.hakula@aalto.fi}, {\tt duc.khuat@aalto.fi}).}
+\footnotetext[1]{Institut für Mathematik Carl von 
+Ossietzky Universität Oldenburg, Oldenburg, D-26111, Germany ({\tt alexey.chernov@uni-oldenburg.de }, {\tt tung.le@uol.de}).}
+
+
+%\listoftodos
+%\tableofcontents
+\input{Sections/Section1Introduction} 
+\input{Sections/Section2TheoreticalFoundation}
+\input{Sections/Section3}
+\input{Sections/Section4}
+\input{Sections/Section5NumericalExample}
+\input{Sections/Section6DiscussionAndConclusion}
+\input{Sections/Section7Appendix}
+\printbibliography
+%\bibliography{literature}
+
+\end{document}

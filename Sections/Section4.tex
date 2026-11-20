@@ -1,0 +1,275 @@
+\section{Regularity of Critical Buckling Load under Domain Uncertainty} \label{sec:regularityOfTy}
+%In this section, we show that the random domain mapping approach leads to a Gevrey-regular spectral operator $\calT_\bsy$.
+
+
+Under the assumption that the random domain mapping is Gevrey-regular and uniformly diffeomorphic, we show Gevrey-regularity of the operator $\calT_\bsy$ and provide the associated constants. 
+
+%The assumptions under which this result is shown consist of Gevrey-regularity of the random domain mapping and hit
+%associated with the random domain stability analysis Problem \ref{problem:transformed_linearbuckling}. Moreover, we provide the Gevrey-regularity constants induced by the Gevrey-regularity of the domain mapping $\Phi$ in \eqref{eq:definitionPhiandJ}. Note that the random coefficient in $b_\bsy(\bsu,\bsv)$ in \eqref{eq:bilinearforms2} is obtained from solving another source problem of the form $a_{\bsy}(\bsu,\bsv) = \calF_\bsy(\bsv)$. This coupling leads to large constants and thus potential large variation of the operator $b_\bsy$, $\calT_{\bsy}$ and the largest eigenvalue $\mu_{1}(\bsy)$.
+
+Let $\Phi(\bsy)$, $J(\bsy)$ and the space $V$ be defined as in \eqref{eq:definitionPhiandJ} and in \eqref{eq:def_Vspace}, respectively.
+%Let $\Phi(\bsy)\colon\Omega\to D(\bsy)$ map the reference domain $\Omega$ to the
+%perturbed domain $D(\bsy)=\Phi(\Omega;\bsy)$, and let $J(\cdot;\bsy)=\D_\xi\Phi(\cdot;\bsy)$ be its Jacobian. Moreover, we assume that $\Phi$ does not contain rigid-body motions, that is, some part of the domain with non-zero area remains unchanged under $\Phi$. 
+A large class of random domain perturbations is covered by the following assumptions:
+\begin{assumption}\label{assumption:GevreyRegularityJ}
+\begin{enumerate}
+  \item[\textbf{(A1)}]  \textbf{Gevrey regularity of $\Phi$.}
+  There are $\delta\ge1$, $C_\Phi>0$ and a sequence $\bsb\in\R_{\ge0}^\infty$ with
+  $\bsb\in\ell^p(\N)$ for some $p\in(0,1]$, such that
+  \begin{equation}\label{eq:PhiAssumption}  
+  \big\|\Dnuy J(\bsy)\big\|_{L^{\infty}(\Omega;\mathbb{T}_2)}
+    \le C_\Phi\,\bsb^{\bsnu}\,\fallennudelta
+    \qquad\text{for all }\bsy\in\calU,\ \bsnu\in\mathcal F .
+  \end{equation}
+ \item[\textbf{(A2)}]     \textbf{Uniformly invertible Jacobian.}
+  $J(\cdot;\bsy)$ is invertible and the inverse is bounded uniformly as
+  \begin{equation}\label{eq:Jacobian_inverseBound}
+    \big\|J^{-1}(\bsy)\big\|_{L^\infty(\Omega;\mathbb{T}_2)}\le C_\Phi
+    \qquad\text{for all }\bsy\in\calU .
+  \end{equation}
+  \end{enumerate}
+\end{assumption}
+
+
+\begin{lemma}[Uniform Korn inequality.]\label{lemma:kornconstant}
+There is $C_K>0$ such that \tododuc{write on perturbed}
+  \begin{equation}\label{eq:uniformKornconstant}
+    \|\bsu\|_{H^1(D(\bsy);\R^3)}^2\le C_K\int_{D(\bsy)}\|e(\bsu)\|_F^2\dx
+    \qquad\text{for all }\bsy\in\calU,\ \bsu\in H^1(D(\bsy);\R^3),
+  \end{equation}
+  where $e_{ij}(\bsu) = 1/2 ( \D u_{i}/\D x_j + \D u_{j}/\D x_i)$ is the symmetric gradient on $D(\bsy)$.
+  \end{lemma}
+  The proof is given in the Appendix~\ref{sec:appendix}.
+ % \emph{In words:} the strain energy controls the full $H^1$ norm, with a constant that does not
+\begin{example}[Geometric imperfections of the mid-surface]
+In the buckling analysis of thin-walled structures, the sensitivity propagation of mid-surface imperfections is of particular interest. For this, let $\omega \subset \R^2 $ be the parameter domain and $ t: \omega \to \R_{>0}$ be the thickness. The mid-surface domain mapping induces a domain mapping of the form
+  %A typical example is an affine parametrization of geometric imperfections of the mid-surface,
+  \begin{align*}
+    \phi(\uxi;\bsy)&=\phi_0(\uxi)+\sum_{i=1}^\infty y_i\,\psi_i(\uxi),
+    \\
+    \Phi\big((\uxi,\xi_3);\bsy\big)&:=\phi(\uxi;\bsy)+\xi_3\,\vec n(\uxi;\bsy), \qquad  \uxi \in \omega, \vert \xi_3 \vert \leq t(\uxi)/2,   \bsy \in \calU,
+  \end{align*}
+  where $\vec n(\cdot;\bsy)$ is the unit normal vector of the tangent vectors $ \boldsymbol{a}_{\alpha} :=\D\phi/\D \xi_\alpha$. 
+  If the angle of the tangent vectors are uniformly bounded away from zero and the modes satisfy $\sum_i\|\psi_i\|_{W^{2,\infty}(\omega;\R^3)}<\infty$, then
+  \eqref{eq:PhiAssumption} holds with weights $b_i\sim\|\psi_i\|_{W^{2,\infty}(\omega;\R^3)}$,
+  see \cite{GIANI2025118081}. Here, $W^{2,\infty}(\omega;\R^3)$ denotes the second order infinity Sobolev-norm. Moreover, $C_\Phi$ depends on the largest and smallest eigenvalue of the first, second and third fundamental form of $\phi$, see e.g. \cite[Chapter 2]{ChapelleBathe2011}. This value is dependent on the maximum and minimum extension or contraction and the curvature induced by the parametrization. In fact, one can show that $ \| J \|_2 \sim  \| g_{\alpha \beta } \|_2   $  where $g_{\alpha \beta } = \boldsymbol{g}_\alpha  \cdot \boldsymbol{g}_\beta $ and $\boldsymbol{g}_i = \D\Phi / \D \xi_i$. Here, the metric tensor $g_{\alpha\beta}$ depends on terms of the form $\boldsymbol{a}_{\alpha} \cdot \boldsymbol{a}_{\beta}$, $ \boldsymbol{a}_{\alpha} \cdot \boldsymbol{a}_{\beta,\lambda} $ and $\boldsymbol{a}_{\alpha,\beta} \cdot \boldsymbol{a}_{\lambda,\mu}$.
+%  The $W^{2,\infty}$ norm appears because $\vec n$ involves first derivatives of $\phi$,
+ % and $\Phi$ is measured in $W^{1,\infty}$.
+  %It is needed because otherwise the bilinear form $a_\bsy$ in \eqref{eq:bilinearforms}
+  %is not coercive uniformly in $\bsy$.
+%\textbf{(A3)} (uniform bounds on the stiffness tensor) gives uniform
+%  coercivity and boundedness of $a_\bsy$ in the reference configuration.
+%\textbf{(A4)} (uniform Korn constant) makes the coercivity constant of $a_{\bsy}$
+%  independent of the shape $D(\bsy)$, and hence of $\bsy$. The coercivity constant plays a key role in the Gevrey-regularity of the operators $\calA_\bsy$ and $m_\bsy$, which is associated with the solution of the prestress $\bssigma_*$.
+\end{example}
+
+In this section, we show the following main result, that is, the Gevrey regularity of $\calT_\bsy=\calA_\bsy^{-1}\calM_\bsy$ where $\calA_\bsy$ and $\calM_\bsy$ are defined as in \eqref{eq:DefAy}
+and \eqref{eq:DefMy} and $a_\bsy $ and $b_\bsy$ are now the bilinear forms from the buckling problem in \eqref{eq:bilinearforms} and \eqref{eq:bilinearforms2} and $\calF_{\bsy}$ denotes the linear form in \eqref{eq:sourceproblem_weak_star}.
+%of the two building blocks $\calA_\bsy^{-1}$ and $\calM_\bsy$ can be proven
+%(Lemmas~\ref{lemma:productInversionrule} and~\ref{lemma:coefficientregularitytoOperatorRegularity})%
+%carries over to their product $\calT_\bsy=\calA_\bsy^{-1}\calM_\bsy$.
+%This is the main result of this section.
+
+\begin{lemma}[Gevrey regularity of $\calT_{\bsy}$]\label{lemma:GevreyRegularityTy}
+Let Assumptions \ref{assumption:GevreyRegularityJ} hold. Then $\calT_\bsy=\calA_\bsy^{-1}\calM_\bsy$ is Gevrey regular:
+for all $\bsy\in\calU$ and all $\bsnu\in\calF$,
+\begin{equation}\label{eq:GevreyTy}
+   \|\Dnuy\calT_\bsy\|_{\calL(V,V)}
+   \le C_\calT\,\rho_\calT^{|\bsnu|}\,\bsb^{\bsnu}\,\fallennudelta ,
+\end{equation}
+with constants
+\begin{equation}\label{eq:constantRegTy}
+    C_\calT=4\,C_{\calA^{-1}}C_\calM,\qquad \rho_\calT=\rho_{\calA^{-1}},
+\end{equation}
+where $C_{\calA^{-1}}$, $\rho_{\calA^{-1}}$ and $C_\calM$ are defined in
+\eqref{eq:constantsInverseAyReg} and \eqref{eq:constantsMyReg}.
+ Then $\calT_\bsy$ has bounded variation in the sense of
+\eqref{eq:boundvariationTy}, with
+\begin{equation*}
+    C_V=\,r C_\calT\,\rho_\calT\,\|\bsb\|_{\ell^1(\N)}
+\end{equation*}
+by Lemma~\ref{lemma:variationboundTy}.
+\end{lemma}
+\begin{proof}
+Using the composition rule for linear operators from Lemma~\ref{lemma:productInversionrule}\,(i) on $\calA^{-1}_\bsy$ and $\calM_{\bsy}$ shows the claim immediately. The main contribution is to show the regularity of the latter terms in Lemma~\ref{lemma:GevreyRegInverseOfAyandFy} and Theorem~\ref{theorem:GevreyRegMy}.
+\end{proof}
+The constants can be simplified to
+\begin{align*}
+    C_\calT = \frac{2^{17}}{9} C^3_{\tilde \calC} C_K^2 C_T C_\Phi^5, \quad \rho_{\calT} = 3^9 \cdot 2^4 C_K^2 C_{\tilde \calC}^2 C_\Phi^4,
+\end{align*}
+where $C_{\tilde \calC} = 2^{11} C_\Phi^5 C_{\calC}$ and $C_\calC$ is the material stiffness tensor bound in \eqref{eq:stiffnesstensorupperbound}. 
+%We explain briefly how the constants are derived. 
+%We apply the product rule from Lemma~\ref{lemma:productInversionrule}\,(i) with $M=\calA^{-1}$ and $K=\calM$.
+%This gives the factor $4\,C_{\calA^{-1}}C_\calM$, and the growth rate $\rho_{\calA^{-1}}^{|\bsnu|}$
+%is inherited from the inversion bound (ii).
+%The variation bound follows Lemma \ref{lemma:variationboundTy}.
+%\end{proof}
+
+
+
+\subsection{Gevrey-Regularity of the Bilinear Form Representations} \label{subsec:RegularityA_yM_y} 
+In the following section, we assume that Assumption~\ref{assumption:GevreyRegularityJ} and the basic material assumptions in Section~\ref{sec:LinearModel} hold.
+
+We outline the regularity proofs of $\calA^{-1}_{\bsy}$ and $\calM_\bsy$ and show:
+\begin{enumerate}
+    \item[\textbf{1.}] the regularity of $\tilde \calC(\bsy)$ in \eqref{eq:transformed_stiffness} and $\tilde T^i$ in \eqref{eq:transformedtractionload} in Lemma~\ref{lemma:coefficientGevreyRegularity}.
+    \item[\textbf{2.}]  the uniform strong coercivity of $a_{\bsy}(\bsu,\bsv)$ in Lemma~\ref{lemma:coercivityofay} and subsequently the regularity of $\calA^{-1}_\bsy$ in Lemma~\ref{lemma:GevreyRegInverseOfAyandFy}.
+    \item[\textbf{3.}]  the regularity of $\bssigma_*$ in Lemma~\ref{lemma:GevreyRegularityPrestress} by using the regularity of
+    the solution of the source problem $\bsu^*(\bsy) = \calA_\bsy^{-1}\calF_\bsy$.
+    \item[\textbf{4.}] the regularity of $\calM_{\bsy}$ in Theorem~\ref{theorem:GevreyRegMy}.
+\end{enumerate}
+The regularity of the coefficients in Step \textbf{1} and \textbf{2} are well-known. However, we show the regularity of $\calA_{\bsy}^{-1}$ with a new technique: using Remark~\ref{remark:RegularityCoefficientToBilinearForm} and Lemma~\ref{lemma:RepresenterBilinearFormRegularity}, we obtain the regularity of $\calA_\bsy$. Combined with the uniform strong coercivity of $a_{\bsy}$, we can use Lemma~\ref{lemma:productInversionrule} (ii) to show the regularity of $\calA_{\bsy}^{-1}$.
+Step \textbf{3} involves the formula
+\begin{align}\label{eq:prestressId2}
+    \bssigma_*^{ij}(\bsy) = \calC^{ijks}g_s^l(\bsy) u^*_{k,l}(\bsy), \quad \bsy \in \calU
+\end{align}
+for the solution of the pre-stress equation. %\eqref{eq:sourceproblem_weak_star}.
+Since $\bsu^*(\bsy) = \calA_\bsy^{-1} \calF_{\bsy}$ is a solution to the source problem, this choice satisfies the pre-stress condition in \eqref{eq:sourceproblem_weak_pulled_back}.
+Step \textbf{4} then follows with the regularity of $\tilde{\bssigma}$ in \eqref{eq:transforme_prestress} using the product rule in Lemma~\ref{lemma:productInversionrule}(i) and again arguing that the coefficient regularity implies the operator regularity with Remark~\ref{remark:RegularityCoefficientToBilinearForm} and Lemma~\ref{lemma:RepresenterBilinearFormRegularity}.
+
+Coefficient regularity for random domain transforms is a well-known result. To adapt to the notation used in here, we state and prove the results.
+\begin{lemma}[Gevrey-regularity of the coefficients of $a_{\bsy},
+\calF_{\bsy}$]\label{lemma:coefficientGevreyRegularity}
+      For all $\bsnu \in \calF$, we have
+     \begin{align*}
+         \| \Dnuy \tilde{\calC}^{ijkl} \|_{L^\infty(\Omega;\mathbb{T}_4)}  &\leq  C_{\tilde{\calC}} \rho_{\tilde{\calC}}^{\vert \bsnu \vert}\bsb^{\bsnu} \fallennudelta \\
+      %\| \Dnuy \tilde F_{i} \|_{L^\infty(\Omega;\R^{3})}  &\leq  C_{\tilde F_i} \bsb^{\bsnu} \fallennudelta \\
+       \| \Dnuy \tilde T^{i} \|_{L^\infty(\partial \Omega;\R^{3})}  &\leq  C_{\tilde T} \rho_{\tilde{T}}^{\vert \bsnu \vert } \bsb^{\bsnu} \fallennudelta
+     \end{align*}
+     where $\tilde{\calC}$ and $\tilde{T}^i$ are defined in \eqref{eq:transformed_stiffness} and \eqref{eq:transformedtractionload} and the constants are  \begin{align}\label{eq:constantRegTildeC}
+         C_{\tilde{\calC}}&= 2^{11} C_{\Phi}^5 C_{\calC}, &  \rho_{\tilde{\calC}} &= 3\cdot 2^4 C^4_\Phi,    \\
+     %   \label{eq:constantRegTildeFi}
+     %     C_{\tilde F_{i}}&=3\cdot2^7 C_{\Phi}^3 C_{F_{i}}, \\
+          \label{eq:constantRegTildeTi}
+          C_{\tilde T}&=  2^9  C_{\Phi}^4 C_{T}, &  \rho_{\tilde{T}} &= 3C^2_\Phi.
+     \end{align}
+\end{lemma}
+For the proof, see Appendix \ref{proof:coefficientRegularity}.
+The coefficient regularity implies the regularity of $\calA_\bsy$ and $\calM_\bsy$ with the \emph{same} constants.
+\begin{remark}\label{remark:RegularityCoefficientToBilinearForm}
+Let $\tilde{\calC}^{ijkl}(\bsy)$ as in \eqref{eq:transformed_stiffness} and $\tilde{\sigma}_*^{ij}(\bsy)$ as in \eqref{eq:transforme_prestress} be Gevrey-regular, that is, 
+there exist $C_1,C_2 \geq 0$ and $\bsb_1, \bsb_2 \in \R^\infty_{\geq 0}$ such that
+\begin{align}\label{eq:Gevrey_assump1}
+     \|\D^{\bsnu} \tilde{\calC}^{ijkl}(\bsy) \|_{L^\infty(\Omega;\mathbb{T}_4)} &\leq C_1 \bsb_1^\bsnu \fallennudelta,  \\
+     \label{eq:Gevrey_assump2}
+      \| \D^{\bsnu}\tilde{\bssigma}_*^{ij}(\bsy) \|_{L^\infty(\Omega;\mathbb{T}_2)} &\leq  C_2 \bsb_2^\bsnu \fallennudelta, 
+\end{align}
+for all $\bsnu \in \calF, \bsy \in \calU$.
+Then the bilinear forms from $  a_\bsy(\bsu, \bsv) $in \eqref{eq:bilinearforms} and  $ b_\bsy(\bsu, \bsv)  $  in \eqref{eq:bilinearforms2} for $\bsu, \bsv \in V$ are Gevrey-regular with the same constants, that is,
+\begin{align*}
+     \|\D^{\bsnu}a_\bsy \|_{\calL(V \times V) } &\leq C_1 \bsb_1^\bsnu \fallennudelta,  \\
+      \|\D^{\bsnu} b_\bsy \|_{\calL(V \times V) } &\leq  C_2 \bsb_2^\bsnu \fallennudelta, 
+\end{align*} for all $\bsnu \in \calF, \bsy \in \calU$.
+\end{remark}
+\begin{proof}
+    The norms on $\mathbb{T}_4$ and on $\mathbb{T}_2$ are
+    \begin{align*}
+        \| M^{ijkl}\|_{\mathbb{T}_4} = \sup_{ \| A \|_F  = \| B \|_F = 1}    M^{ijkl} A_{ij}B_{kl}, \quad \text{ and } \quad 
+        \| M^{ij} \|_{\mathbb{T}_2} = \sup_{ \|u \|_2 = \| v \|_2 =1} M^{ij}v_i v_j,
+    \end{align*}
+    respectively, where $F$ denotes the Frobenius norm on matrices and $\| \cdot \|_2$ is the Euclidean norm. 
+    Since the derivatives of $\tilde{\bssigma}^{ij}_*(\bsy)$ and $\tilde{\calC}^{ijkl}(\bsy)$ are bounded by \eqref{eq:Gevrey_assump1} and \eqref{eq:Gevrey_assump2}, we can interchange differentiation and integration and obtain
+    \begin{align*}
+         \| \D^{\bsnu } a_\bsy \|_{\calL(V \times V) } &=  \sup_{ \| \bsu \|_V = \| \bsv \|_V =1  } \D^{\bsnu} \int_{\Omega} \tilde{\calC}^{ijkl}(\bsy) u_{i,j} v_{k,l} \dxi =    \sup_{ \| \bsu \|_V = \| \bsv \|_V =1  } \int_{\Omega} \D^{\bsnu} \tilde{\calC}^{ijkl}(\bsy) u_{i,j} v_{k,l} \dxi
+         \\
+         &\leq  \| \D^{\bsnu} \tilde{\calC} (\bsy)\|_{L^\infty(\Omega;\mathbb{T}_4) } \sup_{ \| \bsu \|_V = \| \bsv \|_V =1  } \int_{\Omega}  \| u_{i,j} \|_F \|v_{k,l} \|_F \dxi \\
+         &\leq   \| \D^{\bsnu} \tilde{\calC} (\bsy)\|_{L^\infty(\Omega;\mathbb{T}_4) },
+    \end{align*}
+    where the Cauchy-Schwarz inequality was applied to obtain the last inequality.
+    The same computation yields $  \| \D^{\bsnu } b_\bsy \|_{\calL(V \times V) }   \leq\| \D^{\bsnu} \tilde{\bssigma}_*^{ij} (\bsy)\|_{L^\infty(\Omega;\mathbb{T}_2) }.$
+    %Furthermore, in both computations, we require that the derivatives of $\tilde{\bssigma}^{ij}_*(\bsy)$ and $\tilde{\calC}^{ijkl}(\bsy)$ exist, which is guaranteed by \eqref{eq:Gevrey_assump1} and \eqref{eq:Gevrey_assump2}.
+\end{proof}
+
+
+
+From Remark~\ref{remark:RegularityCoefficientToBilinearForm} and Lemma~\ref{lemma:RepresenterBilinearFormRegularity}, we immediately obtain the Gevrey-regularity of $\calA_{\bsy}$.
+\begin{lemma}[Gevrey-Regularity of $\calA_\bsy$]\label{lemma:GevreyRegularityAy}
+    For all $\bsnu \in \calF$, we have 
+    \begin{align*}
+        \| \D^\bsnu \calA_\bsy \|_{\calL(V,V')}  \leq C_{\calA} \rho_{\calA}^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta,
+    \end{align*}
+    for all $\bsy \in \calU$ and where
+    \begin{align}\label{eq:constantsAyReg}
+        C_\calA = C_K C_{\tilde \calC} ,\quad \rho_\calA = \rho_{\tilde \calC}
+    \end{align}
+    where $C_K$ is the uniform Korn constant from \eqref{eq:uniformKornconstant}.
+\end{lemma}
+Due to Lemma~\ref{lemma:productInversionrule}(ii) we need $C_{\calA}$ to bound $\| \calA_{\bsy}^{-1} \|_{\calL(V',V)}$ uniformly. The above choice satisfies this property:
+\begin{lemma}[Uniform strong coercivity of $a_\bsy$]\label{lemma:coercivityofay}
+     $a_\bsy$ is uniformly strongly coercive with the inverse of $C_{\calA}$ defined in \eqref{eq:constantsAyReg}, that is, for all $\bsy \in \calU$
+    \begin{align*}
+        a_{\bsy}(\bsu,\bsu) \geq C_{\calA}^{-1} \| \bsu \|_V, \quad \forall  \bsu \in V.
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    The proof of coercivity of $\calA_\bsy$ is similar to \cite[Lemma 2.7]{Harbrecht2023DomainUncertainty}. However, the uniform Korn constant can exceed $2$ for general domain shapes and Dirichlet boundary $\D \Omega_D$. We repeat the same argument and adopt the Korn inequality \eqref{eq:uniformKornconstant}. We have
+\begin{align*}
+    a_{\bsy}(\bsu,\bsu) &= \int_{D(\bsy)} \calC^{ijkl} \DD{ u_i}{ x_j} \DD{u_k}{x_l} \dx \geq C^{-1}_{\calC}  \int_{D(\bsy)}  \|e_{ij}(\bsu)  \|_F^2
+    \\
+    &\geq C_K^{-1}  C^{-1}_{\calC} \| u \circ \Phi(\cdot;\bsy)\|^2_{H^{1}(D(\bsy);\R^3)} \geq  C_K^{-1}  C^{-1}_{\calC} C_{\Phi}^{-5}  \| u \|^2_{V}  \geq C_\calA^{-1} \| u \|^2_{V},
+\end{align*} for all $\bsu \in V$ and $\bsy \in \calU$. The first inequality comes from the material assumption \eqref{eq:stiffnesstensorcoercivity} and the second uses the Korn inequality \eqref{eq:uniformKornconstant}. Note that the third inequality comes from the estimates
+\begin{align*}
+    \| J^{-\top} (\bsy) \|_{L^\infty(\Omega;\mathbb{T}_2)}^2 \geq C^{-2}_{\Phi} \text{ and }  \| \det J(\bsy)\|_{L^\infty(\Omega)} \geq C_\Phi^{-3}, \quad  \forall \bsy \in \calU.
+\end{align*} 
+\end{proof}
+By the Riesz representation theorem $\calA_{\bsy}^{-1} $ exists for every $\bsy \in \calU$ and is moreover bounded by $\| \calA_{\bsy}^{-1} \|_{\calL(V',V)} \leq C_{\calA}$. Hence the next lemma is a direct consequence of applying Lemma~\ref{lemma:productInversionrule}(ii).
+\begin{lemma}[Gevrey-Regularity of $\calA_{\bsy}^{-1}$ and $\calF_{\bsy}$]\label{lemma:GevreyRegInverseOfAyandFy}
+    For all $\bsnu \in \calF$ and $\bsy \in \calU$
+    \begin{align*}
+        \| \calA_{\bsy}^{-1} \|_{\calL(V,V')}& \leq C_{\calA^{-1}} \rho_{\calA^{-1}}^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta, \\
+        \| \calF_\bsy \|_{\calL(V,V')} & \leq C_{\calF} \rho_{\calF}^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta,
+    \end{align*}
+    where
+    \begin{align} \label{eq:constantsInverseAyReg}
+        C_{\calA^{-1}} &= C_{\calA}/3 ,\quad \rho_{\calA^{-1}} = (3C_{\calA})^2 \rho_{\calA}, \\
+        \label{eq:constantsFyReg}
+        C_\calF &= C_{\tilde T} ,\quad \rho_\calF = \rho_{\tilde T}.
+    \end{align}
+\end{lemma}
+\begin{proof} We only need to show the statement for $\calF_\bsy$ in a similar way as in Remark~\ref{remark:RegularityCoefficientToBilinearForm}.
+    Note that $ \| \D^\bsnu  \calF_{\bsy} \|_{V'} = \sup_{ \|v \|_V = 1 } \D^\bsnu   \oint_{\partial \Omega_T} \tilde T^i(\bsy) v_i \mathop{dS} $. And since $ \tilde T^i(\bsy)$ is Gevrey-regular, we can interchange integration and differentiation and estimate the variation of traction in the $L^\infty$-norm: For any $\bsy \in \calU$ and $\bsnu \in \calF$, we have
+    \begin{align*}
+        \| \D^\bsnu  \calF_{\bsy} \|_{V'} \leq    \sup_{ \|v \|_V = 1 }  \|\D^\bsnu \tilde T^i(\bsy) \|_{L^\infty(\partial \Omega_T; \R^3)} \oint_{\D\Omega_T} || v_i||_1 \mathop{dS} \leq  \|\D^\bsnu \tilde T^i(\bsy) \|_{L^\infty(\partial \Omega; \R^3)}.
+    \end{align*}
+\end{proof}
+\begin{lemma}[Gevrey-regularity of $\tilde \bssigma$]\label{lemma:GevreyRegularityPrestress}
+The transformed prestress $\tilde \bssigma$ defined in \eqref{eq:transforme_prestress} where $\bssigma_*$ has the identity \eqref{eq:prestressId2} is Gevrey-regular,
+that is, for all $\bsnu \in \calF$ and $\bsy \in \calU$
+    \begin{align*}
+        \| \tilde  \bssigma  \|_{L^\infty(\Omega;\mathbb{T}_2)} & \leq C_{\tilde  \bssigma} \rho_{\tilde  \bssigma}^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta,
+    \end{align*}
+    where
+    \begin{align} 
+        \label{eq:constantsTransformedPrestressReg}
+        C_{\tilde  \bssigma}= 2^6 C_{\tilde \calC} C_{\Phi} C_{\calA^{-1}} C_{\calF},\quad \rho_{\tilde  \bssigma} = \rho_{\calA^{-1}}.
+    \end{align}
+\end{lemma}
+\begin{proof}
+The relevant identities are in \eqref{eq:prestressId2} and \eqref{eq:transforme_prestress}:
+\begin{align*}
+        \bssigma_*^{ij}(\bsy) &= \calC^{ijks}g_s^l(\bsy) u^*_{k,l}(\bsy), \\
+        \tilde \bssigma^{ij}(\bsy) &= \sqrt{g(\bsy)} \bssigma_*^{rs}(\bsy) g_{r}^i(\bsy)  g_{s}^j(\bsy) 
+\end{align*}
+where $\bsu^* = \calA_{\bsy}^{-1}\calF_\bsy$.
+Observe that $\bsu^*(\bsy)$ is Gevrey-regular with constants $C_{\bsu^*} = 4 C_{\calA^{-1}} C_{\calF}$ and $\rho_{\bsu^*} = \rho_{\calA^{-1}}$.
+The claim follows by using the product rule in Lemma~\ref{lemma:productInversionrule}(i) two more times on
+\begin{align*}
+    \tilde \bssigma^{ij}(\bsy) &=  \tilde \calC^{ijkr} g_{r}^l(\bsy) \bsu^*_{k,l}(\bsy),
+\end{align*}
+and by observing that the product rule chooses $\rho$ according to the maximum $\rho$ value of the single terms in the product.
+\end{proof}
+Note that by Remark~\ref{remark:RegularityCoefficientToBilinearForm} and Lemma~\ref{lemma:RepresenterBilinearFormRegularity}, the regularity of $\calM_{\bsy}$ is an immediate consequence.
+\begin{theorem}[Gevrey-regularity of $\calM_\bsy$]\label{theorem:GevreyRegMy}
+     For all $\bsnu \in \calF$, we have 
+    \begin{align*}
+        \| \D^\bsnu \calM_\bsy \|_{\calL(V,V')}  \leq C_{\calM} \rho_{\calM}^{\vert \bsnu \vert} \bsb^{\bsnu} \fallennudelta,
+    \end{align*}
+    for all $\bsy \in \calU$ and where
+    \begin{align}\label{eq:constantsMyReg}
+       C_{\calM} = C_{\tilde \bssigma} ,\quad\rho_{\calM} = \rho_{\tilde  \bssigma}.
+    \end{align}
+\end{theorem}
+    
+
+
+

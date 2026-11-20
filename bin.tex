@@ -1,0 +1,617 @@
+%% old intro
+
+
+The governing equations for geometric non-linear elasticity are (indices range from 1 to 3, repeated indices indicate summation)
+\begin{align*}
+   \DD{\sigma_{ij}}{x_j} &= 0 , \quad \text{ on }  U,\\
+   \sigma_{ij} n_j &=   q_c T_i, \quad  \text{ on } \partial U_T,
+\end{align*}
+where the Green-Lagrange strains and the Cauchy stress tensor are of the form
+\begin{align*}
+    e_{ij} (\bfu )&=  \frac  1 2 \left [ \DD{u_i}{x_j} +   \DD{u_j}{x_i}  +  \DD{u_m}{x_i}\DD{u_m}{x_j}\right], \\
+\sigma(\bfu)_{ij} &= C_{ijkl} e_{kl}(\bfu ).
+\end{align*}
+The \emph{critical buckling load} is the load $q_c$ at which the geometric non-linear equations of elasticity bifurcate. 
+That is, two different solutions arise when $q_c$ becomes large enough:
+the \emph{ initial unbuckled configuration} with only elastic displacements and the \emph{buckled configuration} with large displacements, often seen as structural failure. By subtracting the non-linear governing equations for the bifurcated solutions, we obtain an equivalent linear eigenvalue problem formulation where $q_c$ is the minimum eigenvalue of the system.
+
+It was experimentally shown that in practice $q_c$ is highly sensitive to geometric imperfections and imperfections in the compression load (see e.g. Wagner \cite{WAGNER2020106451} and the references therein). However, to the best of our knowledge, there is no uncertain domain analysis for the random eigenvalue problem associated with buckling.
+
+
+
+%% choice of the PARAMETRIZATION of surface domain mapping 
+\subsubsection{Random domain mapping}
+The random midsurface map $\bsphi \in L^2(S;C^2(\omega;\mathbb{R}^3))$ is assumed to be given as a truncated Karhunen-Lo\`eve-type parametrization of the form
+%with parametrization
+\begin{align}\label{eq:KLphi}
+\bsphi(\uxi;\bfy) = \mathbb{E}[\bsphi](\uxi) + \sum_{k=1}^N \sqrt{\lambda_k} \bspsi_k(\uxi)\zeta_k(y_k), \quad \bfy = (y_1,\ldots, y_N) \in \calU = [-1,1]^N
+\end{align} 
+with measure space $\calU = (\calU,\boldsymbol{\rho})$. 
+A $\delta$-Gevrey regular surface domain mapping with $\delta \geq 1 + 1/p$ for $p > 0$ can be obtained when we consider $\zeta_k(y_k) = \exp(- (y_k+1)^{-p})$ for all $k \in \{1, \ldots,N\}$.
+We define the covariant basis
+   \begin{align*}
+       & \va_{\alpha}(\uxi;\bfy) = \bsphi_{,\alpha}(\uxi;\bfy), \quad \quad \quad  \vn(\uxi;\bfy) = \va_1(\uxi;\bfy) \times \va_2(\uxi;\bfy), \\
+       &\va_{3}(\uxi;\bfy) =  \vn(\uxi;\bfy) / \| \vn (\uxi;\bfy) \|_2.
+       %\quad \va^i(\uxi;\bfy) \cdot \va_j(\uxi;\bfy) = \delta_{ij}(\uxi;\bfy),
+\end{align*}% where % $\delta_{ij}$ denotes the Kronecker delta for 
+%$\uxi \in \omega, \bfy \in \calU$.
+
+
+The shell domain map and the tangent vectors of the shell domain are
+ \begin{align}\label{eq:definitionPhiandJ}
+     \Phi (\vxi ; \bfy) &= \bsphi(\uxi; \bfy)  + \xi^3 \vec a_3(\uxi; \bfy),\\
+     \vec{g}_\alpha (\vxi;\bfy) &:=  \Phi_{,\alpha} (\vxi;\bfy) = \va_{\alpha}(\vxi;\bfy) + \xi^3 \va_{3,\alpha}(\vxi;\bfy),\\
+     \vec{g}_3 (\vxi;\bfy) &:= \va_3 (\vxi;\bfy), \quad   J(\vxi;\bfy) :=  \begin{pmatrix}
+         \vec{g}_1(\vxi; \bfy) & \vec{g}_2(\vxi; \bfy) & \vec{g}_3(\vxi; \bfy).
+     \end{pmatrix}.%,\\
+    % J(\vxi;\bfy) &:= \nabla_{\vxi} \Phi(\vxi;\bfy) = \Ddiv{\Phi(\vxi;\bfy)}{\vxi}
+  %   &=: \begin{pmatrix}
+  %       \vec{g}_1(\uxi; \bfy) & \vec{g}_2(\uxi; \bfy) & \vec{g}_3(\uxi; \bfy)
+   %  \end{pmatrix}
+ \end{align}
+In the following, we suppress the dependence on $\uxi \in \omega, \vxi \in \Omega, \bfy \in \calU $ and start by rewriting $J^\top J $ and $\det J$ in a convenient form.
+We have with the definition of $\Phi,J$ and $\va_i$ in \eqref{eq:definitionPhiandJ}
+\begin{align}\label{eq:JJ}
+   % J& =   \begin{pmatrix}\vg_1 & \vg_2 & \vg_3  \end{pmatrix}, \vg_i = \Ddiv{\bsphi}{\xi^i} \\
+    J^\top J &= \begin{pmatrix}
+        g_{11} & g_{12} &  0  \\
+         g_{21} & g_{22} & 0  \\
+         0 & 0 & 1
+    \end{pmatrix},\quad g_{\alpha\beta} := \vg_\alpha \cdot \vg_\beta
+\end{align}
+where
+\begin{align}\label{eq:galphabeta}
+    g_{\alpha\beta}= \left( \va_\alpha + \xi^3 \va_{3,\alpha}\right) \cdot \left( \va_\beta + \xi^3 \va_{3,\beta}\right) = a_{\alpha\beta}
+    + 2\xi^3 \va_{3,\alpha} \cdot \va_{\beta}
+    + \left( \xi^3\right)^2 \va_{3,\alpha} \cdot \va_{3,\beta} .
+\end{align}
+Writing $ \vn  = \va_1  \times \va_2$,
+%we note that
+%\begin{align}\label{eq:derivathree}
+%    \va_{3,\alpha} &= \frac{1}{\| \vn \|_2} P \vn_{,\alpha} %\\
+  %  P & =  I - \frac{\vn \vn^\top}{ \| \vn\|_2^2}
+%\end{align}
+%where $P$ is an orthogonal projection matrix with $P^\top = P $ and $P^2 = P$.
+we can simplify the terms
+ \begin{align}\label{eq:va_identity}
+      a_{\alpha\beta}  = \va_\alpha \cdot \va_\beta,\quad \va_{3,\alpha} \cdot \va_{\beta}   = \frac{\vn_{,\alpha} \cdot \va_\beta }{ \| \vn \|_2 },\quad
+      \va_{3,\alpha} \cdot \va_{3,\beta}
+      %&=  \frac{1}{ \| \vn \|_2^2} \left( \vn_{,\alpha}^\top P^\top P \vn_{,\beta}\right) = \frac{1}{ \| \vn \|_2^2} \left( \vn_{,\alpha}^\top P \vn_{,\beta}\right) \\
+      =\frac{\vn_{,\alpha} \cdot \vn_{,\beta}  }{ \| \vn \|_2^2 } - \frac{ (\vn \cdot\vn_{,\alpha})  (\vn \cdot \vn_{,\beta} ) }{ \| \vn \|_2^4}.
+ \end{align}
+
+ \subsubsection{Ratio thickness to curvature sensitivity of the critical buckling load}
+
+
+    
+
+%% derivation and discussion of limitation of the linear buckling mode problem
+
+\subsubsection{Potential Energy Criterion}
+We refer to Grabovsky, Truskinovsky in \cite{Grabovsky2007TheFS} for details on the derivation and to subsequent work \cite{grabovsky2013rigorousasymptoticanalysisbuckling}.
+The potential energy to deformation $y(\bsx)$ and traction load $t : \partial \Omega \to \R^3$ is
+\begin{align}\label{eq:potentialenergyzeroth}
+    \mathcal{E}(y) = \int_{\Omega} W(\nabla y(\bsx)) \mathrm{d\bsx} - \int_{\partial \Omega} (u(\bsx),t(\bsx)) \mathrm{ds},
+\end{align}
+where $ u(\bsx) = y(\bsx) - \bsx$ is the displacement.
+If the load a body $\Omega$ with dead loads $t$ the resulting deformation $y(\bsx) $ is expected to minimize \eqref{eq:potentialenergyzeroth}.
+The energy density functional is denoted  as $W(\bsF)$ where $\bsF = \nabla y$ and the properties 
+\begin{enumerate}
+    \item[(P1)] $W(\bsF)$ is three times continuously differentiable in a neighborhood of $\bsF = \bsI$,
+    \item[(P2)] absence of prestress: $W_{\bsF} (\bsI) = 0$,
+    \item[(P3)] frame indifference: $W(\bsR \bsF) = W(\bsF)$ for every $\bsR \in \mathop{SO}(\R^3)$,
+    \item[(P4)] local stability of the reference configuration  $\nabla y(x) = \bsI$
+    \begin{align*}
+        \left \langle L_0 \xi, \xi \right \rangle > \alpha_{L_0} \vert \xi \vert^2, \text{ for all }\xi \in \mathrm{Sym}(\R^3)
+    \end{align*}
+    where $\mathrm{Sym}(\R^3)$ is the space of symmetric $3 \times 3$ matrices, and $L_0 = W_{\bsF \bsF} (\bsI)$ is the linearly elastic tensor of material properties,
+\end{enumerate}
+are satisfied.
+%We call the admissible deformation $y(\bsx)$ of the reference configuration $\Omega \subset \R^3$ \emph{infinitesimally stable} if it isolves the equilibrium equations of elastostatics \eqref{eq:potentialenergyzeroth}.
+The  \emph{equilibrium equations} are obtained from the following variational equation which result from differentiating \eqref{eq:potentialenergyzeroth}:
+
+\begin{align}\label{eq:potentialenergyfirst}
+\delta \mathcal{E}(\nabla y, \nabla \varphi) = \int_{\Omega}  \left(W_{\bsF} (\nabla y(\bsx)),  \nabla \varphi \right) - \int_{\partial \Omega} (\varphi(\bsx), t(\bsx)) \mathop{ds} = 0
+\end{align}
+satisfied for all $\varphi \in V^0 \subseteq W^{1,\infty}(\Omega;\R^3)$. Let us denote $L(\bsF) = W_{\bsF \bsF}(\bsF)$.
+The stability conditions can be formulated with the \emph{second variation of energy}
+\begin{align}\label{eq:potentialenergysecond}
+    \delta^2 \mathcal{E}(\nabla y, \nabla \varphi) = \int_{\Omega} (L( \nabla y(\bsx)) \nabla \varphi, \nabla \varphi) \mathrm{d\bsx}.
+\end{align}
+$y(\bsx)$ is \emph{infinitesimally stable} if it solves \eqref{eq:potentialenergyfirst} and \eqref{eq:potentialenergysecond} is nonnegative for all $\varphi \in \overline{V^0}$. Now, we let $ y(\bsx) = \bsx + \lambda u^0(\bsx) $ for $\lambda \in \R $. 
+For fixed $u$, we determine the smallest value $\lambda_{\text{cr}}$ such that \eqref{eq:potentialenergysecond} becomes semi-definite. The loss of stability is seen as \emph{buckling}. The \emph{buckling mode} is such $\varphi $ for which $\delta^2 \mathcal{E}(\bsI + \lambda_{\text{cr}} \nabla u, \nabla \varphi) $ becomes negative.
+In order to  derive the linearized second variation, we need to specify $W_{\bsF \bsF} (\bsF)$ further.
+
+
+
+%Since $(P3)$ holds, $\bsI$ is not a strict local minimum of $W(\bsF)$. Therefore, $L(\bsI)$ is singular with 
+%\[ L(\bsI)A =0, \quad \text{ for } A^\top = -A \text{ and } A \in \mathrm{SO}(\R^3) . % \in \mathrm{SO}(\R^3),
+%\]
+%However, since $\bsI$ is infinitesimally stable, there are infinitesimal stable deformations $y$ in the vicinity of the reference configuration.
+
+
+The frame indifference property $(P3)$ yields $W (\bsF) = \hat{W}(\bsC)$ where $\bsC = \bsF^\top \bsF$.
+Hence straightforward computation yields
+\begin{align}\label{eq:secondvariationL}
+    \left( L(\bsF)\xi, \xi \right) = 2\left( \hat{W}_{\bsC}(\bsC), \xi^{\top} \xi  \right) + 4 \left( \hat W_{\bsC \bsC}(\bsC)(\bsF^{\top} \xi, \bsF^{\top} \xi) \right)
+\end{align}
+for any $3 \times 3$ matrix $\xi$ and $\bsF$.
+
+The linearization follows in this step: we omit higher order terms $\mathcal{O}(\vert \bsF- \bsI \vert^2) $ in \eqref{eq:secondvariationL}. 
+ Let's consider the case of non-linear elasticity with linear constitutive equations. In \cite{grabovsky2013rigorousasymptoticanalysisbuckling}, it is described why this choice is suitable for buckling. Compressive loadings are relatively small, such that the linear strain-stress relation is accurate.
+ We obtain 
+ \begin{align*}
+     \hat W(\bsC) &= (LC,C ) \\
+     \hat W_{\bsC} (\bsC) &= 2LC, \\
+     \hat W_{\bsC} (\bsC) &= 2L.
+ \end{align*}
+ where $L$ is a symmetric fourth order tensor.
+ And therefore \eqref{eq:secondvariationL} simplifies to 
+ \begin{align}
+     \left ( L E(u), \nabla \varphi^\top \nabla \varphi \right) +  
+     \left( L(\bsI + \nabla u )^\top \nabla \varphi, (\bsI + \nabla u )^\top \nabla \varphi\right)
+ \end{align}
+ where $E(u) = \frac 1 2  ( \nabla u + \nabla u ^\top  + \nabla u ^\top \nabla u)$.
+ Considering only leading order terms leads to \emph{ the constitutively linearized second variation}
+ \begin{align}
+      \delta^2 \mathcal{E}(\nabla y, \nabla \varphi) =  \int_{\Omega}  \left( L e(\varphi), e(\varphi) \right) + \left( Le(u), \nabla \varphi^\top \nabla \varphi \right) \mathop{dx}.
+ \end{align}
+
+ If we choose $ u = \lambda u^* $ and set the second variation to zero, we obtain the classical \emph{linear critical buckling load} formulation
+ \begin{align}
+     0 = \int_{\Omega} \left( L e(\varphi), e(\varphi) \right) + \lambda\left( \sigma^* , \nabla \varphi^\top \nabla \varphi \right)\mathop{dx}
+ \end{align}
+ 
+
+
+
+
+%The following derivation is based on \cite{Grabovsky2007TheFS}.
+
+%% old approach for proof
+\subsection{Regularity of Eigenmodes}
+Let $(\lambda_1(\bfy), \bfu^1(\bfy))$ denote a smallest eigenmode of \eqref{eq:eigenvaluebucklingproblem}.
+\begin{theorem} tbc...
+    \begin{align*}
+        \vert \partial^{\bsnu} \lambda_1(\bfy) \vert  \leq  C \boldsymbol{R}^{-\bsnu} (\bsnu !)^\delta 
+    \end{align*}
+    for all $\bsnu \in \N^N_0$.
+\end{theorem}
+The following analysis can be applied to an arbitrary linear, random coefficient eigenvalue problem.
+
+Assume that the coefficients of $a_\omega  (\bfu,\bfv)$ and $b_\omega (\bfu,\bfv)$ are regular. For simplicity, in the following, we %denote them as $C_{ijkl}$ and $\sigma_{ij}$ instead of $\tilde C$ and $\tilde \sigma$, and 
+suppress $\omega$ and we write for $\bseta \in \N^N_0$
+\begin{align}
+    a^{(\bseta)}(\bfu, \bfv) &:= \int_\Omega \left(\partial^{\bseta} \tilde C_{ijkl} \right) u_{i,j} v_{k,l}, \\
+    b^{(\bseta)}(\bfu, \bfv) &:= -\int_\Omega \left(\partial^{\bseta} \tilde \sigma_{ij} \right) u_{m,i} v_{m,j},  \\
+    \mathcal{A}(\bfu, \bfv;\lambda) &:=  a(\bfu, \bfv)  - \lambda b(\bfu, \bfv).
+\end{align}
+
+Then using the Leibniz rule on Eq. \eqref{eq:eigenvaluebucklingproblem} yields
+\begin{align*}
+    &\partial^{\bsnu} \left[ a(\bfu^1, \bfv)  - \lambda_1  b(\bfu^1, \bfv) \right] &= 0 \\
+    \Leftrightarrow &\sum_{0 \leq \bseta \leq \bsnu} \binom{\bsnu}{\bseta} \left[ a^{(\bsnu-\bseta)}(\partial^{\bseta}\bfu^1, \bfv) - \partial^{\bsnu - \bseta} \lambda_1 \sum_{0 \leq \tilde \bseta \leq \bseta} \binom{\bseta}{\tilde \bseta} b^{(\bseta - \tilde  \bseta )} (\partial^{\tilde \bseta} \bfu^1, \bfv) \right]  &=0 \\
+    \Leftrightarrow &  \sum_{0 \leq \bseta \leq \bsnu} \binom{\bsnu}{\bseta} \left[ a^{(\bsnu-\bseta)}(\partial^{\bseta}\bfu^1, \bfv) - \sum_{\bsnu \geq \hat \bseta \geq \bseta} \binom{\hat \bseta}{\bseta} \partial^{\bsnu -\hat \bseta} \lambda_1   b^{(\hat \bseta - \bseta )} (\partial^{\bseta} \bfu^1, \bfv) \right]  &= 0 
+\end{align*}
+for all $\bfv \in V$.
+Isolating the highest order $\partial^{\bsnu}$ for $\lambda_1$ and $\bfu^1$, respectively, we obtain the following
+\begin{align*}
+    \partial^{\bsnu}  \lambda_1  b(\bfu^1,\bfv) &=  a^{(\bsnu)} (\bfu^1,\bfv)  - \sum_{\bsnu \geq \hat \bseta > 0 } \partial^{\bsnu - \hat \bseta } \lambda_1  b^{(\hat \bseta)} ( \bfu^1,\bfv)  +  \\
+    & \sum_{0 < \bseta \leq \bsnu} \binom{\bsnu}{\bseta} \left[ a^{(\bsnu-\bseta)}(\partial^{\bseta}\bfu^1, \bfv) - \sum_{\bsnu \geq \hat \bseta \geq \bseta} \partial^{\bsnu -\hat \bseta} \lambda_1  \binom{\hat \bseta}{\bseta} b^{(\hat \bseta - \bseta )} (\partial^{\bseta} \bfu^1, \bfv) \right], \\
+    %a(\partial^{\bsnu} \bfu^1, \bfv)  - \lambda_1  b(\partial^{\bsnu} \bfu^1, \bfv) 
+    \mathcal{A}(\partial^{\bsnu} \bfu^1, \bfv;\lambda_1) &= - \sum_{0 \leq \bseta < \bsnu} \binom{\bsnu}{\bseta} \left[ a^{(\bsnu-\bseta)}(\partial^{\bseta}\bfu^1, \bfv) - \sum_{\bsnu \geq \hat \bseta \geq \bseta} \partial^{\bsnu -\hat \bseta} \lambda_1  \binom{\hat \bseta}{\bseta} b^{(\hat \bseta - \bseta )} (\partial^{\bseta} \bfu^1, \bfv) \right].
+\end{align*}
+Let $\partial^{\bsnu} \bfu^1 = p + p^\bot$ where $p \in E(\lambda_1)$ and $p^\bot  \in  E(\lambda_1)^{\bot} $.
+For the first equation, set $ \bfv = \bfu^1$, for the second, set $\bfv = p^\bot$. Using $ b(\bfu^1, \bfu^1) =1 $, we obtain
+\begin{align}
+\label{eq:derivativelambda_1}
+    \partial^{\bsnu}  \lambda_1  &= a^{(\bsnu)} (\bfu^1,\bfu^1)  - \sum_{\bsnu \geq \hat \bseta > 0 } \partial^{\bsnu - \hat \bseta } \lambda_1  b^{(\hat \bseta)} ( \bfu^1,\bfu^1)  +  \\
+    & \sum_{0 < \bseta < \bsnu} \binom{\bsnu}{\bseta} \left[ a^{(\bsnu-\bseta)}(\partial^{\bseta}\bfu^1, \bfu^1) - \sum_{\bsnu \geq \hat \bseta \geq \bseta} \partial^{\bsnu -\hat \bseta} \lambda_1  \binom{\hat \bseta}{\bseta} b^{(\hat \bseta - \bseta )} (\partial^{\bseta} \bfu^1, \bfu^1) \right] \\
+    %a( p^\bot, p^\bot) - \lambda_1 b(p^\bot, p^\bot)
+    \label{eq:derivativeu1}
+    \mathcal{A}(p^\bot, p^\bot;\lambda_1)&=  - \sum_{0 \leq \bseta < \bsnu} \binom{\bsnu}{\bseta} \left[ a^{(\bsnu-\bseta)}(\partial^{\bseta}\bfu^1, p^\bot) - \sum_{\bsnu \geq \hat \bseta \geq \bseta} \partial^{\bsnu -\hat \bseta} \lambda_1  \binom{\hat \bseta}{\bseta} b^{(\hat \bseta - \bseta )} (\partial^{\bseta} \bfu^1, p^\bot) \right]
+    \end{align}
+    Note that, in the first equation on the right hand side, we have for $\bseta = \bsnu$ that
+    $ \mathcal{A}(\partial^{\bsnu} \bfu^1, \bfu^1;\lambda_1) = 0 $, provided that  $ \partial^{\bsnu} \bfu^1 \in V$. 
+
+    \begin{remark}
+    A few remarks:
+    \begin{enumerate}
+        \item  In order to derive the recursive inequalities for % $  \vert \partial^{\bsnu}\lambda_1(\bfy) \vert $ and 
+        $ \|p^\bot\|_V$, we need that $\mathcal{A}(\cdot, \cdot;\lambda_1)$ is uniformly coercive on $E(\lambda_1)^{\bot}$. A result analogous to the Krein-Rutman theorem ($\mathcal{A}$ is no longer compact) is required to assert a uniform spectral gap.
+        \item \eqref{eq:derivativelambda_1} does not contain the highest order term $\partial^{\bsnu} \bfu^1$ on the right hand side. Hence, the regularity of the critical buckling load doesn't require the regularity analysis of the full eigenmode, provided that $ \|\partial^{\bseta} \bfu^1 \|_V$ can be bounded otherwise. 
+    \end{enumerate}
+    \end{remark}
+
+\begin{lemma}
+    The derivatives of $\lambda_1$ have the following bounds
+    \begin{align}
+        \vert \partial^{\bsnu} \lambda_1  \vert &
+        \leq  \| \bfu \|^2 \left( \| \partial^{\bsnu} \tilde{\mathbf{C}}\| + \sum_{\bsnu \geq \hat{\bseta} > 0 } \vert \partial^{\bsnu  - \hat{\bseta}} \lambda_1 \vert \|  \partial^{\hat{\bseta}} \mathbf{\tilde{\sigma}}\| \right) \\
+        &+ \| \bfu  \| \left( \sum_{0 < \bseta < \bsnu}  \binom{\bsnu}{\bseta} \|\partial^{\bsnu} \bfu \|  \left[ \| \partial^{\bsnu-\bseta} \tilde{\mathbf{C}}\|+ \sum_{\bsnu \geq \hat{\bseta} \geq \bseta } \binom{\hat{\bseta}}{\bseta} \vert \partial^{\bsnu  - \hat{\bseta}} \lambda_1 \vert \|  \partial^{\hat{\bseta}} \mathbf{\tilde{\sigma}}\|\right]  
+        \right)
+    \end{align} 
+\end{lemma}
+    
+\section{Numerical Examples}
+
+QoI: $I=\int_U \lambda (y) dy$, $y\in[0,1]$
+
+
+
+%% Proof of Lemma 4.9
+
+let $V^{(k)} \subset 2^V$ denote the set of all subspaces of dimension $k$ of $V$.
+    Recall, the min-max characterization of the $k$-th largest eigenvalue
+    \begin{align*}
+        \mu_k(\bfy) = \max_{U \in V^{(k)}} \min_{\bfu \in \hat U} \langle T_{\bfy} \bfu ,\bfu \rangle.
+    \end{align*}
+    Then for the lower bound of $\mu_k(\bfy) $ we choose $\bfu_0 \in \hat U_k(\bfO)$ such that the minimum is attained
+    \begin{align*}
+        \mu_k(\bfy) \geq \min_{ \bfu \in \hat U_{k} (\bfO)} \langle T_{\bfy} \bfu ,\bfu \rangle = \langle T_{\bfy} \bfu_0 ,\bfu_0 \rangle.
+    \end{align*}
+    Since $\bfu_0 \in \hat U_k (\bfO)$, we have $ \mu_k(\bfO) =  \min_{ \bfu \in \hat U_{k} (\bfO)} \langle T_{\bfO} \bfu ,\bfu \rangle \leq \langle T_{\bfO} \bfu_0,\bfu_0 \rangle. $  And therefore with Lemma \ref{lemma:equivalenceTy},
+    \begin{align*}
+        \mu_k(\bfy) \geq  \langle T_{\bfy} \bfu_0, \bfu_0 \rangle \geq (1-D) \langle T_{\bfO} \bfu_0 , \bfu_0 \rangle \geq (1-D) \mu_k(\bfO).
+    \end{align*}
+    For showing the upper bound we choose $\bfu_0 \in \hat U_k(\bfy)$ that attains the minimum for $T_{\bfO}$ of $\mu_k(\bfO)$ in the subspace $U_k(\bfy)$ and repeat above argument.
+
+
+
+
+
+
+    %% Tung
+
+
+    \paragraph{Step 6: Construction of a Smooth Basis.} 
+Let $\{ \psi_1, \psi_2 \}$ be a fixed orthonormal basis of the eigenspace $E(\bfy_0)$ at the base point $\bfy_0$. For $\bfy$ in the neighborhood of $\bfy_0$, we define local basis vectors by applying the spectral projector:
+\begin{equation}
+    \phi_1(\bfy) = P(\bfy) \psi_1 \quad \text{and} \quad \phi_2(\bfy) = P(\bfy) \psi_2.
+\end{equation}
+Since $\psi_1$ and $\psi_2$ are parameter-independent vectors and $P(\bfy)$ is Gevrey-$\delta$ regular, the projected basis functions $\phi_1(\bfy)$ and $\phi_2(\bfy)$ inherently satisfy the Gevrey-$\delta$ regularity bounds. If an orthonormal basis is required for numerical schemes, applying the Gram-Schmidt process preserves this regularity because the Gram determinant is strictly non-zero in a sufficiently small neighborhood of $\bfy_0$.
+
+
+
+\paragraph{Step 3: Gevrey Regularity of the Resolvent.}
+Since $\calA_{\bfy}$ and $\calM_{\bfy}$ belong to the Gevrey-$\delta$ class (Assumption \ref{assump: Gevrey Compact}), the operator $\calT_{\bfy}$ also satisfies Gevrey-$\delta$ bounds. By iteratively applying the generalized Leibniz rule for operators, the resolvent $R(z,\bfy)$ inherits this Gevrey-$\delta$ regularity. Thus, there exist $C_R > 0$ and $\rho$ such that
+\begin{equation} \label{eq:resolvent_gevrey}
+    \|\partial^\nu_y R(z,\bfy)\| \le C_R \frac{(|\vnu|!)^\delta}{\vR^{|\vnu|}}.
+\end{equation}
+
+\paragraph{Step 4: Trace and the Eigenvalue Cluster.}
+Consider the contour integral defining the trace of the eigenvalue cluster inside $\Gamma$:
+\begin{equation}
+    \Lambda(\bfy) = \mathrm{tr} \left( \frac{1}{2\pi i} \oint_{\Gamma} z R(z,\bfy) dz \right).
+\end{equation}
+Since $\Gamma$ is a fixed, bounded contour and the Trace is a bounded linear operation on a finite-dimensional subspace, we can interchange differentiation and integration:
+\begin{equation}
+    \partial^\nu_y \Lambda(\bfy) = \mathrm{tr} \left( \frac{1}{2\pi i} \oint_{\Gamma} z \left( \partial^\nu R(z,\bfy) \right) dz \right).
+\end{equation}
+Using \eqref{eq:resolvent_gevrey}, the function $\Lambda(\bfy)$ trivially inherits the Gevrey-$\delta$ regularity, see Lemma \ref{lem:gevrey_integral}.
+
+
+
+\paragraph{Step 5: Recovery of the Smallest Eigenvalue.}
+By the definition of the Cauchy integral, the trace $\Lambda(\bfy)$ equals the sum of all eigenvalues of $\calT_{\bfy}$ enclosed by $\Gamma$, counted with their algebraic multiplicities. Since only $\mu_1(\bfy)$ lies inside $\Gamma$ and it has a constant multiplicity of 2 (Assumption \ref{assump: non-splitting}), we exactly have:
+\begin{equation}
+    \Lambda(\bfy) = \mu_1(\bfy) + \mu_1(\bfy) = 2 \mu_1(\bfy).
+\end{equation}
+It immediately follows that $\mu_1(\bfy) = \frac{1}{2}\Lambda(\bfy)$. Therefore, $\mu_1(\bfy)$ is a Gevrey-$\delta$ smooth function. 
+
+Finally, since $\lambda_1(\bfy) = 1/\mu_1(\bfy)$ and $\mu_1(\bfy)$ is strictly bounded away from zero, the composition of the reciprocal function (which is analytic) with the Gevrey-$\delta$ function $\mu_1(\bfy)$ implies that $\lambda_1(\bfy)$ itself possesses Gevrey-$\delta$ parametric regularity. This completes the proof.
+
+
+    \begin{lemma} \label{lem:gevrey_integral}
+		Let $\Gamma \subset \mC$ be a simple closed smooth contour, and let $U \subset \mC^n$ be an open parameter domain. Consider a matrix-valued function $R \colon \Gamma \times U \to \mC^{m \times m}$ and a constant matrix $V \in \mC^{m \times \ell}$ of full rank. Suppose that the following conditions hold:
+		\begin{enumerate}
+			\item[(i)] \textbf{Uniform Invertibility:} $R(z, \vy)$ is invertible for all $z \in \Gamma$ and $\vy \in U$, and its inverse is uniformly bounded, i.e., there exists a constant $C_R > 0$ such that
+			\begin{equation}\label{eq:bounded inverse}
+				\norm{R(z, \vy)^{-1}}{\infty} \le C_R,
+			\end{equation}
+			where the infinity norm is defined as $\norm{f(z)}{\infty}=\mathrm{ess\,sup}_{z\in\Gamma} \abs{f(z)}$ and the Frobenius norm as $\norm{M}{F}=\sqrt{{\mathrm{tr}\brac{\overline{M}^{\top}M}}}$.
+			
+			\item[(ii)] \textbf{Gevrey-$\delta$ regularity:} The mapping $z \mapsto R(z, \vy)$ has Gevrey-$\delta$ regularity on a neighborhood $\cB\subset\Gamma$, and $\vy \mapsto R(z, \vy)$ is analytic on $\calU$. Specifically, there exists a positive sequence $\vb = (b_1, \dots, b_n)$ such that the parametric derivatives of $R$ satisfy the following bounds:
+			\begin{equation}\label{eq:analytic}
+			\norm{\partial_{\vy}^{\vnu} R(z, \vy)}{\infty} \le C_R\, \vb^\vnu \abs{\vnu}!^{\delta},
+			\end{equation}
+			for all $\vnu \in \cF$.
+		\end{enumerate}
+		Then, the matrix-valued integrals defined by
+		\begin{equation}
+			P(\vy) := \frac{1}{2\pi i} \int_{\Gamma} R(z, \vy)^{-1} V \, dz 
+			\quad \text{and} \quad 
+			\Lambda(\vy) := \mathrm{tr} \brac{\frac{1}{2\pi i} \int_{\Gamma} z \, R(z, \vy)^{-1} V \, dz}
+		\end{equation}
+		are Gevrey-$\delta$ regularity on $\calU$. Furthermore, for any $\vnu \in \cF$, their derivatives admit the following quantitative bounds:
+		\begin{equation}
+			\max \sett{ \norm{\partial_{\vy}^\vnu P(\vy)}{F}, \, \norm{\partial_{\vy}^\vnu \Lambda(\vy)}{F} }
+			\le C_\Gamma m \ell \frac{\abs{\Gamma}}{2\pi} \norm{V}{F} (2C_R)^3 (6C_R^2)^{\abs{\vnu}-1} (2\vb)^\vnu \abs{\vnu}!,
+		\end{equation}
+		where $C_\Gamma :=\max\sett{1,  \max_{z \in \Gamma} \ \abs{z}}$.
+	\end{lemma}
+
+
+\begin{proof}
+	By assumption (ii), the parametric derivatives of $R$ satisfy the bound \eqref{eq:analytic}. Using the combinatorial inequality $\fallfact{\abs{\vnu}} \leq \abs{\vnu}! \leq 2^{\abs{\vnu}+1}\fallfact{\abs{\vnu}}$, we can rewrite this bound in terms of the rising factorial symbol as:
+	\begin{equation}\label{eq:analytic fallfact}
+		\norm{\partial_{\vy}^{\vnu} R(z, \vy)}{\infty} \le (2 C_R) (2\vb)^\vnu \fallfact{\abs{\vnu}}.
+	\end{equation}
+	Applying the inverse matrix derivative estimates from \cite[Lemma 2]{chernov2026gevreyclassregularitysteadystate} with the adjusted parameters $2C_R$ and $2\vb$, we deduce that the derivatives of the inverse matrix $R(z, \vy)^{-1}$ are bounded by:
+	\begin{align*}
+		\norm{\partial_{\vy}^{\vnu} R(z, \vy)^{-1}}{\infty} 
+		&\le (2 C_R)^3 (3 \cdot 2 C_R^2)^{\abs{\vnu}-1} (2\vb)^\vnu \fallfact{\abs{\vnu}} \\
+		&\leq (2 C_R)^3 (6 C_R^2)^{\abs{\vnu}-1} (2\vb)^\vnu \abs{\vnu}!,
+	\end{align*}
+	where we used the lower bound $\fallfact{\abs{\vnu}} \leq \abs{\vnu}!$ in the second inequality.
+	
+	Since $\Gamma$ is a compact contour and the derivative bounds are uniform on $\Gamma$, Leibniz's rule permits the interchange of differentiation and integration. Thus, for $P(\vy)$ we have:
+	\begin{equation*}
+		\partial_{\vy}^{\vnu} P(\vy) = \frac{1}{2\pi i} \int_{\Gamma} \partial_{\vy}^{\vnu} R(z, \vy)^{-1} V \, dz.
+	\end{equation*}
+	Taking the Frobenius norm on both sides and utilizing the submultiplicative property $\norm{A B}{F} \leq \norm{A}{F}\norm{B}{F}$ (as noted in \cite[ (14)]{chernov2026gevreyclassregularitysteadystate}), along with the dimensional factor $m \ell$, we obtain:
+	\begin{align*}
+		\norm{\partial_{\vy}^{\vnu} P(\vy)}{F}
+		&\leq m\,\ell \frac{\abs{\Gamma}}{2\pi} \norm{V}{F} \sup_{z \in \Gamma} \norm{\partial_{\vy}^{\vnu} R(z, \vy)^{-1}}{F} \\
+		&\leq m\,\ell \frac{\abs{\Gamma}}{2\pi} \norm{V}{F} (2 C_R)^3 (6 C_R^2)^{\abs{\vnu}-1} (2\vb)^\vnu \abs{\vnu}!.
+	\end{align*}
+	
+	Similarly, for the integral $\Lambda(\vy)$, the presence of the factor $z$ inside the integrand introduces an additional multiplier bounded by $\widetilde C_\Gamma := \max_{z \in \Gamma} \abs{z}$. Following the exact same procedure, we arrive at:
+	\begin{align*}
+		\norm{\partial_{\vy}^{\vnu} \Lambda(\vy)}{F}
+		&\leq \widetilde C_\Gamma \, m\,\ell \frac{\abs{\Gamma}}{2\pi} \norm{V}{F} (2 C_R)^3 (6 C_R^2)^{\abs{\vnu}-1} (2\vb)^\vnu \abs{\vnu}!.
+	\end{align*}
+	This completes the proof.
+\end{proof}
+
+\paragraph{Step 6: Construction of a Smooth Basis.} 
+Let $\{ \psi_1, \psi_2 \}$ be a fixed orthonormal basis of the eigenspace $E(\bfy_0)$ at the base point $\bfy_0$. For $\bfy$ in the neighborhood of $\bfy_0$, we define local basis vectors by applying the spectral projector:
+\begin{equation}
+    \phi_1(\bfy) = P(\bfy) \psi_1 \quad \text{and} \quad \phi_2(\bfy) = P(\bfy) \psi_2.
+\end{equation}
+Since $\psi_1$ and $\psi_2$ are parameter-independent vectors and $P(\bfy)$ is Gevrey-$\delta$ regular, the projected basis functions $\phi_1(\bfy)$ and $\phi_2(\bfy)$ inherently satisfy the Gevrey-$\delta$ regularity bounds. If an orthonormal basis is required for numerical schemes, applying the Gram-Schmidt process preserves this regularity because the Gram determinant is strictly non-zero in a sufficiently small neighborhood of $\bfy_0$.
+
+
+
+%% old proof for eigenvalue bound
+
+\begin{lemma}
+    For all discrete eigenvalues of $\calT_\bfy$, we have bounded variation, that is,
+    \begin{align*}
+        \vert \mu_k(\bfy) - \mu_k(\bfy_0)  \vert \leq V
+    \end{align*}
+    for all $ \bfy, \bfy_0 \in \calU$.
+\end{lemma}
+\begin{proof}
+Let $V^{(k)} $ denote the set of all subspaces of dimension $k$ of $V$ and write for subspace  $ U \leq V$
+$   \hat U = \{ u \in U :  \| u \| = 1 \}.$
+    Since $\calT_\bfy$ is self adjoint and has a non-empty discrete spectrum, we can apply 
+    the $\min$-$\max$ Theorem for descending eigenvalues for operators. Let $ k \in \N$ and note that 
+    \begin{align*}
+         \mu_k(\bfy) &= \min_{U \in V^{(k)}} \max_{ u \in \hat U} \langle \calT_{\bfy} u,u \rangle =   \min_{U \in V^{(k)}} \max_{ u \in \hat U} \langle (\calT_{\bfy}- \calT_{\bfy_0}) u,u  \rangle  + \langle \calT_{\bfy_0} u,u \rangle \\
+         & \leq  V + \mu_k(\bfy_0).
+    \end{align*} 
+    Repeating this for $\mu_k(\bfy_0)$, yields
+    $\vert \mu_k(\bfy) - \mu_k(\bfy_0) \vert \leq V$.
+\end{proof}
+
+
+
+%%% Section 4
+
+Consequently, the main result of this section is
+the following:
+
+\begin{lemma}[Gevrey regularity of $\calT_{\bfy}$]\label{lemma:GevreyRegularityTy}
+$\calT_{\bfy}$ is Gevrey regular with constants $C_{\calT}, \rho_{\calT}$
+such that 
+\begin{align*}
+   \| \Dnuy  \calT_{\bfy} \|_{\calL(V,V')} 
+   %= \| \Dnuy   \calA^{-1}_\bfy \calM_{\bfy} \|_{\calL(V,V')} 
+   \leq  C_{\calT} \rho_{\calT}^{\vert \bsnu \vert}\bsb^{\bsnu} \fallfac{\delta}{\vnu} 
+\end{align*}
+for all $\bfy \in \calU$ and $\bsnu \in \calF$ where
+\begin{align}\label{eq:constantRegTy}
+    C_{\calT} = 4C_{\calA^{-1}} C_{\calM}, \quad  \rho_{\calT}= \rho_{\calA^{-1}},
+\end{align}
+and where the constants $C_{\calA^{-1}},C_{\calM}$ and $\rho_{\calA^{-1}}$ are defined in \eqref{eq:constantRegInverseAy} and \eqref{eq:constantRegMy}.
+Moreover, if $r = \text{diam}(\calU)$, then we have a bound on the variation of $\calT_\bfy$ as in \eqref{eq:boundvariationTy} with
+\begin{align*}
+    V = r C_\calT \rho_{\calT}  \| \bsb \|_{\ell^1(\N)}.
+\end{align*}
+\end{lemma}
+\begin{remark}
+    Assumption (1) covers many useful examples. For example, an affine mid-surface geometric imperfections parametrization
+    \begin{equation*}     
+   \phi(\cdot;\bfy): \omega \to \R^3, (\uxi) \mapsto \phi(\uxi;\bfy) = \phi_0(\uxi) +  \sum_{i =1 }^\infty y_i \psi_i(\uxi)
+    \end{equation*}
+    such that 
+    \begin{equation*}
+        \Phi ((\uxi,\xi_3) ; \bfy) := \phi(\uxi;\bfy) + \xi_3 \vec n(\uxi;\bfy)
+    \end{equation*}
+    where $ \vec n(\cdot;\bfy)$ is the corresponding normal vector field to $\phi(\cdot;\bfy)$.
+    Given that the deformations modes $ \| \psi_i(\uxi) \|_{W^{2,\infty}(\omega,\R^3)} $ are $\ell^1$-summable, it can be shown that the radii of convergences for $\Phi$ are given as 
+    $\bsb = (\| \psi_i(\uxi) \|_{W^{2,\infty}(\omega,\R^3)}   \mid i \in \N ) $. An essential conditions that was established in \cite{GIANI2025118081}.
+    Assumption (2) is a restriction that excludes important cases, such as cracks or folds but is needed in our subsequent analysis, as the bilinear form $a_\bfy$ in \eqref{eq:bilinearforms} fails to be coercive otherwise. Assumption (3) and (4) are .
+\end{remark}
+
+
+
+
+
+
+%% Claude stuff 
+
+\subsection{Abstract Results for the Regularity of Linear Operators}\label{subsec:abstractResults}
+Let $\calU \subset \R^\infty$ be a compact and bounded set.
+Let $V,W, Y,Z$ be a Banach space. Let
+\[
+  \bfy \mapsto A_\bfy \in\mathcal L(V,W),\qquad \bfy \mapsto B_\bfy\in \calL(W,Z),\qquad \bfy \mapsto B_\bfy\in \calL(V,Z)
+\]
+be $C^\infty$ maps, and assume that $A_\bfy$ is an isomorphism for every $\bfy\in \calU$ with
+\begin{equation}\label{eq:infsup}
+  \|A_\bfy^{-1}\|_{\calL(W,V)}\le\frac1\beta\qquad\text{for all } \bfy\in \calU.
+\end{equation}
+
+Let $u(y)=A_y^{-1}F_y$. For a multi-index $\nu$ with $|\nu|\le k$ define
+\[
+  a_\mu(y):=\|A_y^{-1}\partial^\mu A_y\|_{V\to V},\qquad
+  f_\nu(y):=\|A_y^{-1}\partial^\nu F_y\|_{V}.
+\]
+By \eqref{eq:infsup}, $a_\mu\le\|\partial^\mu A_y\|/\beta$ and
+$f_\nu\le\|\partial^\nu F_y\|_{V'}/\beta$.
+
+\section*{Step 0: smoothness and the recursion}
+
+\begin{lemma}\label{lem:rec}
+$u\in C^k(U;V)$ and, for every $\nu\neq0$ with $|\nu|\le k$,
+\begin{equation}\label{eq:rec}
+  \partial^\nu u
+  = A_y^{-1}\partial^\nu F_y
+  -\sum_{0\ne\mu\le\nu}\binom{\nu}{\mu}A_y^{-1}\big(\partial^\mu A_y\big)\,\partial^{\nu-\mu}u .
+\end{equation}
+\end{lemma}
+
+
+\section*{Step 1: general recursive bound (only $C^k$ needed)}
+
+Taking norms in \eqref{eq:rec} gives, pointwise in $y$,
+\begin{equation}\label{eq:normrec}
+  \|\partial^\nu u\|_V\le f_\nu+\sum_{0\ne\mu\le\nu}\binom{\nu}{\mu}\,a_\mu\,\|\partial^{\nu-\mu}u\|_V,
+  \qquad \|u\|_V\le f_0 .
+\end{equation}
+If $\bar a_\mu:=\sup_{y\in U}a_\mu(y)<\infty$ and $\bar f_\nu:=\sup_{y\in U}f_\nu(y)<\infty$,
+define $C_\nu$ recursively by $C_0=\bar f_0$ and
+\[
+  C_\nu:=\bar f_\nu+\sum_{0\ne\mu\le\nu}\binom{\nu}{\mu}\bar a_\mu C_{\nu-\mu}.
+\]
+Induction on $|\nu|$ with \eqref{eq:normrec} gives $\sup_{y}\|\partial^\nu u(y)\|_V\le C_\nu$.
+So every derivative of $u$ up to order $k$ is bounded, with constants determined by the
+derivatives of $A_y$ and $F_y$ and by $\beta$ alone.
+
+\section*{Step 2: explicit bound under an analytic-type growth condition}
+
+\textbf{Assumption.} There are $c>0$, $\varphi>0$ and weights $b=(b_j)$, $b_j>0$, such that for all
+$y\in U$ and all $\mu,\nu$ with $|\mu|,|\nu|\le k$,
+\begin{equation}\label{eq:growth}
+  a_\mu(y)\le c\,|\mu|!\,b^\mu\quad(\mu\ne0),\qquad
+  f_\nu(y)\le\varphi\,|\nu|!\,b^\nu .
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+Under \eqref{eq:infsup} and \eqref{eq:growth}, for all $y\in U$ and $|\nu|\le k$,
+\begin{equation}\label{eq:main}
+  \|\partial^\nu u(y)\|_V\le\varphi\,|\nu|!\,\big((1+c)\,b\big)^\nu .
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Set $\kappa:=1+c$ and $n:=|\nu|$. We show $\|\partial^\nu u\|_V\le\varphi\,n!\,\kappa^n b^\nu$
+by induction on $n$. For $n=0$, $\|u\|_V\le f_0\le\varphi$.
+
+Let $n\ge1$ and assume the claim for all orders $<n$. From \eqref{eq:normrec} and \eqref{eq:growth},
+using $b^\mu b^{\nu-\mu}=b^\nu$,
+\[
+  \|\partial^\nu u\|_V
+  \le\varphi\,n!\,b^\nu+\varphi\,c\,b^\nu\sum_{0\ne\mu\le\nu}\binom{\nu}{\mu}|\mu|!\,(n-|\mu|)!\,\kappa^{\,n-|\mu|}.
+\]
+Group the sum by $m=|\mu|\in\{1,\dots,n\}$. By the Vandermonde identity,
+\[
+  \sum_{\substack{\mu\le\nu\\|\mu|=m}}\binom{\nu}{\mu}=\binom{n}{m},
+\]
+and $\binom{n}{m}\,m!\,(n-m)!=n!$. Therefore
+\[
+  \sum_{0\ne\mu\le\nu}\binom{\nu}{\mu}|\mu|!\,(n-|\mu|)!\,\kappa^{\,n-|\mu|}
+  =n!\sum_{m=1}^{n}\kappa^{\,n-m}=n!\,\frac{\kappa^n-1}{\kappa-1}=n!\,\frac{\kappa^n-1}{c}.
+\]
+Hence
+\[
+  \|\partial^\nu u\|_V\le\varphi\,n!\,b^\nu\big(1+(\kappa^n-1)\big)=\varphi\,n!\,\kappa^n b^\nu .
+  \qedhere
+\]
+\end{proof}
+
+
+\section*{Higher-order rule}
+
+\begin{theorem}[Leibniz rule for bounded bilinear maps]\label{thm:leibniz}
+Let $f\in C^k(U;X)$, $g\in C^k(U;Y)$. Then $h=B(f,g)\in C^k(U;Z)$ and for every
+$\nu$ with $|\nu|\le k$,
+\begin{equation}\label{eq:leibniz}
+  \partial^\nu B(f,g)=\sum_{\mu\le\nu}\binom{\nu}{\mu}\,B\big(\partial^\mu f,\ \partial^{\nu-\mu}g\big).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We use the convention $\binom{\nu}{\lambda}=0$ unless $0\le\lambda\le\nu$.
+
+\emph{Claim:} \eqref{eq:leibniz} holds for all $|\nu|\le k$. We induct on $|\nu|$.
+
+\emph{Base case} $\nu=0$: $h=B(f,g)$ is the statement itself.
+
+\emph{Induction step.} Suppose \eqref{eq:leibniz} holds for some $\nu$ with $|\nu|<k$, and let $j\in\{1,\dots,d\}$.
+Each $\partial^\mu f$ with $|\mu|\le|\nu|<k$ is $C^1$, and likewise each $\partial^{\nu-\mu}g$. Apply
+$\partial_j$ to \eqref{eq:leibniz} and 00000Lemma~\ref{lem:first} to every term:
+\[
+  \partial^{\nu+e_j}h
+  =\sum_{\mu\le\nu}\binom{\nu}{\mu}B\big(\partial^{\mu+e_j}f,\partial^{\nu-\mu}g\big)
+  +\sum_{\mu\le\nu}\binom{\nu}{\mu}B\big(\partial^{\mu}f,\partial^{\nu-\mu+e_j}g\big).
+\]
+In the first sum substitute $\lambda=\mu+e_j$; then $\nu-\mu=(\nu+e_j)-\lambda$. In the second sum put
+$\lambda=\mu$; then $\nu-\mu+e_j=(\nu+e_j)-\lambda$. Both sums are now over terms
+$B\big(\partial^\lambda f,\partial^{\nu+e_j-\lambda}g\big)$, so
+\[
+  \partial^{\nu+e_j}h=\sum_{\lambda\le\nu+e_j}
+  \Big[\tbinom{\nu}{\lambda-e_j}+\tbinom{\nu}{\lambda}\Big]
+  B\big(\partial^\lambda f,\partial^{\nu+e_j-\lambda}g\big).
+\]
+All factors of the product $\binom{\nu}{\lambda}=\prod_i\binom{\nu_i}{\lambda_i}$ with $i\ne j$ are common to
+both binomials, and in coordinate $j$ Pascal's rule
+$\binom{n}{m-1}+\binom{n}{m}=\binom{n+1}{m}$ applies. Therefore
+\[
+  \tbinom{\nu}{\lambda-e_j}+\tbinom{\nu}{\lambda}=\tbinom{\nu+e_j}{\lambda},
+\]
+which is \eqref{eq:leibniz} for $\nu+e_j$. Every multi-index of order $|\nu|+1$ has this form, so the induction closes.
+
+\emph{Regularity.} Each term in \eqref{eq:leibniz} is the composition of the continuous bilinear map $B$
+with continuous maps $\partial^\mu f,\partial^{\nu-\mu}g$, hence continuous.
+So all partials of $h$ up to order $k$ exist and are continuous.
+\end{proof}
+
+\section*{Specialisation to linear operators}
+
+\begin{lemma}\label{lem:op}
+Let $V,W$ be Banach spaces, $X=\mathcal L(V,W)$ with the operator norm, $Y=V$, $Z=W$, and
+$B(T,w)=Tw$. Then $B$ is bounded bilinear with $\|B\|\le1$.
+\end{lemma}
+
+\begin{proof}
+Bilinearity is the linearity of each $T$ together with the definition of the vector space operations on
+$\mathcal L(V,W)$:
+$(T_1+\alpha T_2)w=T_1w+\alpha T_2w$. Boundedness is $\|Tw\|_W\le\|T\|\,\|w\|_V$.
+\end{proof}
+
+\begin{theorem}[Leibniz rule for operator--vector products]\label{cor:op}
+Let $y\mapsto A_y\in\mathcal L(V,W)$ and $y\mapsto u(y)\in V$ be $C^k$. Then
+$y\mapsto A_yu(y)\in W$ is $C^k$ and
+\[
+  \partial^\nu\big(A_yu(y)\big)=\sum_{\mu\le\nu}\binom{\nu}{\mu}\big(\partial^\mu A_y\big)\,\partial^{\nu-\mu}u(y),
+  \qquad |\nu|\le k .
+\]
+In particular, for $W=V'$ and $A_yu(y)=F_y$ one may differentiate the equation term by term.
+\end{theorem}
+
+\begin{proof}
+Apply Theorem~\ref{thm:leibniz} with $B$ from Lemma~\ref{lem:op}, $f=A_{(\cdot)}$ and $g=u$.
+\end{proof}
+
+\begin{remark}[Infinitely many parameters]
+If $y=(y_j)_{j\ge1}$ and $\nu$ is finitely supported, $\partial^\nu$ involves only finitely many variables,
+and the proof applies with the remaining coordinates held fixed.
+\end{remark}
+
+\begin{remark}[Role of the hypotheses]
+Only \emph{boundedness} of $B$ is used (in Lemma~\ref{lem:first}). Differentiability of $y\mapsto A_y$ must hold
+in the \emph{operator norm}; strong (pointwise) differentiability of $y\mapsto A_yw$ for each $w$ is not enough
+in general, because then $\|f(y+te_j)-f(y)\|/|t|$ need not converge.
+\end{remark}

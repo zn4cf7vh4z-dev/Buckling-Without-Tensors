@@ -1,0 +1,161 @@
+\section{Introduction}
+\paragraph{Motivation and Context.} 
+The phenomenon of buckling of thin-walled structures (shell) describes the transition from 
+an initial unstable configuration to a possibly large-magnitude
+ displacement under small increase in loading. This so-called buckling response 
+ often causes either a significant reduction in stiffness or a complete structural failure.
+Relevant examples of shells that are prone to buckling are lightweight air- or 
+spacecrafts, submarines and automotives \cite{WAGNER2020106451}. 
+Notoriously, in a major series of laboratory experiments by NASA in the 1970s 
+\cite{NASA_SP_8007_2020}, the knockdown factor, 
+the ratio between observed and theoretical critical buckling load, was shown 
+to be as low as twenty per cent. 
+Despite the advances in computational resources, mathematical models and 
+manufacturing technology, this report remains the most prominent source of 
+recommendations for the design of buckling-critical shells. 
+
+%And thus, one motivation is to improve such manufacturing specifications 
+%by performing forward and inverse uncertainty quantification for the critical buckling load.
+%sharpening 
+%the bound on the critical bucklo through a general treatment of domain uncertainty
+%propagated to the critical buckling load.
+%and extending the quantification of sensitivity to 
+%different geometries and geometric imperfections. 
+It is well recognized that geometric imperfections are the primary 
+reason for the large discrepancy between the observed and 
+theoretical critical buckling load \cite{WAGNER2020106451}. 
+Naturally, efforts have been directed to the theoretical and 
+numerical analysis of geometric imperfection sensitivity of the critical buckling model 
+\cite{HUTCHINSON2018157,Harutyunyan2023,HILBURGER2004369, SCHENK20073424}. 
+In this article, we apply a general uncertainty quantification analysis of 
+the generalized eigenvalue problem that results from the linear buckling model of general shell structures. 
+Moreover, we show Gevrey-regularity of the corresponding 
+critical buckling load under the assumption that the random domain perturbations are 
+Gevrey-regular and uniformly diffeomorphic. The accompanied 
+constants are central to inform higher-order convergence methods 
+such as quasi Monte-Carlo or 
+sparse grid approximation methods \cite{kuo2016applicationquasimontecarlomethods,BieriDiss, Haji_Ali_2016}. 
+Consequently, this result enables standard 
+applications of methods in forward uncertainty quantification, 
+inverse problems, and topological and structural as well as 
+experimental design optimization \cite{kaarnioja2026quasimontecarlobayesiandesign,LatifiRostami2019}.
+
+
+\paragraph{Problem statement.} 
+The eigenvalue problem associated to the buckling problem is obtained from considering a 
+linearization of the second variation of the elastic energy functional. 
+With an increase in load, initially stable configurations may 
+change sign in the second variation of energy and thus become unstable. 
+Subsequently, a structure in an unstable configuration can suddenly 
+transition to a large-magnitude deformation. In this linearization 
+the pre-stress components involved in the non-linear term of the second 
+variation of elastic energy depend linearly on the traction 
+load and can hence be factored out as a dimensionless constant. The 
+resulting equations resemble a general eigenvalue problem where 
+the lowest eigenvalue corresponds to the dimensionless critical buckling load. 
+Here, the considered model is based on a geometric non-linear 
+deformation energy function and was analyzed, for example, in 
+\cite{DaugeandSuriNumericalapproximation, SZABO199943}.
+
+The parametrized general eigenvalue problem reads as:
+\emph{Find the smallest value $\lambda(\bsy) $ and $\bsu(\bsy)$ such that}
+\begin{align}\label{eq:bucklingPreview}
+    a_{\bsy}(\bsu(\bsy), \bsv) = \lambda(\bsy) b_{\bsy}(\bsu, \bsv) , \quad  \forall \bsv \in V,
+\end{align}
+where $a_\bsy$ is the variational bilinear form for linear elasticity, $b_\bsy$ is the pre-stress bilinear form and 
+$\bsy \in \calU$ is a parameter for the random domain mapping that models domain uncertainty in the shell. 
+Perturbations in the domain are modeled with the framework of random domain mappings \cite{Harbrecht2023DomainUncertainty} 
+and enter the equation through a pull-back to the nominal domain.
+Since parametrized eigenvalues are known to admit non-smooth dependencies, 
+we need to restrict our analysis on eigenvalue clusters. 
+Eigenvalue cluster are subsets of eigenvalues that remain isolated; that is, 
+the eigenvalues of the corresponding eigenmodes do 
+not cross with the eigenvalues of eigenmodes outside of the cluster for the whole parameter domain. 
+We are concerned with the question of whether Gevrey-regularity of the 
+random domain is preserved for the eigenvalue cluster, 
+in the sense that its spectral operator is Gevrey-regular. 
+Secondly, we want to quantify how large the eigenvalue cluster is 
+and if it allows for an approximation of the critical buckling load.
+ 
+\paragraph{State of the art and the Research gap.}
+Parametrized eigenvalue problems are well studied, see for example 
+\cite{grubišić2021stochasticcollocationmethodcomputing,chernov2024analyticgevreyclassregularity} 
+and the references therein. However, most existing results are only valid for compact operators for which the whole spectrum 
+is discrete and where the eigenvalue of interest is isolated. The buckling problem, however, admits a few challenges: 
+With the Riesz representation theorem on \eqref{eq:bucklingPreview}, we obtain the linear operator general 
+eigenvalue problem
+\begin{align*}
+    \calA_\bfy \bfu &= \lambda(\bfy)\calM_{\bfy} \bfu,
+\end{align*}
+where $\calA_\bsy$ is uniformly invertible and $\calM_\bsy$ is possibly indefinite.  
+Moreover, since $a_\bsy$ and $b_\bsy$ are a vector-valued first order bilinear forms, 
+the spectral operator $\calT_\bsy = \calA_\bsy^{-1} \calM_\bsy$ is non-compact. It is known by 
+\cite{DaugeandSuriNumericalapproximation} that the non-compact spectral operator from \eqref{eq:bucklingPreview} 
+is prone to spectral pollution; whole intervals can become eigenvalues and thus numerical approximations 
+seem to not converge in a certain range of eigenvalues. In \cite{DaugeandSuriNumericalapproximation}
+has shown that the smallest eigenvalue can be approximated pollution-free whenever the structure 
+is sufficiently thin. 
+
+Previous work on the buckling phenomenon has focused on the propagation of the effect of small idealized perturbations, 
+based on analytic extensions of the dimension reduced model solution, on the critical buckling 
+load in  \cite{HUTCHINSON2018157}. In related work \cite{Harutyunyan2023}, 
+the authors proved that the observed asymptotic 
+behavior of critical buckling load changes 
+under curvature variations and that the critical load decays 
+with a larger rate than the theoretic rate for a perfect geometry 
+when the thickness tends to zero. % \cite{dauge:hal-00012083}.
+On the numerical side, in \cite{SCHENK20073424} the authors have conducted extensive 
+numerical experiments with thin-walled cylinders with geometric imperfections that matches the manufacturing specimens
+made available by the initial imperfection data bank in \cite{arbocz1979initial}. It is shown in \cite{HILBURGER2004369} 
+that the prediction gap can be as low as 5\% percent when geometric imperfections are included.
+To the best of our knowledge, general geometric imperfections have not been considered 
+theoretically in the context of buckling.
+%Here, we analyze the propagation of random domain perturbations through the associated linear eigenvalue
+ %problem using the general uncertainty quantification methodological framework.
+
+\paragraph{Contribution.}
+ %We analyze the propagation of random domain perturbations through the associated linear eigenvalue
+%problem using the general uncertainty quantification methodological framework. 
+Our main result is that the
+eigenvalue cluster of the smallest eigenvalue, that is associated to the critical buckling load, 
+preserves Gevrey-regularity with an explicitly provided constant.
+%when the domain perturbation function is Gevrey-regular 
+%and its total variation is bounded 
+We introduce several new proof techniques, 
+further leveraging the alternating factorial 
+technique \cite{chernov2024analyticgevreyclassregularity}. 
+We show Gevrey-regularity of the spectral operator by differentiating
+its resolvent \cite{kato1995perturbation}. 
+%The resolvent method can be used for the 
+%computation of the eigenspace and further exploited for the spectral analysis.
+
+Another open question is the asymptotic analysis 
+for the critical buckling load, that is, the 
+behaviour of the spectrum when the thickness of 
+the structure goes to zero. In this limit case, 
+we observe in numerical simulation that mixing 
+of eigenmodes with high wave numbers with the 
+smallest eigenvalue occurs. It remains outside 
+of the scope of this work to combine the 
+asymptotic analysis with the parametrized 
+general eigenvalue problem.
+
+
+
+
+
+
+\paragraph{Outline.}
+The linear buckling model with domain perturbation is described in Section \ref{sec:LinearModel}. 
+In Section \ref{section:AbstractResults}, we prove abstract results on the 
+spectrum of $\calT_{\bfy}$ and particularly, prove that an isolated 
+eigenvalue cluster of $\calT_\bfy$ preserves Gevrey-regularity. %provided that  $\bfy \mapsto \calT_\bfy$ is Gevrey-regular. 
+In Section \ref{sec:regularityOfTy}, we show that $\calT_\bfy$ is 
+Gevrey-regular if the random domain mapping is Gevrey-regular and uniformly 
+diffeomorphic. Morevover, we provide the constants of the regularity statement. 
+We conclude with numerical experiments in Section 
+\ref{sec:numerical-example} and a discussion in Section \ref{sec:Discussion}.
+
+
+
+

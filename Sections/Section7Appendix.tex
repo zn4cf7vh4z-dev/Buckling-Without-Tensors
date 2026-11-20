@@ -1,0 +1,70 @@
+\section{Appendix}\label{sec:appendix}
+\begin{proof}[Proof of Lemma \ref{lemma:coefficientGevreyRegularity}]\label{proof:coefficientRegularity}
+    From the Gevrey-regularity of $\Phi$ in Assumption \eqref{eq:PhiAssumption}, we have
+    \begin{align*}
+        \| \Dnuy  J \|_{L^\infty (\Omega;
+        \mathbb{M}_2^3)} \leq C_{\Phi} \bsb^{\bsnu} \fallennudelta 
+    \end{align*}
+    and with the product rule, inversion, and the determinant in Lemma \ref{lemma:productInversionrule} or \cite[Lemma 2]{chernov2026gevreyclassregularitysteadystate},
+    we obtain
+    \begin{align*}
+        \| \Dnuy J^{-1} (\cdot;\bsy) \|_{L^\infty (\Omega;\mathbb{M}_2^3)}  &\leq \frac{C_\Phi}3  (3 C_\Phi^2)^{\vert \bsnu \vert } \bsb^{\bsnu} \fallennudelta,   \\
+        \| \Dnuy  (J^\top J) (\cdot;\bsy) \|_{L^\infty (\Omega;\mathbb{M}_2^3)} &\leq 2^2 C_{\Phi}^2 \bsb^{\bsnu} \fallennudelta,  \\
+        \| \Dnuy  (J^\top J)^{-1} (\cdot;\bsy)\|_{L^\infty (\Omega;\mathbb{M}_2^3)} &\leq \frac{2^2C_{\Phi}^2}{3} \left(3 \cdot 2^4C_{\Phi}^4 \right)^{\vert \bsnu \vert }\bsb^{\bsnu} \fallennudelta,  \\
+        \| \Dnuy  \det J (\cdot;\bsy) \|_{L^\infty (\Omega;\mathbb{M}_2^3)} &\leq 3 \cdot 2^7 C_{\Phi}^3 \bsb^{\bsnu} \fallennudelta  
+    \end{align*}
+    for all $\bsy \in \calU$.
+    Now, recalling the following identities of the transformed coefficients in Section \ref{section:linearbuckingformulation}, we obtain
+    \begin{align*}
+         \| \Dnuy \tilde{\calC}_{ijkl} \|_{L^\infty(\Omega;\R^4)} &\leq \| \Dnuy \left[ \det J J_{ri}^{-1} J_{js}^{-1} C_{rjsl} \right]  \|_{L^\infty(\Omega;\mathbb{M}_4^3)} \leq  2^{11} C^5_{\Phi} (3\cdot 2^4 C^4_\Phi)^{\vert \bsnu \vert } \bsb^\bsnu \fallennudelta,\\
+         % \| \Dnuy \tilde F_{i} \|_{L^\infty(\Omega;\R^{3})} &\leq \| \Dnuy \det J  F_i \|_{L^\infty(\Omega;\R^3)} \leq 3 \cdot 2^7 C^3_\Phi \bsb^\bsnu \fallennudelta, \\ 
+          \| \Dnuy \tilde T_{i} \|_{L^\infty(\partial\Omega;\R^{3})} &\leq \| \Dnuy \left[ \det J \| J^{-\top} n_{\text{ref}} \|_2  T_i \right] \|_{L^\infty(\partial\Omega;\R^3)} \leq 2^9 C^4_\Phi (3C^2_\Phi)^{\vert \bsnu \vert} \bsb^\bsnu \fallennudelta,
+    \end{align*}
+  %  Combining the last two inequalities with the product rule, \eqref{eq:stiffnesstensorupperbound}, \eqref{eq:bodyloadbound} and \eqref{eq:tractionloadbound}, respectively,
+  as claimed.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\ref{lemma:kornconstant}]\label{proof:KornConstant} For notational convenience, assume that the function spaces are combined with standard vector and matrix norms, i.e., Euclidean and Frobenius norm, respectively.
+
+Suppose \eqref{eq:uniformKornconstant} is not true.
+    Then there exists a sequence $ \{ (\bsu_n,\bsy_n) \} \subseteq V(\calE(\bsy_n)) \times \calU$
+    such that
+    \begin{align}\label{eq:strainscontradiction}
+        \| e(\bsu_n) \|_{L^2(\calE_n)} < \frac 1 n \| \bsu_n \|_{H^1(\calE_n)},
+    \end{align}
+    where we set $\| \bsu_n \|_{H^1(\calE_\infty)} = 1$ and $\calE_n = \calE(\bsy_n)$ for $n \in \N$. \\
+    Since $\calU $ is compact there exists a subsequence of $\bsy_n$ that converges to $\bsy \in \calU$.
+    Let $\calE = \calE(\bsy)$ and consider the subsequence in the following.\\
+We may extend each $\bsu_n$  to $\calE_\infty$ with the Sobolev extension theorem.
+Since $\calE(\bsy)$ is compact for all $\bsy \in \calU$ and $\calU$ is compact, $\calE_\infty$ is compact.
+
+Hence there exists $\bsu \in V(\calE_\infty)$ such that
+\begin{align*}
+\bsu_n \rightharpoonup \bsu \quad \text{in } H^1(\calE_\infty), \quad \text{and } \| \bsu_n\|_{H^1(\calE_\infty)} \leq D
+\end{align*}
+for some $D\geq 1$. Again, restrict to such a subsequence.
+
+By Assumption~\ref{assumption:GevreyRegularityJ} $\bsy \mapsto \calE(\bsy)$ is continuous and hence $\vert \calE \Delta \calE_n \vert  \to 0 $ for $n \to \infty$. Thus, by \eqref{eq:strainscontradiction},
+\begin{align*}
+\| e(\bsu_n) \|^2_{L^2(\calE)} =  \| e(\bsu_n) \|^2_{L^2(\calE \cap \calE_n)}  + \| e(\bsu_n) \|^2_{L^2(\calE \setminus \calE_n)}   \leq  \| e(\bsu_n) \|^2_{L^2(\calE_n)} + \| D\|^2_{L^2(\calE \setminus \calE_n)}  \to  0.
+\end{align*}
+Hence, $ \| e(\bsu) \|^2_{L^2(\calE)} = 0 $ and the classical Korn inequality \cite[Theorem 1.6-1]{ciarletIntroductionToShellTheory} asserts
+\begin{align}\label{eq:uiszero}
+\| \bsu \|_{H^1(\calE) } = 0.
+\end{align}
+However, since
+\begin{align*}
+ 1 = \| \bsu_n\|^2_{H^1( \calE_n)} = \| \bsu_n \|^2_{H^1(\calE \cap \calE_n)} + \| \bsu_n \|^2_{H^1(\calE_n \setminus \calE )}
+\end{align*}
+and since the second term goes to $0$, there exists an $n_0 $ such that
+\begin{align*}
+ \| \bsu_n\|_{H^1(\calE \cap \calE_n)}   \geq \frac 1 2, \quad \forall n > n_0
+\end{align*}
+
+which leads to a contradiction with \eqref{eq:uiszero} by
+\begin{align*}
+\|\bsu \|_{H^1(\calE)} = \lim_{n \to \infty } \|\bsu_n \|_{H^1(\calE)} \geq \lim_{n \to \infty } \|\bsu_n \|_{H^1(\calE_n \cap \calE)} \geq \frac 1 2.
+\end{align*}
+\end{proof}
+
+%\input{Sections/SectionAsymptopticAnalysis}

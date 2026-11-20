@@ -1,0 +1,90 @@
+\subsection{Asymptotic Analysis of Domain Perturbation Sensitivity of the Critical Buckling Load}
+
+The idea of this section is based on Dauge and Suri in \cite{dauge:hal-00012083}. Here, we generalize their asymptotic analysis for curvilinear coordinates, exhibiting the effect of random domain perturbations when the thickness of the shell goes to zero.
+\paragraph{Setting.} For the asymptotic analysis, we define the pullback to the uniform reference domain. Let $\omega \subseteq \R^2 $ be a bounded domain. 
+For thickness $\epsilon > 0$, let $\Omega^\epsilon := \omega \times (-\epsilon, \epsilon)$ and let $\Omega = \omega \times (-1,1)$ denote the uniform reference domain.
+
+We write coordinates in $\Omega^\epsilon$ as $\vxi = (\xi^1, \xi^2, \xi^3)^\top$ and in $\Omega$ as $\vec \eta  = (\eta_1,\eta_2,\eta_3)^\top$. Moreover, we use the basic notation for covariant, contra-variant bases, fundamental forms and volume element 
+as follows:
+\begin{align*}
+    \va_{\alpha} &= \DD{\phi}{\xi^\alpha} ,\quad  \va_3 = \va_1 \times \va_2 / \|  \va_1 \times \va_2  \|_2, \quad, \vec g_i  = \DD{\Phi}{\xi^i}, \quad \vec g^{i} \cdot \vec g_{j}= \delta_{ij}, \quad g^{ij}= \vec g^{i} \cdot \vec g^{j} \\\ 
+    a_{\alpha\beta} &= \va_\alpha \cdot \va_\beta, \quad \va^\alpha \cdot \va_\beta = \delta_{\alpha\beta},\quad  a^{\lambda \mu}= \va^\lambda \cdot \va^\mu,
+    \quad g_{ij} = \vec g_{i} \cdot \vec g_{j}, \quad  b_{\alpha\beta } = \va_3 \cdot \DD {\va_\alpha}{\xi^\beta} , \quad   
+    \\ 
+    b^\lambda_\mu &=  a^{\lambda \alpha} b_{\alpha \mu },\quad   g= \det (g_{\alpha \beta} ).
+\end{align*}
+In the following analysis we omit the dependence on the parameter $\bsy \in \calU$.
+We now assume that the first two fundamental forms $a_{\alpha \beta}, b_{\alpha\beta}$ induced by $\phi$ are diagonal. This is the case, for example, for the shell of revolution mapping in Section \ref{sec:numerical-example}. 
+Let 
+\begin{align*}
+\Phi&: \Omega^\epsilon \to \R^3, \vxi \mapsto \phi(\uxi) + \xi^3 \va_3(\uxi) , \\
+h &: \Omega \to \Omega^\epsilon, \vec \eta \mapsto \begin{pmatrix}
+    \eta_1 \\ \eta_2 \\ \epsilon \eta_3,
+\end{pmatrix}\end{align*}
+where $\vxi = (\uxi, \xi^3)^\top $. We note that 
+\begin{align}\label{eq:eta3transform}
+    \DD{u}{\xi^3} = \epsilon^{-1} \DD{u}{\eta_3}.
+\end{align}
+The prestress satisfies: there exist $\bar \sigma_{ij} : \Omega \to \mathbb{M}_{3}^2$ such that
+
+ \begin{align}\label{eq:normalstressdecay1}
+     \sigma_{ij}^* \vec a_{3i}  \vec a_{3j} &= \epsilon^2 \bar \sigma_{ij} \vec a_{3i} \vec a_{3j}, \\
+     \label{eq:normalstressdecay2}
+    \sigma_{ij}^* \vec a_{3i}  \vec a_{\alpha j} &= \epsilon \bar \sigma_{ij} \vec a_{3i} \vec a_{\alpha j}.
+ \end{align} The normal component of the prestress decays to zero with thickness $\epsilon$. The decay of the normal stress components comes from the coefficient $\epsilon^{-1}$ 
+ in the prestress source problem \eqref{eq:sourceproblem_weak_star} expansion $m_{-1}(\sigma,\bsv), m_{0}(\sigma,\bsv), m_{1}(\sigma,\bsv)$ as we see below.
+ %and  expansion in $\epsilon$, as follows
+ 
+Since we assume that $g_{\alpha\beta}$ is diagonal, we may simplify 
+ \begin{align}\label{eq:covariant_vec_expa}
+     \vec g^i = \frac 1 {g_{ii}}  \vec g _{i}
+ \end{align}
+ and expand 
+ \begin{align} \label{eq:expa_gi}
+     \vec g_i &= \vec a_i + \epsilon \vec g_{i}^{(1)} \\ 
+      \vec g_{i}^{(1)}& = \begin{cases}
+          \eta_3 b^{i}_i \vec a_i, &  i \in \{ 1,2\}\\
+          0, & i =3 .
+      \end{cases} 
+ \end{align}
+\paragraph{Exapnsion in $\epsilon$.} With \eqref{eq:covariant_vec_expa}, the bilinear forms can be written in terms of $\epsilon$, using \eqref{eq:eta3transform} and the expansion of the covariant basis \eqref{eq:expa_gi} to obtain
+ \begin{align*}
+     a(\bsu,\bsv) &= \int_{\Omega^\epsilon} C_{ijkl} ( \vec a_{r} + \epsilon \vec g^{(1)}_r )_j ( \vec a_{s} + \epsilon \vec g^{(1)}_s )_l  u_{i,r} v_{k,s} \frac{\sqrt g}{g_{rr} g_{ss}} \mathop{dV}, \\ 
+     b(\bsu,\bsv) &= \int_{\Omega^\epsilon} \sigma^*_{ij} ( \vec a_{r} + \epsilon \vec g^{(1)}_r )_i ( \vec a_{s} + \epsilon \vec g^{(1)}_s )_j  u_{m,r} v_{m,s} \frac{\sqrt g}{g_{rr} g_{ss}} \mathop{dV},\\
+     m(\sigma,\bsv) &= \int_{\Omega^\epsilon} \sigma_{ij} (\vec a_r + \epsilon \vec g_{r}^{(1)}) _j  \DD{v_i}{\xi^r} \sqrt{g} \mathop{dV}.
+ \end{align*} 
+  The next step is to transform \eqref{eq:eigenvaluebucklingproblem} to $\Omega$ and coordinates $\vec \eta$, and collect powers of $\epsilon$. 
+  Then
+  \begin{align*}
+      a(\bsu,\bsv)  & = \epsilon^{-2} a_{-2}(\bsu,\bsv)  + \ldots + \epsilon^{2} a_{2}(\bsu,\bsv), \\ 
+      b(\bsu,\bsv)  & =  b_{0}(\bsu,\bsv)  + \ldots + \epsilon^{2} b_{2}(\bsu,\bsv), \\ 
+      m(\sigma,\bsv) &=\epsilon^{-1} m_{-1}(\sigma,\bsv)  + \ldots + \epsilon m_{1}(\sigma,\bsv) .
+  \end{align*} 
+    Note that the singularities in $b$ with respect to $\epsilon$ vanish due to decay in \eqref{eq:normalstressdecay1} of the  prestress in the normal direction. In order to see that the assumption on the prestress is justified, consider the $\epsilon$-expansion of the prestress bilinear form as  \begin{align*}
+      m_{-1}(\sigma,\bsv) &=  \int_{\Omega} \sigma_{ij} \vec a_{3j} \DD{v_i}{\eta_3} \sqrt g \mathop{dV}, \\
+     m_{0}(\sigma,\bsv) &=  \int_{\Omega} \sigma_{ij} \vec a_{\alpha j} \DD{v_i}{\eta_\alpha} \sqrt g \mathop{dV}, \\ 
+      m_{1}(\sigma,\bsv) &=  \int_{\Omega} \sigma_{ij} \vec g_{\alpha j}^{(1)} \DD{v_i}{\eta_\alpha} \sqrt g \mathop{dV}.
+  \end{align*}
+  The singularity at $\epsilon \to 0$ forces the prestress to go in the normal direction of the surface to zero.
+  More precisely, conditions \eqref{eq:normalstressdecay1}, \eqref{eq:normalstressdecay2} are satisfied.
+
+The subsequent bilinear forms can be expanded and collected in a similiar fashion:
+\begin{align*}
+       a_{-2}(\bsu,\bsv) &= \int_{\Omega} C_{ijkl} \vec a_{3j}\vec a_{3l} \DD{u_i}{\eta_3} \DD{v_k}{\eta_3} \sqrt g \mathop{dV}, \\
+         a_{-1}(\bsu,\bsv) &= \int_{\Omega} C_{ijkl} \left[ \vec a_{\alpha j}\vec a_{3l} \DD{u_i}{\eta_\alpha} \DD{v_k}{\eta_3} \frac1{g_{\alpha\alpha}} + \vec a_{3 j}\vec a_{\alpha l} \DD{u_i}{\eta_3} \DD{v_k}{\eta_\alpha} \frac1{g_{\alpha\alpha}} \right]\sqrt g \mathop{dV}, \\
+           a_{0}(\bsu,\bsv) &= \int_{\Omega} C_{ijkl}  \left[ \vec a_{\alpha j}\vec a_{\beta l} \DD{u_i}{\eta_\alpha} \DD{v_k}{\eta_\beta } \frac1{g_{\alpha\alpha}g_{\beta\beta}} + \vec g^{(1)}_{\alpha j}\vec a_{3 l} \DD{u_i}{\eta_\alpha} \DD{v_k}{\eta_3} \frac1{g_{\alpha \alpha}} + \vec a_{3 j}\vec g^{(1)}_{\beta l} \DD{u_i}{\eta_3} \DD{v_k}{\eta_\beta } \frac1{g_{\beta\beta}}\right] \sqrt g \mathop{dV},\\
+            a_{1}(\bsu,\bsv) &= \int_{\Omega} C_{ijkl} \left[ \vec g^{(1)}_{\alpha j}\vec a_{\beta l} \DD{u_i}{\eta_\alpha} \DD{v_k}{\eta_\beta}  + \vec a_{\alpha j}\vec g^{(1)}_{\beta l} \DD{u_i}{\eta_\alpha} \DD{v_k}{\eta_\beta}  \right] \frac{\sqrt g}{g_{\alpha\alpha}g_{\beta\beta}}\mathop{dV}, \\
+            a_{2}(\bsu,\bsv) &= \int_{\Omega} C_{ijkl} \vec g^{(1)}_{\alpha j}\vec g^{(1)}_{\beta l} \DD{u_i}{\eta_\alpha} \DD{v_k}{\eta_\beta} \frac{\sqrt g}{g_{\alpha\alpha}g_{\beta\beta}}\mathop{dV},
+    \end{align*}
+    and the same expansion for $b(\bsu,\bsv)$ yields 
+    \begin{align*}
+        b_{0}(\bsu,\bsv) &=\int_{\Omega} \overline{\sigma}_{ij}\vec a_{ri}\vec a_{sj} \DD{u_m}{\eta_k} \DD{v_m}{\eta_s}\frac{\sqrt g}{g_{rr}g_{ss}}  \mathop{dV}   , \\ 
+        b_{1}(\bsu,\bsv) &=\int_{\Omega} \overline{\sigma}_{ij}  \left[ \vec a_{r i}\vec g_{\alpha j}^{(1)} \DD{u_m}{\eta_r} \DD{v_m}{\eta_\alpha} +  \vec g_{\alpha i}^{(1)}\vec a_{r j} \DD{u_m}{\eta_\alpha} \DD{v_m}{\eta_r}\right] \frac{\sqrt g}{{g_{rr} g_{\alpha\alpha}} }\mathop{dV} , \\ 
+        b_{2}(\bsu,\bsv) &=\int_{\Omega} \overline{\sigma}_{ij} \vec g_{\alpha i}^{(1)}\vec g_{\beta j}^{(1)} \DD{u_m}{\eta_\alpha} \DD{v_m}{\eta_\beta} \frac{\sqrt g}{g_{\alpha\alpha} g_{\beta\beta}} \mathop{dV} , \\ 
+    \end{align*}
+  Multiplying both sides of \eqref{eq:eigenvaluebucklingproblem} with $\epsilon^2$, and consider the leading terms
+    \begin{align*}
+       a_{-2}(\bsu,\bsv) + \ldots + \epsilon^4 a_2 &= \lambda( \epsilon^2 b_0(\bsu,\bsv) + \ldots + \epsilon^4 b_{2}(\bsu,\bsv)), \\
+        a_{-2}(\bsu,\bsv) & \approx \lambda  \epsilon^2 b_0(\bsu,\bsv),
+    \end{align*}
+    

@@ -1,0 +1,198 @@
+\section{The Linear Model for Buckling with Random Domain Perturbations}\label{sec:LinearModel}
+\subsection{Random Domain Perturbations}
+Let $\Omega \in \R^3$ be a reference domain and let $(\mathcal{R},\calA,P)$ be a probability space. 
+
+A common approach  to model random domain perturbations \cite{Harbrecht2023DomainUncertainty}
+is to associate a random domain $D[\bsomega]$ with random parameters $\boldsymbol{Y}: \mathcal{R} \to \calU, \omega \mapsto \boldsymbol{Y}[\bsomega]$, where $\calU = [-1/2,1/2]^{\N^*}$, and the mapping  
+\begin{align}\label{eq:definitionPhiandJ}
+    \Phi: \calU \to C^2(\Omega;\R^3), \quad J(\bsy) := \DD{\Phi(\bsy)}{\bsxi}
+\end{align} such that $\Phi$ uniformly twice-continuous differentiable and $C^1$-diffeomorphism, so that for all $\bsy \in \calU$
+\begin{align*}
+    \| \Phi(\bfy) \|_{C^1(\Omega;\R^3 )} \leq c_{\Phi} \quad \text{and} \quad  \| \Phi^{-1}(\bfy) \|_{C^1(\Omega;\R^3 )} \leq c_{\Phi},
+\end{align*} for some constant $c_\Phi \geq 1$. It is common to suppress the dependence on $\bsomega$ and write $ D(\bsy)  = D(\boldsymbol{Y}[\bsomega])=  D[\bsomega]$ for $\bsy \in \calU$.
+In practice, the random parameters $\boldsymbol{Y}[\bsomega]$ induce weights $\bsgamma \in \ell^2(\N)$ that are $\ell^2$-summable. In fact, the weights often correspond to a Karhunen-Loève decomposition of a random field in its principal components. Note that, any random field with finite variance admits such a decomposition, however, the components of $\boldsymbol{Y}[\bsomega]$ are not necessarily bounded. This property is a common but not restrictive simplification, see, for example, the textbook by G. Lord and C. Powell \cite[Chapter 7]{Lord_Powell_Shardlow_2014}. Fixing such weights $\bsgamma \in \ell^2(\N)$ associated with the random domain mapping, we define the norm on $\calU $ as 
+\begin{align*}
+    \| \bsy \|_\calU := \sup_{i \in \N^*}  \boldsymbol{\gamma}_i \vert \bsy_i \vert.
+\end{align*} 
+
+
+\subsection{Linear Elasticity}\label{subsec:linearelasicity}
+Standard practice for the stability analysis of shell structures is the use of tensor notation and Einstein's summation convention. In the following, we describe the relevant notational conventions based on the textbook by Chapelle and Bathe \cite[Chapter 2.1]{ChapelleBathe2011}. 
+\emph{Latin} indices $i,j,k,l,\ldots$ range from 1 to 3 and \emph{Greek} indices $\alpha,\beta,\gamma,\ldots$ range from 1 to 2 if not otherwise specified. 
+%For $d \in \N$ tensors of order $d $ are denoted as $^{(d)}S $ with components $S^{i_1 \ldots i_d}$ in contravariant and $S_{i_1 \ldots i_d}$ in covariant form, respectively.
+We write first order tensors  $\bsu = \{ u_i \}$ in bold.
+ In Einstein's summation convention, we omit summation signs for all indices that appear once as a subscript and
+once as a superscript in an expression. Finally, we describe the set of all tensors over $\R^3$ of order $d$ as $\mathbb{T}_d$.
+%For a basis $\bsg^{i}$, the tensor product $\bsg^i \otimes  \bsg^{j}$ is a basis for the second order tensors.
+%For a fixed basis, a second order tensor is associated with entries $T_{ij}$ and is represented as $\boldsymbol{T}= T_{ij} \bsg^i \otimes  \bsg^{j}$. Higher order tensors are treated in a similar fashion.
+%The dot product for higher order tensors is defined as taking the last order of the first argument and the first order of the second argument in a sum of products. That is,  for two second order tensors $\boldsymbol{T}$ and $\boldsymbol{M}$ defined over a basis $\{ \bsg^i \}$, the dot product is a  tensor of order two  
+%\begin{align*}
+%\boldsymbol{T} \cdot \boldsymbol{M} = T_{ij}M_{kl} (\bsg^j \cdot \bsg^k )\bsg^{i} \otimes \bsg^l.    
+%\end{align*}
+
+The tensors associated to the domain transformation are the covariant and contravariant basis, the second order metric tensor $\bsg$ and the volume elements of $\Phi$. In the following, all expressions that contain $\Phi$ are functions of $\bsy$.
+%and for notational brevity, we omit this dependence. 
+Let $\bsxi = \{\xi_i \}$ be the coordinates in the reference domain  $\Omega$ and $\bsx = \{ x_i \}$ be the coordinates in the physical domain  $ D(\bsy) = \Phi(\Omega,\bsy)$ for $\bsy \in \calU$.  The covariant basis and the metric tensor are defined as 
+\begin{align*}
+\bsg_{i}= \DD{\Phi}{\bsxi} \quad \text{and} \quad \boldsymbol{g} =  \{g_{ij} \}, \quad \text{where}\quad  g_{ij} =  \bsg_i \cdot \bsg_i.
+\end{align*} %where the dot product for tensors is defined as taking the last order of the first argument and the first order of the second argument in a sum of products.
+The volume element is denoted as $ \sqrt g = \sqrt{ \det (\bsg)} $.
+The contravariant basis $\bsg^i$ is defined by the relation $ \bsg^i \cdot \bsg_j   = \delta^i_j$ where $\delta^i_j$ is the Kronecker-delta and it can be used to transform the tangent vectors of $\Phi$ back to the reference domain.
+For some scalar function $v$ on $\Omega$, the chain rule yields the transformation of tangent vectors as
+ \begin{align}\label{eq:partialderivativesinX}
+    v_{,r} &=  \bsg_{r} \cdot \DD{\hat v}{ \bsx} \quad \text{and} \quad  \frac{\partial \hat v}{\partial \bsx} =  \bsg^r  v_{,r},
+\end{align} where   $\hat v = v \circ \Phi^{-1}$ and the partial derivatives with respect to the coordinates $\bsxi$ are denoted with a comma as $v_{,r}  =\partial v/\partial \xi_i$. 
+%Moreover, we define partial derivatives for both coordinate systems. For some scalar function $v : \Omega \to \R$, we write the partial derivatives separated by a comma, that is,  $v_{,r}  = \frac{\partial v}{\partial \xi_i}$. 
+%Let $\hat v = (v \circ \Phi^{-1}) (\bsx;\bfy)$ for $\bsx \in D(\bsy)$ and write the partial derivatives in $D(\bfy)$in terms of the contra-variant basis
+%\begin{align}\label{eq:partialderivativesinX}
+%    \bsg^{r}_i   v_{,r}  = \frac{\partial \hat v}{\partial x_i}.
+%\end{align}
+
+To define the weak formulation of linear elasticity with random domain perturbations, we define the admissible energy space 
+\begin{align}\label{eq:def_Vspace}
+    V = \{ \bsu \in H^1(\Omega;\R^3) :  \bsu =  0  \text{ on }\partial \Omega_D   \}
+\end{align}
+equipped with the Sobolev $H^1$-norm, where we assume that we have a partition of the boundary $\partial \Omega  = \partial \Omega_D \sqcup \partial \Omega_T$ in non-zero area boundary parts where homogeneous Dirichlet boundary conditions and traction are specified. 
+ The bilinear form for linear elasticity is defined on $V$ as
+ %For a tensor valued function $\bsu(\bsxi)$, we associated the 
+ %We define functions in tensor notation $\bsu = \{ u_i \}$ and denote the bilinear form for \emph{linear elasticity} as
+ \begin{align*}
+    a_\bsy(\bsu,\bsv) &:=   \int_{D(\bsy)} \hat{\calC}^{ijkl}  \left( 
+    \DD{ \hat u_i}{x_j}\right)  \left( \DD{\hat v_k}{x_l}\right) \dx, \quad \bsy \in \calU,
+\end{align*} where $\hat u_i = u_i \circ \Phi^{-1}$ and $ \hat v _k = v_k \circ \Phi^{-1}$. 
+ %on the physical domain $U$ and on $\Omega$ via $\bsu \circ \Phi^{-1}$
+Here, $\hat {\calC}= \calC \circ \Phi $ and $ \calC= \{ \calC^{ijkl} \}$ is Hooke's material stiffness tensor defined as functions on the reference domain $\Omega$ and is symmetric in the sense of
+\begin{align*}
+    \calC^{ijkl} = \calC^{jikl} = \calC^{ijlk} = \calC^{klij}.
+\end{align*}
+Moreover, we assume that $\calC$ is a uniformly coercive and bounded stiffness tensor.
+  That is, there is a constant $C_{\calC} > 0$ such that for all $\bfxi\in\Omega$,
+  \begin{align}
+    \calC_{ijkl}(\bfxi)\,\alpha_{ij}\alpha_{kl}
+      &\ge C_{\calC}^{-1}\,\|\alpha\|_F^2
+      &&\text{for all \emph{symmetric} matrices }\alpha, \label{eq:stiffnesstensorcoercivity}\\
+    \calC_{ijkl}(\bfxi)\,\alpha_{ij}\beta_{kl}
+      &\le C_{\calC}\,\|\alpha\|_F\,\|\beta\|_F
+      &&\text{for all matrices }\alpha,\beta, \label{eq:stiffnesstensorupperbound}
+  \end{align}
+  where $\|\cdot\|_F$ is the Frobenius norm.
+  
+%To emphasize the dependence of the expression $\partial \hat v/ \partial x_l$ on $\bsy$, we may only consider the pulled back version using \eqref{eq:partialderivativesinX}
+%\begin{align}\label{eq:linearelasticity_a_y}
+%     a_\bsy(\bsu,\bsv) &:=   \int_{\Omega} \calC^{ijkl} \sqrt{g(\bfy)} \left(g^r_j(\bsy) u_{i,r}\right)  \left(g^s_l(\bsy) v_{k,s}\right) \dxi, \\ 
+%     &= \int_{\Omega} \tilde{\calC}^{ijkl}(\bfy)  u_{i,j} v_{k,l}\dxi, 
+%\end{align}
+%where after exchanging indices $r$ and $j$, and $s$ and $l$, we have
+%\begin{align*}
+%    \tilde{\calC}^{ijkl}(\bsy) = \calC^{irks} g^j_r(\bsy) g^l_s(\bsy)  \sqrt{g(\bsy)} \in L^1(\Omega;\mathbb{T}_4), \quad \bsy \in \calU,
+%\end{align*} where $\bsg^i$ and $g$ are mappings $\calU\to C^1(\Omega;\R^3)$.
+%
+After transforming the bilinear form to the reference domain and using \eqref{eq:partialderivativesinX}, we obtain a vector-valued stochastic diffusion bilinear form. The regularity of the solution of the corresponding variational formulation is well understood \cite{Reference}. The linear buckling problem, however, results from a coupled vector-valued stochastic diffusion equation and requires non-standard techniques. The coupling is described in the next Section \ref{section:linearbuckingformulation}. %€In Section \ref{section:AbstractResults} such a method is presented.
+%, as we will see in the following Section.
+%and requires non-standard techniques. 
+%For example, a special case has been proven in \cite{Harbrecht2023DomainUncertainty}.
+
+%and moreover satisfies
+% \begin{align*}
+%     C_{ijkl} \alpha_{ij} \alpha_{kl} \geq 0
+% \end{align*}
+% for any matrix $\{ \alpha_{ij} \}$.
+ % \begin{align}
+     %\| \bsu \|_V  := \left( \sum_{i,j = 1}^3  \| u_{i,j} \| ^2_{L_2(\Omega) } \right)
+%\end{align}
+\subsection{Linear Buckling Model with Random Coefficients}\label{section:linearbuckingformulation}
+%We consider the three-dimensional linear buckling problem based on the potential energy criterion used in \cite{DaugeandSuriNumericalapproximation}.
+Buckling in structural mechanics can be described as a \emph{bifurcation} phenomenon: as the traction load increases, the reference (prebuckling) solution of the governing equations loses stability, and the structure may switch to a different equilibrium branch. The bifurcation point of the traction load is the critical value at which the second variation of elastic energy at the reference solution branch ceases to be positive definite. Consequently, the \emph{linear buckling model} is obtained by retaining only the leading-order terms of this second variation equation. Here, we are concerned with the analysis of the linear buckling model based on the \cite{DaugeandSuriNumericalapproximation}; a detailed derivation applying the procedure described in this paragraph is given in \cite[Section~2]{Grabovsky2007TheFS} and \cite[Section 2]{HarutyunyanBuckling}.\tododuc{brief mentioning of limitations} After restating the problem in the physical domain $D(\bsy)$, we derive the random coefficient model on the reference domain $\Omega$.
+%In the remainder of this section, we describe the linear bucking problem on $D(\bsy)$ and then restate %the problem on the reference domain $\Omega$.
+
+%The random domain mapping formulation into a random parameter dependent linear eigenvalue problem  with random coefficients. % in the sense of \eqref{eq:linearelasticity_a_y}. 
+
+%The mathematical formulation for the buckling \ac{buckling} problem arises from setting the second variation of elastic energy to %zero and.
+% from considering only leading order terms in the equation where the second variation of elastic energy is set to zero. Mathematically, buckling occurs when the second derivative of the elastic energy function changes it sign; an initially stable solution becomes unstable and a bifurcation occurs. Consequently, the structure snaps to a new state. The goal of the stability analysis is to find the critical buckling load $\lambda_{\text{cr}}$,  at which this bifurcation occurs.
+%For a derivation of the linear and non-linear buckling model, see, for example \cite[Section 2]{Grabovsky2007TheFS}. Therein, also limitations of the model \ac{model?} are discussed.
+
+%\paragraph{Random Linear Buckling Problem.}
+%The random domain linear buckling problem is retained by a classical coordinate transformation with the random domain mapping $\Phi$. 
+
+The linearization of equations of non-linear elasticity requires a pre-stress weighting. This pre-stress is associated to the prebuckled stress state and is derived as follows:
+%The pre-stress is derived from a random domain source problem:
+%First, the reference solution is solved to obtain the pre-stress $\bssigma_*$ and then the linear eigenvalue problem can be formulation 
+%First, we solve the pre-stress from the source problem where we assume negligible body load, that is, we assume that gravity is small compared to the traction load.
+%Solving for the reference solution on the randomly perturbed domain, gives the following problem:
+\emph{Find the pre-existing stress $\bssigma_0: \calU \to H^1(\Omega;\mathbb{T}_2)$ such that} 
+\begin{align}\label{eq:sourceproblem_weak}
+    \int_{D(\bsy)} \bssigma_0^{ij}\DD{v_{i}}{ x_j} \dxi  =\int_{D(\bsy)}  F_0^i v_i \dxi  + \oint_{\partial D(\bsy)_T} T_0^i v_i \mathop{dS}
+\end{align}
+for all $\bsv \in V$, where $\partial D(\bsy)_T = \Phi(\partial \Omega_T; \bsy)$, and body load $F^i_0$ and traction force are $T^i_0$ defined on the union of all $D(\bsy)$. %\begin{align*}    
+ %D_\infty :=\bigcup_{\bsy \in \calU }D(\bsy).
+ %\end{align*}
+As the body load is neglibile in our setting, we assume that $F_0^i$ is zero. The solution $\bssigma_0$ is then linear with respect to the traction load $T_0^i$, such that, 
+for a dimensionless constant $\lambda \in \R$, we may write
+\begin{align*}
+    \bssigma_0= \lambda \bssigma_*, \quad T^i_0 =\lambda T^i
+\end{align*} and solve for $\sigma_*$ on a unit traction load 
+\begin{align}\label{eq:sourceproblem_weak_star}
+    \int_{D(\bsy)} \sigma_*^{ij} v_{i,j} \dxi  =  \oint_{\partial D(\bsy)_T} T^i v_i \mathop{dS}  =: \calF_{\bsy}(\bsv) .
+\end{align}
+Moreover, we assume that $\calF_{\bsy}$ is uniformly bounded, that is, there exists $C_{T} \geq 0$ such that for all $\bsy \in \calU$
+\begin{align}\label{eq:boundOnTractionLoad}
+    \calF_{\bsy}(\bsv) \leq C_T \| \bsv \|_{V}, \quad \forall v \in V.
+\end{align}
+The geometric stiffness bilinear form is defined by the energy of the weighted second order term of the nonlinear Green Lagrange strain tensor, as
+\begin{align*}
+    b_\bsy(\bsu,\bsv) &:= -\int_{D(\bsy)} \bssigma_*^{ij} \DD{u^m}{x_i} \DD{v_m}{x_j}  \dx.
+\end{align*} 
+The parametrized linear buckling condition as in \cite{SZABO199943,DaugeandSuriNumericalapproximation,Grabovsky2007TheFS} is:
+\begin{problem}\label{problem:linearbuckling}
+   Find the smallest eigenvalue $\lambda_{\text{cr}}(\bsy)$ such that there exists $\bsu(\bsy) \in V$  
+\begin{align}\label{eq:eigenvaluebucklingproblem}
+    a_\bsy(\bsu(\bsy), \bsv )  = \lambda_{\text{cr}}(\bsy) b_\bsy(\bsu(\bsy), \bsv ), \quad \text{for all } \bsv \in V, \text{ and } \bsy \in \calU.
+   \end{align}
+\end{problem}
+%For the random domain transformation, we adopt the notation by Harbrecht et al. in \cite{Harbrecht2023DomainUncertainty} to tensor notation. \ac{I'd better refer to a standard textbook, like Bathe}
+% \ac{$\partial_j u_i$ is obviously not $\DD{u_i}{x_j}$. So what is this?}
+%Let us define the Jacobian of the random domain mapping and its contravariant basis $J =  \{\Phi_{i,j} \}, J^{-\top} =  \{g^j_{i} \}$, where $g^j$ \ac{Introduce the metric tensor and use the notation consistently. Pay attention to covariant and contravariant coordinates (rising of an index, see Bathe)} is the contravariant basis.
+%Using the identity
+%\begin{align}\label{eq:partialderivativeuinU}
+%   \partial^{\bsx}_j u_i = g^{r}_j u_{i,r},
+%\end{align}
+%the bilinear forms can be transformed back to the reference domain $\Omega$.
+By using \eqref{eq:partialderivativesinX} and the transformation on the reference domain, we obtain the vector-valued random coefficient eigenvalue problem. 
+%Note that both bilinear forms involve first-order derivatives. The corresponding spectral operator is therefore non-compact. 
+\begin{problem}[Random Coefficient Linear Buckling Problem]\label{problem:transformed_linearbuckling}
+    Find the smallest eigenpair $\lambda_{\text{cr}}(\bsy)$ and $\bsu(\bsy) \in V$ such that \eqref{eq:eigenvaluebucklingproblem} is satisfied, where the bilinear forms are
+    \begin{align}\label{eq:bilinearforms}
+    a_\bsy(\bsu, \bsv) &=  \int_{\Omega} \tilde{\calC}^{ijkl}u_{i,j}v_{k,l} \dxi,  \\
+    \label{eq:bilinearforms2}
+    b_\bsy(\bsu, \bsv)  & = -\int_{\Omega}  \tilde{\sigma}_*^{ij} u^m_{,i}v_{m,j} \dxi,
+\end{align}
+where \ac{Inconsistent, see Bathe}
+    \begin{align}\label{eq:transformed_stiffness}
+    \tilde \calC^{ijkl}(\bsy)  &= \sqrt{g(\bsy)}  \calC^{irks}  g_r^j(\bsy) g_{s}^l(\bsy) \quad \in L^1(\Omega;\mathbb{T}_4),  \\
+    \label{eq:transforme_prestress}
+    \tilde{\bssigma}_*^{ij}(\bsy) &= \sqrt{g(\bsy)} \bssigma_*^{rs}(\bsy)g^{i}_r(\bsy)  g^{j}_s(\bsy) \quad \in H^1(\Omega;\mathbb{T}_2).
+    \end{align}
+ 
+%and where $J$ and $\bfg^{k}$ and $\sigma_*$ depend on $\bsy \in \calU$.
+The unit pre-stress is obtained as the solution to \eqref{eq:sourceproblem_weak_star} after transforming the equation to $\Omega$. \emph{Find $\bssigma_* : \calU \to H^1(\Omega;\mathbb{T}_2)$ such that} 
+
+\begin{align}\label{eq:sourceproblem_weak_pulled_back}
+    \int_{\Omega} \tilde \bssigma_*^{ij} v_{i,j} \dxi  =  \oint_{\partial \Omega_T} \tilde T^i v_i \mathop{dS},
+\end{align}
+for all $\bsv \in V$ and all $\bsy \in \calU$, where
+\begin{align}
+    \tilde \bssigma_*^{ij}(\bsy) &=  \sqrt{g(\bsy)}  \bssigma_{*}^{ir}(\bsy) g_r^j(\bsy) \quad \quad\quad \in H^1(\Omega;\mathbb{T}_2),  \\
+    \tilde T^i(\bsy) &=  \sqrt{g(\bsy)}   \| g_j^r(\bsy) n^{\text{ref}}_r \|_2  T^i\circ \Phi(\bsy) \quad \in L^1(\Omega;\mathbb{T}_1),\label{eq:transformedtractionload}
+\end{align}
+where $\|  \cdot \|_2$ denotes standard Euclidean-norm on $\R^3$ and $\mathbf{n}^{\text{ref}} = \{ n^{\text{ref}}_i\}$ denotes the normal vector on $\partial \Omega$.
+\end{problem}
+
+%The dependence of $\sigma_*$ is defined by the source problem for the pre-stress. 
+\begin{remark}[Non-compact spectral operators] \label{remark:noncompactOperator}
+The linear random eigenvalue problem in Problem \ref{problem:transformed_linearbuckling} is a non-compact linear operator, since the bilinear forms $a_\bsy$ and $b_\bsy$ are of the same order.
+Such operators pose problems in the numerical computation of the spectrum, since whole intervals become possible limits of eigenvalues in the finite dimensional approximation, polluting the spectrum and misinforming the interpretation of numerical results. 
+However, the main result in \cite[Theorem 5.1]{DaugeandSuriNumericalapproximation} states an explicit criteria, such that a pollution-free eigenvalue approximation for the smallest eigenvalues on thin structures \ac{for the smallest eigenvalue?} is guaranteed. 
+Consequently, our analysis of the critical eigenvalue that solves \eqref{eq:eigenvaluebucklingproblem} is well-posed, whenever the underlying domain is sufficiently thin.
+\end{remark}
+
+%Before we show the Gevrey-regularity of the bilinear forms $a_{\bsy}$ and $b_{\bsy}$, we describe 

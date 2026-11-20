@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {paragraph}{Motivation and Context.}{2}{section*.2}%
+\contentsline {paragraph}{Problem statement.}{2}{section*.3}%
+\contentsline {paragraph}{State of the art and the Research gap.}{3}{section*.4}%
+\contentsline {paragraph}{Contribution.}{3}{section*.5}%
+\contentsline {paragraph}{Outline.}{4}{section*.6}%
+\contentsline {section}{\numberline {2}The Linear Model for Buckling with Random Domain Perturbations}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Random Domain Perturbations}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Linear Elasticity}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Linear Buckling Model with Random Coefficients}{6}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Abstract Results for Gevrey Regularity of Spectral Operators}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Linear Eigenvalue Problem For Non-Compact Operators}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Notation For Gevrey-Regularity}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}A uniform Spectral Gap}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Gevrey-Regularity of an Isolated Eigenvalue Cluster}{11}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Gevrey-regularity of the Riesz representers}{14}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Regularity of Critical Buckling Load under Domain Uncertainty}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Gevrey-Regularity of the Bilinear Form Representations}{17}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Numerical Example}{20}{section.5}%
+\contentsline {subsection}{\numberline {5.1}One-dimensional profile}{20}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Five-field model and prestress}{21}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Discrete space and sampled subspace}{21}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Ordered response statistics}{22}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Truncated Gaussian distribution(fixed)}{22}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Discussion}{23}{section.6}%
+\contentsline {section}{\numberline {7}Appendix}{23}{section.7}%
