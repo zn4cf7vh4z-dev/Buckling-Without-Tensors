@@ -5,7 +5,9 @@ Let $\Omega \in \R^3$ be a reference domain and let $(\mathcal{R},\calA,P)$ be a
 A common approach  to model random domain perturbations \cite{Harbrecht2023DomainUncertainty}
 is to associate a random domain $D[\bsomega]$ with random parameters $\boldsymbol{Y}: \mathcal{R} \to \calU, \omega \mapsto \boldsymbol{Y}[\bsomega]$, where $\calU = [-1/2,1/2]^{\N^*}$, and the mapping  
 \begin{align}\label{eq:definitionPhiandJ}
-    \Phi: \calU \to C^2(\Omega;\R^3), \quad J(\bsy) := \DD{\Phi(\bsy)}{\bsxi}
+    \Phi: \calU \to C^2(\Omega;\R^3), \quad J(\bsy) := \DD{\Phi}{\bsxi}(\bsy)= \begin{pmatrix}
+        \DD{\Phi}{\xi_1}& \DD{\Phi}{\xi_2}& \DD{\Phi}{\xi_3}
+    \end{pmatrix} (\bsy)
 \end{align} such that $\Phi$ uniformly twice-continuous differentiable and $C^1$-diffeomorphism, so that for all $\bsy \in \calU$
 \begin{align*}
     \| \Phi(\bfy) \|_{C^1(\Omega;\R^3 )} \leq c_{\Phi} \quad \text{and} \quad  \| \Phi^{-1}(\bfy) \|_{C^1(\Omega;\R^3 )} \leq c_{\Phi},
@@ -17,12 +19,14 @@ In practice, the random parameters $\boldsymbol{Y}[\bsomega]$ induce weights $\b
 
 
 \subsection{Linear Elasticity}\label{subsec:linearelasicity}
-Standard practice for the stability analysis of shell structures is the use of tensor notation and Einstein's summation convention. In the following, we describe the relevant notational conventions based on the textbook by Chapelle and Bathe \cite[Chapter 2.1]{ChapelleBathe2011}. 
-\emph{Latin} indices $i,j,k,l,\ldots$ range from 1 to 3 and \emph{Greek} indices $\alpha,\beta,\gamma,\ldots$ range from 1 to 2 if not otherwise specified. 
+%Standard practice for the stability analysis of shell structures is the use of tensor notation and Einstein's summation convention. 
+In the following, we describe the relevant notational conventions.
+We denote the set of all tensors over $\R^3$ of order $d$ as $\mathbb{T}_d$. Order two tensors are called matrices.% based on the textbook by Chapelle and Bathe \cite[Chapter 2.1]{ChapelleBathe2011}. 
+%\emph{Latin} indices $i,j,k,l,\ldots$ range from 1 to 3 and \emph{Greek} indices $\alpha,\beta,\gamma,\ldots$ range from 1 to 2 if not otherwise specified. 
 %For $d \in \N$ tensors of order $d $ are denoted as $^{(d)}S $ with components $S^{i_1 \ldots i_d}$ in contravariant and $S_{i_1 \ldots i_d}$ in covariant form, respectively.
-We write first order tensors  $\bsu = \{ u_i \}$ in bold.
- In Einstein's summation convention, we omit summation signs for all indices that appear once as a subscript and
-once as a superscript in an expression. Finally, we describe the set of all tensors over $\R^3$ of order $d$ as $\mathbb{T}_d$.
+%We write first order tensors  $\bsu = \{ u_i \}$ in bold.
+ %In Einstein's summation convention, we omit summation signs for all indices that appear once as a subscript and
+%once as a superscript in an expression. Finally, we describe the set of all tensors over $\R^3$ of order $d$ as $\mathbb{T}_d$.
 %For a basis $\bsg^{i}$, the tensor product $\bsg^i \otimes  \bsg^{j}$ is a basis for the second order tensors.
 %For a fixed basis, a second order tensor is associated with entries $T_{ij}$ and is represented as $\boldsymbol{T}= T_{ij} \bsg^i \otimes  \bsg^{j}$. Higher order tensors are treated in a similar fashion.
 %The dot product for higher order tensors is defined as taking the last order of the first argument and the first order of the second argument in a sum of products. That is,  for two second order tensors $\boldsymbol{T}$ and $\boldsymbol{M}$ defined over a basis $\{ \bsg^i \}$, the dot product is a  tensor of order two  
@@ -30,50 +34,61 @@ once as a superscript in an expression. Finally, we describe the set of all tens
 %\boldsymbol{T} \cdot \boldsymbol{M} = T_{ij}M_{kl} (\bsg^j \cdot \bsg^k )\bsg^{i} \otimes \bsg^l.    
 %\end{align*}
 
-The tensors associated to the domain transformation are the covariant and contravariant basis, the second order metric tensor $\bsg$ and the volume elements of $\Phi$. In the following, all expressions that contain $\Phi$ are functions of $\bsy$.
+%The tensors associated to the domain transformation are the covariant and contravariant basis, the second order metric tensor $\bsg$ and the volume elements of $\Phi$. 
+%In the following, all expressions that contain $\Phi$ are functions of $\bsy$.
 %and for notational brevity, we omit this dependence. 
-Let $\bsxi = \{\xi_i \}$ be the coordinates in the reference domain  $\Omega$ and $\bsx = \{ x_i \}$ be the coordinates in the physical domain  $ D(\bsy) = \Phi(\Omega,\bsy)$ for $\bsy \in \calU$.  The covariant basis and the metric tensor are defined as 
+Let $\bsxi  = (\xi_1,\ldots,\xi_3) $ denote the coordinates in the reference domain  $\Omega$ and $\bsx = (x_1,x_2,x_3)$ be the coordinates in the physical domain  $ D(\bsy) = \Phi(\Omega,\bsy)$ for $\bsy \in \calU$. Let $\bsu,\bsv: \Omega \to \R^3$ be two vector-valued functions and denote $\hat \bsu = \bsu \circ \Phi^{-1}$.
+With the notation
 \begin{align*}
-\bsg_{i}= \DD{\Phi}{\bsxi} \quad \text{and} \quad \boldsymbol{g} =  \{g_{ij} \}, \quad \text{where}\quad  g_{ij} =  \bsg_i \cdot \bsg_i.
-\end{align*} %where the dot product for tensors is defined as taking the last order of the first argument and the first order of the second argument in a sum of products.
-The volume element is denoted as $ \sqrt g = \sqrt{ \det (\bsg)} $.
-The contravariant basis $\bsg^i$ is defined by the relation $ \bsg^i \cdot \bsg_j   = \delta^i_j$ where $\delta^i_j$ is the Kronecker-delta and it can be used to transform the tangent vectors of $\Phi$ back to the reference domain.
-For some scalar function $v$ on $\Omega$, the chain rule yields the transformation of tangent vectors as
+    \DD{\bsu}{\bsxi} =    \begin{pmatrix}
+         \DD{u_1}{x_1}& \DD{u_1}{x_2}& \DD{u_1}{x_3}  \\    
+         \DD{ u_2}{x_1}& \DD{ u_2}{x_2}& \DD{u_2}{x_3}\\  
+         \DD{ u_3}{x_1}& \DD{u_3}{x_2}& \DD{ u_3}{x_3}
+    \end{pmatrix}, \quad \nabla_{\bsxi} \bsu = \DD{ \bsu}{\bsxi} ^{\top}, \quad \text{for } i,j \in \{1,2,3\},
+\end{align*}
+and the chain rule, we have
  \begin{align}\label{eq:partialderivativesinX}
-    v_{,r} &=  \bsg_{r} \cdot \DD{\hat v}{ \bsx} \quad \text{and} \quad  \frac{\partial \hat v}{\partial \bsx} =  \bsg^r  v_{,r},
-\end{align} where   $\hat v = v \circ \Phi^{-1}$ and the partial derivatives with respect to the coordinates $\bsxi$ are denoted with a comma as $v_{,r}  =\partial v/\partial \xi_i$. 
-%Moreover, we define partial derivatives for both coordinate systems. For some scalar function $v : \Omega \to \R$, we write the partial derivatives separated by a comma, that is,  $v_{,r}  = \frac{\partial v}{\partial \xi_i}$. 
-%Let $\hat v = (v \circ \Phi^{-1}) (\bsx;\bfy)$ for $\bsx \in D(\bsy)$ and write the partial derivatives in $D(\bfy)$in terms of the contra-variant basis
-%\begin{align}\label{eq:partialderivativesinX}
-%    \bsg^{r}_i   v_{,r}  = \frac{\partial \hat v}{\partial x_i}.
-%\end{align}
+\DD{\hat \bsu}{\bsx} =  \DD{\bsu}{\bsxi} \DD{\Phi^{-1}}{\bsx} =  \DD{\hat \bsu}{\bsxi} J^{-1} \quad \text{and } \quad  \nabla_{\bsx} \hat \bsu = J^{-\top} \nabla_{\bsxi} \bsu.
+\end{align} Thus the gradient with respect to $\bsx$ is dependent on $\bsy \in \calU$.
 
 To define the weak formulation of linear elasticity with random domain perturbations, we define the admissible energy space 
 \begin{align}\label{eq:def_Vspace}
     V = \{ \bsu \in H^1(\Omega;\R^3) :  \bsu =  0  \text{ on }\partial \Omega_D   \}
 \end{align}
 equipped with the Sobolev $H^1$-norm, where we assume that we have a partition of the boundary $\partial \Omega  = \partial \Omega_D \sqcup \partial \Omega_T$ in non-zero area boundary parts where homogeneous Dirichlet boundary conditions and traction are specified. 
+The linear strain is defined as 
+\begin{align*}
+    e_{\bsy}(\bsu) = \frac 1 2 \left(  \nabla_{\bsx} \hat \bsu +  (\nabla_{\bsx} \hat \bsu)^\top \right).
+\end{align*}
+Note that the gradient with respect to $\bsx$ depends on $\bsy \in \calU$ and hence does the linear strain on $D(\bsy)$.
+For a fourth order tensor $\calC = \{ \calC_{ijkl}\}$ and $A,B \in \mathbb{T}_2$, we define the double dot product and the tensor-matrix product
+\begin{align*}
+    A : B &= \sum_{i,j=1}^3 A_{ij} B_{ij},  \\
+    \calC : A :B &= \sum_{i,j,k,l=1}^3 \calC_{ijkl} A_{ij}B_{kl}, \\
+    (A\calC)_{ijkl} &= \sum_{r=1}^3 A_{ir} C_{rjkl}, \quad i,j,k,l\in \{1,2,3\}\\
+    (\calC B)_{ijkl} &= \sum_{s=1}^3 B_{sl} C_{ijsl}, \quad i,j,k,l\in \{1,2,3\}.
+\end{align*} 
+Note that 
+\begin{align*}
+     A : (MBN) &= (M^\top A N^\top) : B , \\
+     \calC : MA : NB &=  (A^\top \calC N) : A : B, 
+\end{align*}
+for all $A,B,M,N \in \mathbb{T}_2,$ and $ \calC \in \mathbb{T}_4.$
  The bilinear form for linear elasticity is defined on $V$ as
  %For a tensor valued function $\bsu(\bsxi)$, we associated the 
  %We define functions in tensor notation $\bsu = \{ u_i \}$ and denote the bilinear form for \emph{linear elasticity} as
  \begin{align*}
-    a_\bsy(\bsu,\bsv) &:=   \int_{D(\bsy)} \hat{\calC}^{ijkl}  \left( 
-    \DD{ \hat u_i}{x_j}\right)  \left( \DD{\hat v_k}{x_l}\right) \dx, \quad \bsy \in \calU,
-\end{align*} where $\hat u_i = u_i \circ \Phi^{-1}$ and $ \hat v _k = v_k \circ \Phi^{-1}$. 
- %on the physical domain $U$ and on $\Omega$ via $\bsu \circ \Phi^{-1}$
-Here, $\hat {\calC}= \calC \circ \Phi $ and $ \calC= \{ \calC^{ijkl} \}$ is Hooke's material stiffness tensor defined as functions on the reference domain $\Omega$ and is symmetric in the sense of
-\begin{align*}
-    \calC^{ijkl} = \calC^{jikl} = \calC^{ijlk} = \calC^{klij}.
-\end{align*}
+    a_\bsy(\bsu,\bsv) &:=   \int_{D(\bsy)} \hat{\calC}:  e_\bsy( \hat \bsu) : e_\bsy( \hat \bsv)  \dx, \quad \bsy \in \calU,
+\end{align*} where  $\hat {\calC}= \calC \circ \Phi $ and $ \calC= \{ \calC_{ijkl} \}$ is Hooke's material stiffness tensor defined as functions on the reference domain $\Omega$ and is symmetric in the sense of
+\begin{align}\label{eq:symmetryC}
+    \calC_{ijkl} = \calC_{jikl} = \calC_{ijlk} = \calC_{klij},\quad \text{ for all } i,j,k,l \in \{1,2,3\}.
+\end{align}
+
 Moreover, we assume that $\calC$ is a uniformly coercive and bounded stiffness tensor.
   That is, there is a constant $C_{\calC} > 0$ such that for all $\bfxi\in\Omega$,
   \begin{align}
-    \calC_{ijkl}(\bfxi)\,\alpha_{ij}\alpha_{kl}
-      &\ge C_{\calC}^{-1}\,\|\alpha\|_F^2
-      &&\text{for all \emph{symmetric} matrices }\alpha, \label{eq:stiffnesstensorcoercivity}\\
-    \calC_{ijkl}(\bfxi)\,\alpha_{ij}\beta_{kl}
-      &\le C_{\calC}\,\|\alpha\|_F\,\|\beta\|_F
-      &&\text{for all matrices }\alpha,\beta, \label{eq:stiffnesstensorupperbound}
+  \calC(\bsxi): \boldsymbol{\alpha} : \boldsymbol{\alpha}& \geq C_{\calC}^{-1} \| \boldsymbol{\alpha} \|_F^2  &&\text{for all \emph{symmetric} matrices } \boldsymbol{\alpha} , \label{eq:stiffnesstensorcoercivity}\\
+  \calC(\bsxi): \boldsymbol{\alpha} : \boldsymbol{\beta}& \geq C_{\calC} \| \boldsymbol{\alpha} \|_F  \| \boldsymbol{\beta} \|_F&&\text{for all matrices } \boldsymbol{\alpha},   \boldsymbol{\beta}\label{eq:stiffnesstensorupperbound}\\
   \end{align}
   where $\|\cdot\|_F$ is the Frobenius norm.
   
@@ -87,7 +102,7 @@ Moreover, we assume that $\calC$ is a uniformly coercive and bounded stiffness t
 %    \tilde{\calC}^{ijkl}(\bsy) = \calC^{irks} g^j_r(\bsy) g^l_s(\bsy)  \sqrt{g(\bsy)} \in L^1(\Omega;\mathbb{T}_4), \quad \bsy \in \calU,
 %\end{align*} where $\bsg^i$ and $g$ are mappings $\calU\to C^1(\Omega;\R^3)$.
 %
-After transforming the bilinear form to the reference domain and using \eqref{eq:partialderivativesinX}, we obtain a vector-valued stochastic diffusion bilinear form. The regularity of the solution of the corresponding variational formulation is well understood \cite{Reference}. The linear buckling problem, however, results from a coupled vector-valued stochastic diffusion equation and requires non-standard techniques. The coupling is described in the next Section \ref{section:linearbuckingformulation}. %€In Section \ref{section:AbstractResults} such a method is presented.
+After transforming the bilinear form to the reference domain and using \eqref{eq:partialderivativesinX}, we obtain a vector-valued stochastic diffusion bilinear form. The regularity of the solution of the corresponding variational formulation is well understood \cite{Reference}. The linear buckling problem, however, results from a coupled vector-valued stochastic diffusion equation and requires non-standard techniques. This coupling is described in the next Section \ref{section:linearbuckingformulation}. %€In Section \ref{section:AbstractResults} such a method is presented.
 %, as we will see in the following Section.
 %and requires non-standard techniques. 
 %For example, a special case has been proven in \cite{Harbrecht2023DomainUncertainty}.
@@ -121,18 +136,16 @@ The linearization of equations of non-linear elasticity requires a pre-stress we
 %Solving for the reference solution on the randomly perturbed domain, gives the following problem:
 \emph{Find the pre-existing stress $\bssigma_0: \calU \to H^1(\Omega;\mathbb{T}_2)$ such that} 
 \begin{align}\label{eq:sourceproblem_weak}
-    \int_{D(\bsy)} \bssigma_0^{ij}\DD{v_{i}}{ x_j} \dxi  =\int_{D(\bsy)}  F_0^i v_i \dxi  + \oint_{\partial D(\bsy)_T} T_0^i v_i \mathop{dS}
+    \int_{D(\bsy)} \bssigma_0 : e_\bsy(\bsv) \dx  =\int_{D(\bsy)}  F_0\cdot  \bsv \dx  + \oint_{\partial D(\bsy)_T} T_0 \cdot  \bsv \mathop{dS}
 \end{align}
-for all $\bsv \in V$, where $\partial D(\bsy)_T = \Phi(\partial \Omega_T; \bsy)$, and body load $F^i_0$ and traction force are $T^i_0$ defined on the union of all $D(\bsy)$. %\begin{align*}    
- %D_\infty :=\bigcup_{\bsy \in \calU }D(\bsy).
- %\end{align*}
-As the body load is neglibile in our setting, we assume that $F_0^i$ is zero. The solution $\bssigma_0$ is then linear with respect to the traction load $T_0^i$, such that, 
+for all $\bsv \in V$, where $\partial D(\bsy)_T = \Phi(\partial \Omega_T; \bsy)$, and body load $F_0$ and traction force are $T_0$ defined on the union of all $D(\bsy)$. 
+As the body load is neglibile in our setting, we assume that $F_0$ is zero. The solution $\bssigma_0$ is then linear with respect to the traction load $T_0$, such that, 
 for a dimensionless constant $\lambda \in \R$, we may write
 \begin{align*}
-    \bssigma_0= \lambda \bssigma_*, \quad T^i_0 =\lambda T^i
+    \bssigma_0= \lambda \bssigma_*, \quad T_0 =\lambda T
 \end{align*} and solve for $\sigma_*$ on a unit traction load 
 \begin{align}\label{eq:sourceproblem_weak_star}
-    \int_{D(\bsy)} \sigma_*^{ij} v_{i,j} \dxi  =  \oint_{\partial D(\bsy)_T} T^i v_i \mathop{dS}  =: \calF_{\bsy}(\bsv) .
+    \int_{D(\bsy)} \bssigma_*: e_\bsy(\bsv) \dx  =  \oint_{\partial D(\bsy)_T} T \cdot  \bsv \mathop{dS}  =: \calF_{\bsy}(\bsv) .
 \end{align}
 Moreover, we assume that $\calF_{\bsy}$ is uniformly bounded, that is, there exists $C_{T} \geq 0$ such that for all $\bsy \in \calU$
 \begin{align}\label{eq:boundOnTractionLoad}
@@ -140,7 +153,7 @@ Moreover, we assume that $\calF_{\bsy}$ is uniformly bounded, that is, there exi
 \end{align}
 The geometric stiffness bilinear form is defined by the energy of the weighted second order term of the nonlinear Green Lagrange strain tensor, as
 \begin{align*}
-    b_\bsy(\bsu,\bsv) &:= -\int_{D(\bsy)} \bssigma_*^{ij} \DD{u^m}{x_i} \DD{v_m}{x_j}  \dx.
+    b_\bsy(\bsu,\bsv) &:= -\int_{D(\bsy)} \bssigma_*: (\nabla_{\bsx}\bsu)^\top  \nabla_{\bsx}\bsv \dx.
 \end{align*} 
 The parametrized linear buckling condition as in \cite{SZABO199943,DaugeandSuriNumericalapproximation,Grabovsky2007TheFS} is:
 \begin{problem}\label{problem:linearbuckling}
@@ -157,34 +170,34 @@ The parametrized linear buckling condition as in \cite{SZABO199943,DaugeandSuriN
 %   \partial^{\bsx}_j u_i = g^{r}_j u_{i,r},
 %\end{align}
 %the bilinear forms can be transformed back to the reference domain $\Omega$.
-By using \eqref{eq:partialderivativesinX} and the transformation on the reference domain, we obtain the vector-valued random coefficient eigenvalue problem. 
+By using \eqref{eq:partialderivativesinX}, the symmetry of $\calC$ in the sense of \eqref{eq:symmetryC} and of $\bssigma_*$, and the transformation on the reference domain, we obtain the vector-valued random coefficient eigenvalue problem. 
 %Note that both bilinear forms involve first-order derivatives. The corresponding spectral operator is therefore non-compact. 
 \begin{problem}[Random Coefficient Linear Buckling Problem]\label{problem:transformed_linearbuckling}
     Find the smallest eigenpair $\lambda_{\text{cr}}(\bsy)$ and $\bsu(\bsy) \in V$ such that \eqref{eq:eigenvaluebucklingproblem} is satisfied, where the bilinear forms are
     \begin{align}\label{eq:bilinearforms}
-    a_\bsy(\bsu, \bsv) &=  \int_{\Omega} \tilde{\calC}^{ijkl}u_{i,j}v_{k,l} \dxi,  \\
+    a_\bsy(\bsu, \bsv) &=  \int_{\Omega} \tilde{\calC} : \nabla_{\bsxi} \bsu :\nabla_{\bsxi} \bsv \dxi,  \\
     \label{eq:bilinearforms2}
-    b_\bsy(\bsu, \bsv)  & = -\int_{\Omega}  \tilde{\sigma}_*^{ij} u^m_{,i}v_{m,j} \dxi,
+    b_\bsy(\bsu, \bsv)  & = -\int_{\Omega}  \tilde{\bssigma}_* : (\nabla_{\bsxi} \bsu)^\top   \nabla_{\bsxi} \bsv  \dxi,
 \end{align}
 where \ac{Inconsistent, see Bathe}
     \begin{align}\label{eq:transformed_stiffness}
-    \tilde \calC^{ijkl}(\bsy)  &= \sqrt{g(\bsy)}  \calC^{irks}  g_r^j(\bsy) g_{s}^l(\bsy) \quad \in L^1(\Omega;\mathbb{T}_4),  \\
+    \tilde \calC(\bsy)  &= \det J(\bsy) \left [J^{-1}(\bsy)\calC J^{-\top}(\bsy) \right] \quad \in L^1(\Omega;\mathbb{T}_4),  \\
     \label{eq:transforme_prestress}
-    \tilde{\bssigma}_*^{ij}(\bsy) &= \sqrt{g(\bsy)} \bssigma_*^{rs}(\bsy)g^{i}_r(\bsy)  g^{j}_s(\bsy) \quad \in H^1(\Omega;\mathbb{T}_2).
+    \tilde{\bssigma}_*(\bsy) &= \det J(\bsy)  \left[ J^{-1}(\bsy) \bssigma_*(\bsy) J^{-\top}(\bsy) \right] \quad \in H^1(\Omega;\mathbb{T}_2).
     \end{align}
  
 %and where $J$ and $\bfg^{k}$ and $\sigma_*$ depend on $\bsy \in \calU$.
 The unit pre-stress is obtained as the solution to \eqref{eq:sourceproblem_weak_star} after transforming the equation to $\Omega$. \emph{Find $\bssigma_* : \calU \to H^1(\Omega;\mathbb{T}_2)$ such that} 
 
 \begin{align}\label{eq:sourceproblem_weak_pulled_back}
-    \int_{\Omega} \tilde \bssigma_*^{ij} v_{i,j} \dxi  =  \oint_{\partial \Omega_T} \tilde T^i v_i \mathop{dS},
+    \int_{\Omega} \tilde \bssigma_* : \nabla_{\bsxi} \bsv \dxi  =  \oint_{\partial \Omega_T} \tilde T : \bsv \mathop{dS},
 \end{align}
 for all $\bsv \in V$ and all $\bsy \in \calU$, where
 \begin{align}
-    \tilde \bssigma_*^{ij}(\bsy) &=  \sqrt{g(\bsy)}  \bssigma_{*}^{ir}(\bsy) g_r^j(\bsy) \quad \quad\quad \in H^1(\Omega;\mathbb{T}_2),  \\
-    \tilde T^i(\bsy) &=  \sqrt{g(\bsy)}   \| g_j^r(\bsy) n^{\text{ref}}_r \|_2  T^i\circ \Phi(\bsy) \quad \in L^1(\Omega;\mathbb{T}_1),\label{eq:transformedtractionload}
+    \tilde \bssigma_*(\bsy) &=  \det J(\bsy) \left[ J^{-1}(\bsy) \bssigma_{*}(\bsy)  \right] \quad \quad\quad \in H^1(\Omega;\mathbb{T}_2),  \\
+    \tilde T(\bsy) &=  \det J(\bsy)   \|J^{-\top}(\bsy) n^{\text{ref}}_r \|_2  T\circ \Phi(\bsy) \quad \in L^1(\Omega;\mathbb{T}_1),\label{eq:transformedtractionload}
 \end{align}
-where $\|  \cdot \|_2$ denotes standard Euclidean-norm on $\R^3$ and $\mathbf{n}^{\text{ref}} = \{ n^{\text{ref}}_i\}$ denotes the normal vector on $\partial \Omega$.
+where $\|  \cdot \|_2$ denotes standard Euclidean-norm on $\R^3$ and $\mathbf{n}^{\text{ref}} \in \R^3$ denotes the normal vector on $\partial \Omega$.
 \end{problem}
 
 %The dependence of $\sigma_*$ is defined by the source problem for the pre-stress. 
